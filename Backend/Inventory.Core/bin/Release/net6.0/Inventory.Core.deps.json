@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Inventory.Core/1.0.0": {
+        "dependencies": {
+          "Inventory.Core.Shared": "1.0.0"
+        },
+        "runtime": {
+          "Inventory.Core.dll": {}
+        }
+      },
+      "Inventory.Core.Shared/1.0.0": {
+        "runtime": {
+          "Inventory.Core.Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Inventory.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Inventory.Core.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

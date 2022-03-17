@@ -1,0 +1,15 @@
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\bin\Release\net6.0\Inventory.Application.Shared.deps.json
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\bin\Release\net6.0\Inventory.Application.Shared.dll
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\bin\Release\net6.0\Inventory.Application.Shared.pdb
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\bin\Release\net6.0\Inventory.Core.Shared.dll
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\bin\Release\net6.0\Inventory.Core.Shared.pdb
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.csproj.AssemblyReference.cache
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.AssemblyInfoInputs.cache
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.AssemblyInfo.cs
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.csproj.CoreCompileInputs.cache
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.csproj.CopyComplete
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.dll
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\refint\Inventory.Application.Shared.dll
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\Inventory.Application.Shared.pdb
+D:\Inventory\InventoryManagment\Backend\Inventory.Application.Shared\obj\Release\net6.0\ref\Inventory.Application.Shared.dll

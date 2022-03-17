@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hqGd5r1sIb24pwlaOEprObl4GvUhS7bM2EzixZWT45k=",
+  "Source": "Inventory.Host",
+  "BasePath": "_content/Inventory.Host",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
