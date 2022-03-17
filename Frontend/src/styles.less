@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./fonts.less";
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1em;
+  line-height: 1.5em;
+  font-family: @open-sans-regular;
+}
+
+/*Custom Scrollbar*/
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.5em transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: silver;
+  border-radius: 5px;
+}
+
+//Custom Styles
+.c-a, .c-a:link, .c-a:visited, .c-a:active {
+  text-decoration: none !important;
+  color: #212529 !important;
+  padding: 0px 10px;
+  margin: 0px;
+  height: 50px;
+  line-height: 50px;
+  transition: 0.5s ease-in-out;
+  border-left: 0.25px solid transparent !important;
+}
+.c-a:hover {
+  color: blue !important;
+  background-color: transparent !important;
+  border-left: 10px solid transparent !important;
+  /*border-right: 0px !important;
+  border-left: 5px solid red !important;*/
+}
+i.c-fa {
+  min-width: 32px;
+  text-align: center;
+}

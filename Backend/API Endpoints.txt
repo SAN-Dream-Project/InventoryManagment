@@ -1,6 +1,6 @@
 API Endpoints :
 
-Ecommerce Application :
+Inventory Management :
 
 GET : /api/v1/products - request_payload: {}, response_payload: {success: '', error: ''}
 
