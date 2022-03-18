@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Inventory.Application.Shared.Goods.Dto;
+using Inventory.Application.Shared.Labours.Dto;
 using Inventory.Application.Shared.UserAndRoles.Roles.Dto;
 using Inventory.Application.Shared.UserAndRoles.Users.Dto;
 using Inventory.Core.Goods;
+using Inventory.Core.Labours;
 using Inventory.Core.UserAndRoles.Users;
 using Inventory.Core.Users.Roles;
 
@@ -18,6 +20,8 @@ namespace Inventory.Application
             CreateMap<User, UserInputDto>().ReverseMap();
             CreateMap<Good, GoodInputDto>().ReverseMap();
             CreateMap<Good, GoodDto>().ReverseMap();
+            CreateMap<Labour, LabourInputDto>().ReverseMap();
+            CreateMap<Labour, LabourDto>().ReverseMap();
         }
     }
 }
