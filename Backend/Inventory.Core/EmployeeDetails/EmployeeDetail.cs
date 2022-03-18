@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Inventory.Core.EmplyeeDetails
 {
-    [Table("EmplyeeDetail")]
+    [Table("EmployeeDetail")]
     public class EmployeeDetail:IEntityBase
     {
-        [Column("EmplyeeDetailID")]
+        [Column("EmployeeDetailID")]
         public Guid Id { get; set; }
         public string? FirstName { get; set; }
         public string? MiddleName { get; set; }

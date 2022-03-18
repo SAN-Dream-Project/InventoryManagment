@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318062046_Added_EmplyeeDetail_Table")]
-    partial class Added_EmplyeeDetail_Table
+    [Migration("20220318172736_Added_SalaryDetail_Table")]
+    partial class Added_SalaryDetail_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -121,12 +121,12 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("BharataSaleDetail");
                 });
 
-            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmplyeeDetail", b =>
+            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmployeeDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("EmplyeeDetailID");
+                        .HasColumnName("EmployeeDetailID");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -160,7 +160,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmplyeeDetail");
+                    b.ToTable("EmployeeDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.Goods.Good", b =>
@@ -505,6 +505,48 @@ namespace Inventory.EntityFramwork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Retailer");
+                });
+
+            modelBuilder.Entity("Inventory.Core.SalaryDetails.SalaryDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("SalaryDetailID");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EmplyeeType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("MonthlySalary")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PaidAmount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("WorkingDays")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SalaryDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.SaleDetails.SaleDetail", b =>

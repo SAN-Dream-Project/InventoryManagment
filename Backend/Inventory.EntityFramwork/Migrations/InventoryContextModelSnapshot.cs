@@ -119,12 +119,12 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("BharataSaleDetail");
                 });
 
-            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmplyeeDetail", b =>
+            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmployeeDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("EmplyeeDetailID");
+                        .HasColumnName("EmployeeDetailID");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -158,7 +158,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmplyeeDetail");
+                    b.ToTable("EmployeeDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.Goods.Good", b =>
