@@ -63,7 +63,7 @@ namespace Inventory.Host.Controllers
         }
         //GET All User by Name  
         [HttpGet("GetById")]
-        public async Task<GoodDto> GetUser(Guid id)
+        public async Task<GoodDto> GetGood(Guid id)
         {
             try
             {
