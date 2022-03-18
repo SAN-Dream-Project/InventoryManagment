@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Inventory.Core.EmplyeeDetails
 {
     [Table("EmplyeeDetail")]
-    public class EmplyeeDetail:IEntityBase
+    public class EmployeeDetail:IEntityBase
     {
         [Column("EmplyeeDetailID")]
         public Guid Id { get; set; }

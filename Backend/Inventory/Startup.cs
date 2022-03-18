@@ -47,6 +47,14 @@ using Inventory.EntityFramwork.Abstract.LabourRates;
 using Inventory.EntityFramwork.Repositories.LabourRates;
 using Inventory.Application.Shared.LabourRates;
 using Inventory.Application.LabourRates;
+using Inventory.EntityFramwork.Abstract.EmplyeeDetails;
+using Inventory.EntityFramwork.Repositories.EmployeeDetails;
+using Inventory.Application.Shared.EmployeeDetails;
+using Inventory.Application.EmployeeDetails;
+using Inventory.EntityFramwork.Abstract.SalaryDetails;
+using Inventory.EntityFramwork.Repositories.SalaryDetails;
+using Inventory.Application.Shared.SalaryDetails;
+using Inventory.Application.SalaryDetails;
 
 namespace Inventory.Host
 {
@@ -105,6 +113,11 @@ namespace Inventory.Host
             services.AddTransient<IRetailerAppService, RetailerAppService>();
             services.AddTransient<ILabourRateRepository, LabourRateRepository>();
             services.AddTransient<ILabourRateAppService, LabourRateAppService>();
+            services.AddTransient<IEmployeeDetailRepository, EmployeeDetailRepository>();
+            services.AddTransient<IEmployeeDetailAppService, EmployeeDetailAppService>();
+            services.AddTransient<ISalaryDetailRepository, SalaryDetailRepository>();
+            services.AddTransient<ISalaryDetailAppService, SalaryDetailAppService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
