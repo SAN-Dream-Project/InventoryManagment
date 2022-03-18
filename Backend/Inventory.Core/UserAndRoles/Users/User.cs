@@ -11,6 +11,7 @@ namespace Inventory.Core.UserAndRoles.Users
     [Table("Users")]
     public class User : IEntityBase
     {
+        [Column("UserId")]
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }

@@ -19,6 +19,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Inventory.EntityFramwork.Abstract;
 using System.Text;
+using Inventory.EntityFramwork.Abstract.Goods;
+using Inventory.Application.Shared.Goods;
+using Inventory.Application.Goods;
+using Inventory.EntityFramwork.Repositories.Goods;
 
 namespace Inventory.Host
 {
@@ -63,6 +67,8 @@ namespace Inventory.Host
             services.AddTransient<IRoleAppService, RoleAppService>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<IGoodRepository, GoodRepository>();
+            services.AddTransient<IGoodAppService, GoodAppService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -10,6 +10,7 @@ namespace Inventory.Core.Users.Roles
     [Table("Roles")]
     public class Role : IEntityBase
     {
+        [Column("RoleId")]
         public Guid Id { get ; set ; }
         public string RoleName { get; set; }
         public string? CreatedBy { get ; set; }

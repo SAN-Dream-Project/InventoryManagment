@@ -13,7 +13,7 @@ namespace Inventory.Core
          DateTime? CreatedDate { get; set; }
          string? ModifiedBy { get; set; }
          DateTime? ModifiedDate { get; set; }
-         string? DeletedBy { get; set; }
-         DateTime? DeleteDate { get; set; }
+         //string? DeletedBy { get; set; }
+         //DateTime? DeleteDate { get; set; }
     }
 }
