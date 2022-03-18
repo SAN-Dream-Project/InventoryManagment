@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Shared.BharadaRates.Dto;
 using Inventory.Application.Shared.Goods.Dto;
 using Inventory.Application.Shared.GoodSuppliers.Dto;
 using Inventory.Application.Shared.Kadatas.Dto;
@@ -11,6 +12,7 @@ using Inventory.Core.Goods;
 using Inventory.Core.GoodSuppliers;
 using Inventory.Core.Kadatas;
 using Inventory.Core.Labours;
+using Inventory.Core.RateTables;
 using Inventory.Core.Retailers;
 using Inventory.Core.Stocks;
 using Inventory.Core.UserAndRoles.Users;
@@ -37,7 +39,9 @@ namespace Inventory.Application
             CreateMap<Stock, StockInputDto>().ReverseMap();
             CreateMap<Stock, StockDto>().ReverseMap(); 
             CreateMap<Retailer, RetailerInputDto>().ReverseMap();
-            CreateMap<Retailer, RetailerDto>().ReverseMap(); 
+            CreateMap<Retailer, RetailerDto>().ReverseMap();
+            CreateMap<BharadaRate, BharadaRateInputDto>().ReverseMap();
+            CreateMap<BharadaRate, BharadaRateDto>().ReverseMap();
         }
     }
 }

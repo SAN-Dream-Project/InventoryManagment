@@ -43,6 +43,10 @@ using Inventory.EntityFramwork.Abstract.Retailers;
 using Inventory.EntityFramwork.Repositories.Retailers;
 using Inventory.Application.Retailers;
 using Inventory.Application.Shared.Retailers;
+using Inventory.EntityFramwork.Abstract.BharadaRates;
+using Inventory.EntityFramwork.Repositories.BharadaRates;
+using Inventory.Application.Shared.BharadaRates;
+using Inventory.Application.BharadaRates;
 
 namespace Inventory.Host
 {
@@ -99,6 +103,8 @@ namespace Inventory.Host
             services.AddTransient<ILabourAppService, LabourAppService>();
             services.AddTransient<IRetailerRepository, RetailerRepository>();
             services.AddTransient<IRetailerAppService, RetailerAppService>();
+            services.AddTransient<IBharadaRateRepository, BharadaRateRepository>();
+            services.AddTransient<IBharadaRateAppService, BharadaRateAppService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
