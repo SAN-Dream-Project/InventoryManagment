@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318172430_Added_EmployeeDetail_Table")]
-    partial class Added_EmployeeDetail_Table
+    [Migration("20220318191832_Added_BharadaCreditDetail_Table")]
+    partial class Added_BharadaCreditDetail_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,12 +61,12 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("BharadaCreditDetail");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharataSaleDetailID");
+                        .HasColumnName("BharadaSaleDetailID");
 
                     b.Property<Guid?>("BharadaRateID")
                         .HasColumnType("uniqueidentifier");
@@ -118,49 +118,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasIndex("RetailerID");
 
-                    b.ToTable("BharataSaleDetail");
-                });
-
-            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmployeeDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("EmployeeDetailID");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MobileNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmployeeDetail");
+                    b.ToTable("BharadaSaleDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.Goods.Good", b =>
@@ -693,7 +651,7 @@ namespace Inventory.EntityFramwork.Migrations
 
             modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
                 {
-                    b.HasOne("Inventory.Core.BharataSaleDetails.BharataSaleDetail", "BharataSaleDetail")
+                    b.HasOne("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", "BharataSaleDetail")
                         .WithMany()
                         .HasForeignKey("BharataSaleDetailID");
 
@@ -706,7 +664,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Navigation("Retailer");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.HasOne("Inventory.Core.RateTables.BharadaRate", "BharadaRate")
                         .WithMany()

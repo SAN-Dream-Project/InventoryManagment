@@ -23,6 +23,16 @@ using Inventory.Core.SalaryDetails;
 using Inventory.Core.Stocks;
 using Inventory.Core.UserAndRoles.Users;
 using Inventory.Core.Users.Roles;
+using Inventory.Core.Purchases;
+using Inventory.Application.Shared.Purchases.Dto;
+using Inventory.Core.LabourDetails;
+using Inventory.Application.Shared.LabourDetails.Dto;
+using Inventory.Core.SaleDetails;
+using Inventory.Application.Shared.SaleDetails.Dto;
+using Inventory.Core.BharadaSaleDetails;
+using Inventory.Application.Shared.BharadaSaleDetails.Dto;
+using Inventory.Core.BharadaCreditDetails;
+using Inventory.Application.Shared.BharadaCreditDetails.Dto;
 
 namespace Inventory.Application
 {
@@ -41,9 +51,9 @@ namespace Inventory.Application
             CreateMap<Kadata, KadataInputDto>().ReverseMap();
             CreateMap<Kadata, KadataDto>().ReverseMap();
             CreateMap<GoodSupplier, GoodSupplierInputDto>().ReverseMap();
-            CreateMap<GoodSupplier, GoodSupplierDto>().ReverseMap(); 
+            CreateMap<GoodSupplier, GoodSupplierDto>().ReverseMap();
             CreateMap<Stock, StockInputDto>().ReverseMap();
-            CreateMap<Stock, StockDto>().ReverseMap(); 
+            CreateMap<Stock, StockDto>().ReverseMap();
             CreateMap<Retailer, RetailerInputDto>().ReverseMap();
             CreateMap<Retailer, RetailerDto>().ReverseMap();
             CreateMap<LabourRate, LabourRateInputDto>().ReverseMap();
@@ -52,9 +62,18 @@ namespace Inventory.Application
             CreateMap<EmployeeDetail, EmployeeDetailDto>().ReverseMap();
             CreateMap<SalaryDetail, SalaryDetailInputDto>().ReverseMap();
             CreateMap<SalaryDetail, SalaryDetailDto>().ReverseMap();
-            CreateMap<Retailer, RetailerDto>().ReverseMap();
             CreateMap<BharadaRate, BharadaRateInputDto>().ReverseMap();
             CreateMap<BharadaRate, BharadaRateDto>().ReverseMap();
+            CreateMap<Purchase, PurchaseInputDto>().ReverseMap();
+            CreateMap<Purchase, PurchaseDto>().ReverseMap();
+            CreateMap<LabourDetail, LabourDetailInputDto>().ReverseMap();
+            CreateMap<LabourDetail, LabourDetailDto>().ReverseMap();
+            CreateMap<SaleDetail, SaleDetailInputDto>().ReverseMap();
+            CreateMap<SaleDetail, SaleDetailDto>().ReverseMap();
+            CreateMap<BharadaSaleDetail, BharadaSaleDetailInputDto>().ReverseMap();
+            CreateMap<BharadaSaleDetail, BharadaSaleDetailDto>().ReverseMap();
+            CreateMap<BharadaCreditDetail, BharadaCreditDetailInputDto>().ReverseMap();
+            CreateMap<BharadaCreditDetail, BharadaCreditDetailDto>().ReverseMap();
         }
     }
 }

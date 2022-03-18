@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318172736_Added_SalaryDetail_Table")]
-    partial class Added_SalaryDetail_Table
+    [Migration("20220318191948_Added_EmployeeDetail_Table")]
+    partial class Added_EmployeeDetail_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,12 +61,12 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("BharadaCreditDetail");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharataSaleDetailID");
+                        .HasColumnName("BharadaSaleDetailID");
 
                     b.Property<Guid?>("BharadaRateID")
                         .HasColumnType("uniqueidentifier");
@@ -118,7 +118,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasIndex("RetailerID");
 
-                    b.ToTable("BharataSaleDetail");
+                    b.ToTable("BharadaSaleDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmployeeDetail", b =>
@@ -507,48 +507,6 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("Retailer");
                 });
 
-            modelBuilder.Entity("Inventory.Core.SalaryDetails.SalaryDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("SalaryDetailID");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("EmplyeeType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("MonthlySalary")
-                        .HasColumnType("float");
-
-                    b.Property<double>("PaidAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double>("WorkingDays")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SalaryDetail");
-                });
-
             modelBuilder.Entity("Inventory.Core.SaleDetails.SaleDetail", b =>
                 {
                     b.Property<Guid>("Id")
@@ -735,7 +693,7 @@ namespace Inventory.EntityFramwork.Migrations
 
             modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
                 {
-                    b.HasOne("Inventory.Core.BharataSaleDetails.BharataSaleDetail", "BharataSaleDetail")
+                    b.HasOne("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", "BharataSaleDetail")
                         .WithMany()
                         .HasForeignKey("BharataSaleDetailID");
 
@@ -748,7 +706,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Navigation("Retailer");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.HasOne("Inventory.Core.RateTables.BharadaRate", "BharadaRate")
                         .WithMany()

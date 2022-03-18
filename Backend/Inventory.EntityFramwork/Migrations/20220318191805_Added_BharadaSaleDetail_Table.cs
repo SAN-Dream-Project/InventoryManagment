@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Added_BharataSaleDetail_Table : Migration
+    public partial class Added_BharadaSaleDetail_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,13 +20,13 @@ namespace Inventory.EntityFramwork.Migrations
                 newName: "LabourID");
 
             migrationBuilder.CreateTable(
-                name: "BharataSaleDetail",
+                name: "BharadaSaleDetail",
                 columns: table => new
                 {
-                    BharataSaleDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BharadaRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BharadaSaleDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BharadaRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Quntity = table.Column<double>(type: "float", nullable: true),
-                    RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ToatalAmount = table.Column<double>(type: "float", nullable: true),
                     Discount = table.Column<double>(type: "float", nullable: true),
                     LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -41,46 +41,44 @@ namespace Inventory.EntityFramwork.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BharataSaleDetail", x => x.BharataSaleDetailID);
+                    table.PrimaryKey("PK_BharadaSaleDetail", x => x.BharadaSaleDetailID);
                     table.ForeignKey(
-                        name: "FK_BharataSaleDetail_BharadaRate_BharadaRateID",
+                        name: "FK_BharadaSaleDetail_BharadaRate_BharadaRateID",
                         column: x => x.BharadaRateID,
                         principalTable: "BharadaRate",
-                        principalColumn: "BharadaRateID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "BharadaRateID");
                     table.ForeignKey(
-                        name: "FK_BharataSaleDetail_LabourRate_LabourRateID",
+                        name: "FK_BharadaSaleDetail_LabourRate_LabourRateID",
                         column: x => x.LabourRateID,
                         principalTable: "LabourRate",
                         principalColumn: "LabourRateID");
                     table.ForeignKey(
-                        name: "FK_BharataSaleDetail_Retailer_RetailerID",
+                        name: "FK_BharadaSaleDetail_Retailer_RetailerID",
                         column: x => x.RetailerID,
                         principalTable: "Retailer",
-                        principalColumn: "RetailerID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RetailerID");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BharataSaleDetail_BharadaRateID",
-                table: "BharataSaleDetail",
+                name: "IX_BharadaSaleDetail_BharadaRateID",
+                table: "BharadaSaleDetail",
                 column: "BharadaRateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BharataSaleDetail_LabourRateID",
-                table: "BharataSaleDetail",
+                name: "IX_BharadaSaleDetail_LabourRateID",
+                table: "BharadaSaleDetail",
                 column: "LabourRateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BharataSaleDetail_RetailerID",
-                table: "BharataSaleDetail",
+                name: "IX_BharadaSaleDetail_RetailerID",
+                table: "BharadaSaleDetail",
                 column: "RetailerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BharataSaleDetail");
+                name: "BharadaSaleDetail");
 
             migrationBuilder.RenameColumn(
                 name: "LabourRateID",
