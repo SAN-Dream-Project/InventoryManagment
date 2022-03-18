@@ -1,5 +1,5 @@
-﻿using Inventory.Application.Shared.Stocks;
-using Inventory.Application.Shared.Stocks.Dto;
+﻿using Inventory.Application.Shared.Retailers;
+using Inventory.Application.Shared.Retailers.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,22 +9,22 @@ namespace Inventory.Host.Controllers
     [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class StockController : ControllerBase
+    public class RetailerController : ControllerBase
     {
-        private readonly IStockAppService _stockAppService;
+        private readonly IRetailerAppService _retailerAppService;
         private readonly ILogger<UserController> _logger;
 
-        public StockController(IStockAppService stockAppService, ILogger<UserController> logger)
+        public RetailerController(IRetailerAppService retailerAppService, ILogger<UserController> logger)
         {
-            _stockAppService = stockAppService;
+            _retailerAppService = retailerAppService;
             _logger = logger;
-        } //Add Role  
-        [HttpPost("AddStock")]
-        public async Task AddStock([FromBody] StockInputDto input)
+        }   
+        [HttpPost("AddRetailer")]
+        public async Task AddRetailer([FromBody] RetailerInputDto input)
         {
             try
             {
-                await _stockAppService.CreateOrUpdateStock(input);
+                await _retailerAppService.CreateOrUpdateRetailer(input);
             }
             catch (Exception ex)
             {
@@ -33,12 +33,12 @@ namespace Inventory.Host.Controllers
             }
         }
         //Delete User  
-        [HttpDelete("DeleteStock")]
-        public async Task DeleteStock(Guid id)
+        [HttpDelete("DeleteRetailer")]
+        public async Task DeleteGood(Guid id)
         {
             try
             {
-                await _stockAppService.DeleteStock(id);
+                await _retailerAppService.DeleteRetailer(id);
             }
             catch (Exception ex)
             {
@@ -47,27 +47,27 @@ namespace Inventory.Host.Controllers
             }
         }
         //GET All User by Name  
-        [HttpGet("GetAllStock")]
-        public async Task<List<StockDto>> GetAllStocks()
+        [HttpGet("GetAllRetailer")]
+        public async Task<List<RetailerDto>> GetAllRetailers()
         {
             try
             {
-                return await _stockAppService.GetAllStocks();
+                return await _retailerAppService.GetAllRetailers();
             }
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
-                return new List<StockDto>();
+                return new List<RetailerDto>();
             }
         }
         //GET All User by Name  
         [HttpGet("GetById")]
-        public async Task<StockDto> GetStock(Guid id)
+        public async Task<RetailerDto> GetGood(Guid id)
         {
             try
             {
-                return await _stockAppService.GetStock(id);
+                return await _retailerAppService.GetRetailer(id);
             }
             catch (Exception ex)
             {
