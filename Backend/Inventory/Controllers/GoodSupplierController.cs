@@ -20,7 +20,7 @@ namespace Inventory.Host.Controllers
             _logger = logger;
         }
         [HttpPost("AddGoodSupplier")]
-        public async Task AddUser([FromBody] GoodSupplierInputDto input)
+        public async Task AddGoodSupplier([FromBody] GoodSupplierInputDto input)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Inventory.Host.Controllers
             }
         }
         [HttpDelete("DeleteGoodSupplier")]
-        public async Task DeleteKadata(Guid id)
+        public async Task DeleteGoodSupplier(Guid id)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Inventory.Host.Controllers
             }
         }
         [HttpGet("GetAllGoodSupplier")]
-        public async Task<List<GoodSupplierDto>> GetAllKadatas()
+        public async Task<List<GoodSupplierDto>> GetAllGoodSuppliers()
         {
             try
             {

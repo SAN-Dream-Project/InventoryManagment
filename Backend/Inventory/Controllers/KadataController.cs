@@ -20,7 +20,7 @@ namespace Inventory.Host.Controllers
             _logger = logger;
         }   
         [HttpPost("AddKadata")]
-        public async Task AddUser([FromBody] KadataInputDto input)
+        public async Task AddKadata([FromBody] KadataInputDto input)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace Inventory.Host.Controllers
         }
        
         [HttpGet("GetById")]
-        public async Task<KadataDto> GetGood(Guid id)
+        public async Task<KadataDto> GetKadata(Guid id)
         {
             try
             {

@@ -34,7 +34,7 @@ namespace Inventory.Host.Controllers
         }
         //Delete User  
         [HttpDelete("DeleteRetailer")]
-        public async Task DeleteGood(Guid id)
+        public async Task DeleteRetailer(Guid id)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Inventory.Host.Controllers
         }
         //GET All User by Name  
         [HttpGet("GetById")]
-        public async Task<RetailerDto> GetGood(Guid id)
+        public async Task<RetailerDto> GetRetailer(Guid id)
         {
             try
             {

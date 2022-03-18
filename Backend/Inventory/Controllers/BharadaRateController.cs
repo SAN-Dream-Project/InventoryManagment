@@ -19,8 +19,8 @@ namespace Inventory.Host.Controllers
             _bharadaRatedAppService = bharadaRatedAppService;
             _logger = logger;
         } //Add Role  
-        [HttpPost("AddGood")]
-        public async Task AddUser([FromBody] BharadaRateInputDto input)
+        [HttpPost("AddBharadaRate")]
+        public async Task AddBharadaRate([FromBody] BharadaRateInputDto input)
         {
             try
             {
