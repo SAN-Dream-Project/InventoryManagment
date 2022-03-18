@@ -23,6 +23,26 @@ using Inventory.EntityFramwork.Abstract.Goods;
 using Inventory.Application.Shared.Goods;
 using Inventory.Application.Goods;
 using Inventory.EntityFramwork.Repositories.Goods;
+using Inventory.EntityFramwork.Abstract.Kadatas;
+using Inventory.EntityFramwork.Repositories.Kadatas;
+using Inventory.Application.Kadatas;
+using Inventory.Application.Shared.Kadatas;
+using Inventory.EntityFramwork.Abstract.GoodSuppliers;
+using Inventory.Application.Shared.GoodSuppliers;
+using Inventory.EntityFramwork.Repositories.GoodSuppliers;
+using Inventory.Application.GoodSuppliers;
+using Inventory.EntityFramwork.Abstract.Stocks;
+using Inventory.EntityFramwork.Repositories.Stocks;
+using Inventory.Application.Shared.Stocks;
+using Inventory.Application.Stocks;
+using Inventory.EntityFramwork.Abstract.Labours;
+using Inventory.EntityFramwork.Repositories.Labours;
+using Inventory.Application.Labours;
+using Inventory.Application.Shared.Labours;
+using Inventory.EntityFramwork.Abstract.Retailers;
+using Inventory.EntityFramwork.Repositories.Retailers;
+using Inventory.Application.Retailers;
+using Inventory.Application.Shared.Retailers;
 
 namespace Inventory.Host
 {
@@ -69,6 +89,16 @@ namespace Inventory.Host
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IGoodRepository, GoodRepository>();
             services.AddTransient<IGoodAppService, GoodAppService>();
+            services.AddTransient<IKadataRepository, KadataRepository>();
+            services.AddTransient<IKadataAppService, KadataAppService>();
+            services.AddTransient<IGoodSupplierRepository, GoodSupplierRepository>();
+            services.AddTransient<IGoodSupplierAppService, GoodSupplierAppService>();
+            services.AddTransient<IStockRepository, StockRepository>();
+            services.AddTransient<IStockAppService, StockAppService>();
+            services.AddTransient<ILabourRepository, LabourRepository>();
+            services.AddTransient<ILabourAppService, LabourAppService>();
+            services.AddTransient<IRetailerRepository, RetailerRepository>();
+            services.AddTransient<IRetailerAppService, RetailerAppService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
