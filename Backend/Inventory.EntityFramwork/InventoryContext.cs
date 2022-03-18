@@ -37,7 +37,7 @@ namespace Inventory.EntityFramwork
         public DbSet<BharadaRate> BharadaRates { get; set; }
         public DbSet<BharataSaleDetail> BharataSaleDetails { get; set; }
         public DbSet<BharadaCreditDetail> BharadaCreditDetails { get; set; }
-        public DbSet<EmplyeeDetail> EmplyeeDetails { get; set; }
+        public DbSet<EmployeeDetail> EmplyeeDetails { get; set; }
         public DbSet<SalaryDetail> SalaryDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
