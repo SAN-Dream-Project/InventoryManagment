@@ -2,6 +2,7 @@
 using Inventory.Application.Shared.Goods.Dto;
 using Inventory.Application.Shared.GoodSuppliers.Dto;
 using Inventory.Application.Shared.Kadatas.Dto;
+using Inventory.Application.Shared.LabourRates.Dto;
 using Inventory.Application.Shared.Labours.Dto;
 using Inventory.Application.Shared.Retailers.Dto;
 using Inventory.Application.Shared.Stocks.Dto;
@@ -10,6 +11,7 @@ using Inventory.Application.Shared.UserAndRoles.Users.Dto;
 using Inventory.Core.Goods;
 using Inventory.Core.GoodSuppliers;
 using Inventory.Core.Kadatas;
+using Inventory.Core.LabourRates;
 using Inventory.Core.Labours;
 using Inventory.Core.Retailers;
 using Inventory.Core.Stocks;
@@ -37,7 +39,9 @@ namespace Inventory.Application
             CreateMap<Stock, StockInputDto>().ReverseMap();
             CreateMap<Stock, StockDto>().ReverseMap(); 
             CreateMap<Retailer, RetailerInputDto>().ReverseMap();
-            CreateMap<Retailer, RetailerDto>().ReverseMap(); 
+            CreateMap<Retailer, RetailerDto>().ReverseMap();
+            CreateMap<LabourRate, LabourRateInputDto>().ReverseMap();
+            CreateMap<LabourRate, LabourRateDto>().ReverseMap();
         }
     }
 }
