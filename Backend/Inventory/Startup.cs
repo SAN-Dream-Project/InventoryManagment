@@ -35,6 +35,10 @@ using Inventory.EntityFramwork.Abstract.Stocks;
 using Inventory.EntityFramwork.Repositories.Stocks;
 using Inventory.Application.Shared.Stocks;
 using Inventory.Application.Stocks;
+using Inventory.EntityFramwork.Abstract.Labours;
+using Inventory.EntityFramwork.Repositories.Labours;
+using Inventory.Application.Labours;
+using Inventory.Application.Shared.Labours;
 
 namespace Inventory.Host
 {
@@ -87,6 +91,8 @@ namespace Inventory.Host
             services.AddTransient<IGoodSupplierAppService, GoodSupplierAppService>();
             services.AddTransient<IStockRepository, StockRepository>();
             services.AddTransient<IStockAppService, StockAppService>();
+            services.AddTransient<ILabourRepository, LabourRepository>();
+            services.AddTransient<ILabourAppService, LabourAppService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
