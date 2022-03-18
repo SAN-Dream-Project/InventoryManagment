@@ -2,15 +2,15 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="card-body bg-light p-5 p shadow-lg text-center rounded-3">
-          <img class="card-img h-auto w-25 mb-5 rounded-circle shadow position-absolute start-50 top-0 translate-middle" src="../../../assets/images/user.jpg" alt="Login Image" />
-          <div class="input-group mt-4">
+        <div class="card-body bg-light p-5 shadow-lg text-center rounded-3">
+          <img class="card-img h-auto w-25 rounded-circle shadow position-absolute start-50 top-0 translate-middle" src="../../../assets/images/user.jpg" alt="Login Image">
+          <div class="input-group mt-5">
             <label for="txtUsername" class="input-group-text"><i class="c-fa fa fa-user"></i></label>
-            <input class="form-control form-control" id="txtUsername" name="txtUsername" type="text" placeholder="Username" #txtUsername>
+            <input class="form-control form-control-lg" id="txtUsername" name="txtUsername" type="text" placeholder="Username" #txtUsername>
           </div>
           <div class="input-group mt-4">
             <label for="txtPassword" class="input-group-text"><i class="c-fa fa fa-lock"></i></label>
-            <input class="form-control form-control" id="txtPassword" name="txtPassword" type="password" placeholder="Password" #txtPassword>
+            <input class="form-control form-control-lg" id="txtPassword" name="txtPassword" type="password" placeholder="Password" #txtPassword>
           </div>
           <button class="form-control btn-secondary btn mt-3 position-absolute start-50 w-75 translate-middle-x pt-5 pb-3 c-m-zindex fw-bold shadow" (click)="loginChecker(txtUsername.value, txtPassword.value)">Login</button>
         </div>

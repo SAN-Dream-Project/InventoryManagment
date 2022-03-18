@@ -9,7 +9,7 @@ export class LoginService {
   constructor(private router: Router) { }
 
   loginChecker(txtUsername: string, txtPassword: string): boolean {
-    if(txtUsername === 'admin' && txtPassword === 'admin') {
+    if(txtUsername === 'AshutoshDKedar' && txtPassword === 'A.D.K') {
       this.router.navigate(['/home']);
       return true;
     } else {
