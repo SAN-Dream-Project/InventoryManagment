@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Inventory.EntityFramwork.Repositories.GoodSuppliers
 {
-    internal class GoodSupplierRepository : EntityBaseRepository<GoodSupplier>, IGoodSupplierRepository
+    public class GoodSupplierRepository : EntityBaseRepository<GoodSupplier>, IGoodSupplierRepository
     {
         public GoodSupplierRepository(InventoryContext context)
             : base(context)
