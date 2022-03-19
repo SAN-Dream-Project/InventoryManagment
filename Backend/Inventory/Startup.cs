@@ -43,6 +43,18 @@ using Inventory.EntityFramwork.Abstract.Retailers;
 using Inventory.EntityFramwork.Repositories.Retailers;
 using Inventory.Application.Retailers;
 using Inventory.Application.Shared.Retailers;
+using Inventory.EntityFramwork.Abstract.LabourRates;
+using Inventory.EntityFramwork.Repositories.LabourRates;
+using Inventory.Application.Shared.LabourRates;
+using Inventory.Application.LabourRates;
+using Inventory.EntityFramwork.Abstract.EmplyeeDetails;
+using Inventory.EntityFramwork.Repositories.EmployeeDetails;
+using Inventory.Application.Shared.EmployeeDetails;
+using Inventory.Application.EmployeeDetails;
+using Inventory.EntityFramwork.Abstract.SalaryDetails;
+using Inventory.EntityFramwork.Repositories.SalaryDetails;
+using Inventory.Application.Shared.SalaryDetails;
+using Inventory.Application.SalaryDetails;
 
 namespace Inventory.Host
 {
@@ -99,10 +111,17 @@ namespace Inventory.Host
             services.AddTransient<ILabourAppService, LabourAppService>();
             services.AddTransient<IRetailerRepository, RetailerRepository>();
             services.AddTransient<IRetailerAppService, RetailerAppService>();
+            services.AddTransient<ILabourRateRepository, LabourRateRepository>();
+            services.AddTransient<ILabourRateAppService, LabourRateAppService>();
+            services.AddTransient<IEmployeeDetailRepository, EmployeeDetailRepository>();
+            services.AddTransient<IEmployeeDetailAppService, EmployeeDetailAppService>();
+            services.AddTransient<ISalaryDetailRepository, SalaryDetailRepository>();
+            services.AddTransient<ISalaryDetailAppService, SalaryDetailAppService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EcommerceAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "InventoryAPI", Version = "v1" });
             });
             services.AddCors();
         }
