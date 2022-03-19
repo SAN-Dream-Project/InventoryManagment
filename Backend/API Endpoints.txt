@@ -2,80 +2,34 @@ API Endpoints :
 
 Inventory Management :
 
-GET : /api/v1/products - request_payload: {}, response_payload: {success: '', error: ''}
+BharadaCreditDetail
 
-GET : /api/v1/products/:id - request_payload: {id}, response_payload: {success: productObj, error: ''}
+Post:
 
-POST : /api/v1/products - request_payload: {productObj}, response_payload: {success: '', error: ''}
+https://localhost:5001/api/v1/BharadaRate/AddBharadaRate
 
-PUT : /api/v1/products/:id - request_payload: {productObjWithInformationWhichNeedsToBeUpdated}, response_payload: {success: '', error: ''}
-
-DELETE : /api/v1/products/:id - request_payload: {id}, response_payload: {success: '', error: ''}
-
-
-User APi Call----
-
-POST : http://localhost:5000/api/v1/User/AddUser 
-
-Input Data
+Input 
 {
-  "id": "00000000-0000-0000-0000-000000000000",
-  "userName": "sachin",
-  "password": "123qwe",
-  "status": true,
-  "firstName": "Sachin",
-  "lastName": "Waghmare",
-  "primaryMobNo": "324234234",
-  "secondaryMobNo": "234234234",
-  "telephoneNo": "234234",
-  "gender": 1
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "rateCriteriaID": 0,
+  "rateCriteria": "string",
+  "rate": 0,
+  "createdBy": "string",
+  "createdDate": "2022-03-19T04:01:49.787Z",
+  "modifiedBy": "string",
+  "modifiedDate": "2022-03-19T04:01:49.787Z"
 }
 
 
-Get all
-GET : http://localhost:5000/api/v1/User/GetAllUser
-outPut
-[
-    {
-        "id": "89ce36cf-c879-4401-8c19-08da03248af3",
-        "userName": "nitingodase",
-        "password": "123qwe",
-        "status": true,
-        "firstName": "Nitin",
-        "lastName": "Godase",
-        "primaryMobNo": "99999999",
-        "secondaryMobNo": "669969966",
-        "telephoneNo": "97897",
-        "gender": 1
-    },
-    {
-        "id": "734e20e9-de4b-4e02-0bea-08da03e094f6",
-        "userName": "sachin",
-        "password": "123qwe",
-        "status": true,
-        "firstName": "Sachin",
-        "lastName": "Waghmare",
-        "primaryMobNo": "324234234",
-        "secondaryMobNo": "234234234",
-        "telephoneNo": "234234",
-        "gender": 1
-    },
-   
-]
+Get:
+    GetAllBharadaRate
 
-Get By Id
-GET : http://localhost:5000/api/v1/User/GetById?id=beef68f7-5389-49a7-7eb3-08da03e1554d
+    https://localhost:5001/api/v1/BharadaRate/GetAllBharadaRate
+ 
+    GetById
 
-optPut-
-{
-    "id": "beef68f7-5389-49a7-7eb3-08da03e1554d",
-    "userName": "ashu",
-    "password": "123qwe",
-    "status": true,
-    "firstName": "Sachin",
-    "lastName": "Waghmare",
-    "primaryMobNo": "324234234",
-    "secondaryMobNo": "234234234",
-    "telephoneNo": "234234",
-    "gender": 1
-}
+    https://localhost:5001/api/v1/BharadaRate/GetById?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+Delete:
+
+    https://localhost:5001/api/v1/BharadaRate/DeleteBharadaRate?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
