@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Added_EmplyeeDetail_Table : Migration
+    public partial class Added_EmployeeDetail_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EmplyeeDetail",
+                name: "EmployeeDetail",
                 columns: table => new
                 {
-                    EmplyeeDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -27,14 +27,14 @@ namespace Inventory.EntityFramwork.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmplyeeDetail", x => x.EmplyeeDetailID);
+                    table.PrimaryKey("PK_EmployeeDetail", x => x.EmployeeDetailID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EmplyeeDetail");
+                name: "EmployeeDetail");
         }
     }
 }

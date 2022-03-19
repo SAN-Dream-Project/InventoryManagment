@@ -59,12 +59,12 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("BharadaCreditDetail");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharataSaleDetailID");
+                        .HasColumnName("BharadaSaleDetailID");
 
                     b.Property<Guid?>("BharadaRateID")
                         .HasColumnType("uniqueidentifier");
@@ -116,15 +116,15 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasIndex("RetailerID");
 
-                    b.ToTable("BharataSaleDetail");
+                    b.ToTable("BharadaSaleDetail");
                 });
 
-            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmplyeeDetail", b =>
+            modelBuilder.Entity("Inventory.Core.EmplyeeDetails.EmployeeDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("EmplyeeDetailID");
+                        .HasColumnName("EmployeeDetailID");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -158,7 +158,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmplyeeDetail");
+                    b.ToTable("EmployeeDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.Goods.Good", b =>
@@ -733,7 +733,7 @@ namespace Inventory.EntityFramwork.Migrations
 
             modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
                 {
-                    b.HasOne("Inventory.Core.BharataSaleDetails.BharataSaleDetail", "BharataSaleDetail")
+                    b.HasOne("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", "BharataSaleDetail")
                         .WithMany()
                         .HasForeignKey("BharataSaleDetailID");
 
@@ -746,7 +746,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Navigation("Retailer");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.HasOne("Inventory.Core.RateTables.BharadaRate", "BharadaRate")
                         .WithMany()

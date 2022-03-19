@@ -1,5 +1,5 @@
-﻿using Inventory.Application.Shared.Retailers;
-using Inventory.Application.Shared.Retailers.Dto;
+﻿using Inventory.Application.Shared.BharadaRates;
+using Inventory.Application.Shared.BharadaRates.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,22 +9,22 @@ namespace Inventory.Host.Controllers
     [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class RetailerController : ControllerBase
+    public class BharadaRateController : ControllerBase
     {
-        private readonly IRetailerAppService _retailerAppService;
+        private readonly IBharadaRateAppService _bharadaRatedAppService;
         private readonly ILogger<UserController> _logger;
 
-        public RetailerController(IRetailerAppService retailerAppService, ILogger<UserController> logger)
+        public BharadaRateController(IBharadaRateAppService bharadaRatedAppService, ILogger<UserController> logger)
         {
-            _retailerAppService = retailerAppService;
+            _bharadaRatedAppService = bharadaRatedAppService;
             _logger = logger;
-        }   
-        [HttpPost("AddRetailer")]
-        public async Task AddRetailer([FromBody] RetailerInputDto input)
+        } //Add Role  
+        [HttpPost("AddBharadaRate")]
+        public async Task AddBharadaRate([FromBody] BharadaRateInputDto input)
         {
             try
             {
-                await _retailerAppService.CreateOrUpdateRetailer(input);
+                await _bharadaRatedAppService.CreateOrUpdateBharadaRate(input);
             }
             catch (Exception ex)
             {
@@ -33,12 +33,12 @@ namespace Inventory.Host.Controllers
             }
         }
         //Delete User  
-        [HttpDelete("DeleteRetailer")]
-        public async Task DeleteRetailer(Guid id)
+        [HttpDelete("DeleteBharadaRate")]
+        public async Task DeleteBharadaRate(Guid id)
         {
             try
             {
-                await _retailerAppService.DeleteRetailer(id);
+                await _bharadaRatedAppService.DeleteBharadaRate(id);
             }
             catch (Exception ex)
             {
@@ -47,27 +47,27 @@ namespace Inventory.Host.Controllers
             }
         }
         //GET All User by Name  
-        [HttpGet("GetAllRetailer")]
-        public async Task<List<RetailerDto>> GetAllRetailers()
+        [HttpGet("GetAllBharadaRate")]
+        public async Task<List<BharadaRateDto>> GetAllBharadaRates()
         {
             try
             {
-                return await _retailerAppService.GetAllRetailers();
+                return await _bharadaRatedAppService.GetAllBharadaRates();
             }
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
-                return new List<RetailerDto>();
+                return new List<BharadaRateDto>();
             }
         }
         //GET All User by Name  
         [HttpGet("GetById")]
-        public async Task<RetailerDto> GetRetailer(Guid id)
+        public async Task<BharadaRateDto> GetBharadaRate(Guid id)
         {
             try
             {
-                return await _retailerAppService.GetRetailer(id);
+                return await _bharadaRatedAppService.GetBharadaRate(id);
             }
             catch (Exception ex)
             {

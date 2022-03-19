@@ -1,5 +1,5 @@
 ﻿using Inventory.Core.BharadaCreditDetails;
-using Inventory.Core.BharataSaleDetails;
+using Inventory.Core.BharadaSaleDetails;
 using Inventory.Core.EmplyeeDetails;
 using Inventory.Core.Goods;
 using Inventory.Core.GoodSuppliers;
@@ -35,7 +35,7 @@ namespace Inventory.EntityFramwork
         public DbSet<Retailer> Retailers { get; set; }
         public DbSet<SaleDetail> SaleDetails { get; set; }
         public DbSet<BharadaRate> BharadaRates { get; set; }
-        public DbSet<BharataSaleDetail> BharataSaleDetails { get; set; }
+        public DbSet<BharadaSaleDetail> BharataSaleDetails { get; set; }
         public DbSet<BharadaCreditDetail> BharadaCreditDetails { get; set; }
         public DbSet<EmployeeDetail> EmplyeeDetails { get; set; }
         public DbSet<SalaryDetail> SalaryDetails { get; set; }
