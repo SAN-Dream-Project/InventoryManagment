@@ -55,6 +55,30 @@ using Inventory.EntityFramwork.Abstract.SalaryDetails;
 using Inventory.EntityFramwork.Repositories.SalaryDetails;
 using Inventory.Application.Shared.SalaryDetails;
 using Inventory.Application.SalaryDetails;
+using Inventory.EntityFramwork.Abstract.BharadaRates;
+using Inventory.EntityFramwork.Repositories.BharadaRates;
+using Inventory.Application.Shared.BharadaRates;
+using Inventory.Application.BharadaRates;
+using Inventory.EntityFramwork.Abstract.Purchases;
+using Inventory.Application.Shared.Purchases;
+using Inventory.Application.Purchases;
+using Inventory.EntityFramwork.Repositories.Purchases;
+using Inventory.EntityFramwork.Abstract.SaleDetails;
+using Inventory.EntityFramwork.Repositories.SaleDetails;
+using Inventory.Application.SaleDetails;
+using Inventory.Application.Shared.SaleDetails;
+using Inventory.EntityFramwork.Abstract.BharadaSaleDetails;
+using Inventory.EntityFramwork.Repositories.BharataSaleDetails;
+using Inventory.Application.Shared.BharadaSaleDetails;
+using Inventory.Application.BharataSaleDetails;
+using Inventory.EntityFramwork.Abstract.BharadaCreditDetails;
+using Inventory.Application.Shared.BharadaCreditDetails;
+using Inventory.Application.BharadaCreditDetails;
+using Inventory.EntityFramwork.Repositories.BharadaCreditDetails;
+using Inventory.EntityFramwork.Abstract.LabourDetails;
+using Inventory.Application.Shared.LabourDetails;
+using Inventory.Application.LabourDetails;
+using Inventory.EntityFramwork.Repositories.LabourDetails;
 
 namespace Inventory.Host
 {
@@ -109,6 +133,8 @@ namespace Inventory.Host
             services.AddTransient<IStockAppService, StockAppService>();
             services.AddTransient<ILabourRepository, LabourRepository>();
             services.AddTransient<ILabourAppService, LabourAppService>();
+            services.AddTransient<ILabourDetailRepository, LabourDetailRepository>();
+            services.AddTransient<ILabourDetailAppService, LabourDetailAppService>();
             services.AddTransient<IRetailerRepository, RetailerRepository>();
             services.AddTransient<IRetailerAppService, RetailerAppService>();
             services.AddTransient<ILabourRateRepository, LabourRateRepository>();
@@ -117,7 +143,16 @@ namespace Inventory.Host
             services.AddTransient<IEmployeeDetailAppService, EmployeeDetailAppService>();
             services.AddTransient<ISalaryDetailRepository, SalaryDetailRepository>();
             services.AddTransient<ISalaryDetailAppService, SalaryDetailAppService>();
-
+            services.AddTransient<IBharadaRateRepository, BharadaRateRepository>();
+            services.AddTransient<IBharadaRateAppService, BharadaRateAppService>();
+            services.AddTransient<IPurchaseRepository, PurchaseRepository>();
+            services.AddTransient<IPurchaseAppService, PurchaseAppService>();
+            services.AddTransient<ISaleDetailRepository, SaleDetailRepository>();
+            services.AddTransient<ISaleDetailAppService, SaleDetailAppService>();
+            services.AddTransient<IBharadaSaleDetailRepository, BharadaSaleDetailRepository>();
+            services.AddTransient<IBharadaSaleDetailAppService, BharadaSaleDetailAppService>();
+            services.AddTransient<IBharadaCreditDetailRepository, BharadaCreditDetailRepository>();
+            services.AddTransient<IBharadaCreditDetailAppService, BharadaCreditDetailAppService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

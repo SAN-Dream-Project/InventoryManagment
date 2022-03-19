@@ -1,30 +1,31 @@
-﻿using Inventory.Application.Shared.Retailers;
-using Inventory.Application.Shared.Retailers.Dto;
+﻿using Inventory.Application.Shared.LabourDetails;
+using Inventory.Application.Shared.LabourDetails.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.Host.Controllers
 {
+    
     [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class RetailerController : ControllerBase
+    public class LabourDetailController : ControllerBase
     {
-        private readonly IRetailerAppService _retailerAppService;
+        private readonly ILabourDetailAppService _labourDetailAppService;
         private readonly ILogger<UserController> _logger;
 
-        public RetailerController(IRetailerAppService retailerAppService, ILogger<UserController> logger)
+        public LabourDetailController(ILabourDetailAppService labourDetailAppService, ILogger<UserController> logger)
         {
-            _retailerAppService = retailerAppService;
+            _labourDetailAppService = labourDetailAppService;
             _logger = logger;
-        }   
-        [HttpPost("AddRetailer")]
-        public async Task AddRetailer([FromBody] RetailerInputDto input)
+        } 
+        [HttpPost("AddLabourDetail")]
+        public async Task AddLabourDetail([FromBody] LabourDetailInputDto input)
         {
             try
             {
-                await _retailerAppService.CreateOrUpdateRetailer(input);
+                await _labourDetailAppService.CreateOrUpdateLabourDetail(input);
             }
             catch (Exception ex)
             {
@@ -32,13 +33,13 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.StackTrace);
             }
         }
-        //Delete User  
-        [HttpDelete("DeleteRetailer")]
-        public async Task DeleteRetailer(Guid id)
+       
+        [HttpDelete("DeleteLabourDetail")]
+        public async Task DeleteLabourDetail(Guid id)
         {
             try
             {
-                await _retailerAppService.DeleteRetailer(id);
+                await _labourDetailAppService.DeleteLabourDetail(id);
             }
             catch (Exception ex)
             {
@@ -46,28 +47,28 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.StackTrace);
             }
         }
-        //GET All User by Name  
-        [HttpGet("GetAllRetailer")]
-        public async Task<List<RetailerDto>> GetAllRetailers()
+       
+        [HttpGet("GetAllLabourDetails")]
+        public async Task<List<LabourDetailDto>> GetAllGoods()
         {
             try
             {
-                return await _retailerAppService.GetAllRetailers();
+                return await _labourDetailAppService.GetAllLabourDetails();
             }
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
-                return new List<RetailerDto>();
+                return new List<LabourDetailDto>();
             }
         }
         //GET All User by Name  
         [HttpGet("GetById")]
-        public async Task<RetailerDto> GetRetailer(Guid id)
+        public async Task<LabourDetailDto> GetLabourDetail(Guid id)
         {
             try
             {
-                return await _retailerAppService.GetRetailer(id);
+                return await _labourDetailAppService.GetLabourDetail(id);
             }
             catch (Exception ex)
             {

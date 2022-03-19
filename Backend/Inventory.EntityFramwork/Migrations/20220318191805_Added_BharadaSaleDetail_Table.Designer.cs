@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318061531_Added_BharataSaleDetail_Table")]
-    partial class Added_BharataSaleDetail_Table
+    [Migration("20220318191805_Added_BharadaSaleDetail_Table")]
+    partial class Added_BharadaSaleDetail_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,14 +24,14 @@ namespace Inventory.EntityFramwork.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharataSaleDetailID");
+                        .HasColumnName("BharadaSaleDetailID");
 
-                    b.Property<Guid>("BharadaRateID")
+                    b.Property<Guid?>("BharadaRateID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
@@ -64,7 +64,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<double?>("RemainingAmount")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("RetailerID")
+                    b.Property<Guid?>("RetailerID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double?>("ToatalAmount")
@@ -81,7 +81,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasIndex("RetailerID");
 
-                    b.ToTable("BharataSaleDetail");
+                    b.ToTable("BharadaSaleDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.Goods.Good", b =>
@@ -612,13 +612,11 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharataSaleDetails.BharataSaleDetail", b =>
+            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
                     b.HasOne("Inventory.Core.RateTables.BharadaRate", "BharadaRate")
                         .WithMany()
-                        .HasForeignKey("BharadaRateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BharadaRateID");
 
                     b.HasOne("Inventory.Core.LabourRates.LabourRate", "LabourRate")
                         .WithMany()
@@ -626,9 +624,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasOne("Inventory.Core.Retailers.Retailer", "Retailer")
                         .WithMany()
-                        .HasForeignKey("RetailerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RetailerID");
 
                     b.Navigation("BharadaRate");
 

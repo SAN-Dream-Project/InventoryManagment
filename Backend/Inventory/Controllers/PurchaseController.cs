@@ -1,5 +1,5 @@
-﻿using Inventory.Application.Shared.Retailers;
-using Inventory.Application.Shared.Retailers.Dto;
+﻿using Inventory.Application.Shared.Purchases;
+using Inventory.Application.Shared.Purchases.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,24 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace Inventory.Host.Controllers
 {
     [Authorize]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class RetailerController : ControllerBase
+    public class PurchaseController : ControllerBase
     {
-        private readonly IRetailerAppService _retailerAppService;
+        private readonly IPurchaseAppService _purchaseAppService;
         private readonly ILogger<UserController> _logger;
 
-        public RetailerController(IRetailerAppService retailerAppService, ILogger<UserController> logger)
+        public PurchaseController(IPurchaseAppService purchaseAppService, ILogger<UserController> logger)
         {
-            _retailerAppService = retailerAppService;
+            _purchaseAppService = purchaseAppService;
             _logger = logger;
-        }   
-        [HttpPost("AddRetailer")]
-        public async Task AddRetailer([FromBody] RetailerInputDto input)
+        }
+        [HttpPost("AddPurchase")]
+        public async Task AddPurchase([FromBody] PurchaseInputDto input)
         {
             try
             {
-                await _retailerAppService.CreateOrUpdateRetailer(input);
+                await _purchaseAppService.CreateOrUpdatePurchase(input);
             }
             catch (Exception ex)
             {
@@ -32,13 +32,12 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.StackTrace);
             }
         }
-        //Delete User  
-        [HttpDelete("DeleteRetailer")]
-        public async Task DeleteRetailer(Guid id)
+        [HttpDelete("DeletePurchase")]
+        public async Task DeletePurchase(Guid id)
         {
             try
             {
-                await _retailerAppService.DeleteRetailer(id);
+                await _purchaseAppService.DeletePurchase(id);
             }
             catch (Exception ex)
             {
@@ -46,28 +45,27 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.StackTrace);
             }
         }
-        //GET All User by Name  
-        [HttpGet("GetAllRetailer")]
-        public async Task<List<RetailerDto>> GetAllRetailers()
+        [HttpGet("GetAllPurchase")]
+        public async Task<List<PurchaseDto>> GetAllKadatas()
         {
             try
             {
-                return await _retailerAppService.GetAllRetailers();
+                return await _purchaseAppService.GetAllPurchases();
             }
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
-                return new List<RetailerDto>();
+                return new List<PurchaseDto>();
             }
         }
-        //GET All User by Name  
+
         [HttpGet("GetById")]
-        public async Task<RetailerDto> GetRetailer(Guid id)
+        public async Task<PurchaseDto> GetKadata(Guid id)
         {
             try
             {
-                return await _retailerAppService.GetRetailer(id);
+                return await _purchaseAppService.GetPurchase(id);
             }
             catch (Exception ex)
             {
