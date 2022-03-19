@@ -518,6 +518,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("EmployeeDetailID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("EmplyeeType")
                         .HasColumnType("int");
 
@@ -543,6 +546,8 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeDetailID");
 
                     b.ToTable("SalaryDetail");
                 });
@@ -807,6 +812,17 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Navigation("Kadata");
 
                     b.Navigation("LabourRate");
+                });
+
+            modelBuilder.Entity("Inventory.Core.SalaryDetails.SalaryDetail", b =>
+                {
+                    b.HasOne("Inventory.Core.EmplyeeDetails.EmployeeDetail", "EmployeeDetail")
+                        .WithMany()
+                        .HasForeignKey("EmployeeDetailID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EmployeeDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.SaleDetails.SaleDetail", b =>
