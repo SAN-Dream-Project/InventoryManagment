@@ -16,6 +16,7 @@ namespace Inventory.EntityFramwork.Migrations
                     SalaryDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MonthlySalary = table.Column<double>(type: "float", nullable: true),
                     EmplyeeType = table.Column<int>(type: "int", nullable: true),
+                    EmployeeDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Month = table.Column<int>(type: "int", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     WorkingDays = table.Column<double>(type: "float", nullable: false),
@@ -28,7 +29,18 @@ namespace Inventory.EntityFramwork.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalaryDetail", x => x.SalaryDetailID);
+                    table.ForeignKey(
+                        name: "FK_SalaryDetail_EmployeeDetail_EmployeeDetailID",
+                        column: x => x.EmployeeDetailID,
+                        principalTable: "EmployeeDetail",
+                        principalColumn: "EmployeeDetailID",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalaryDetail_EmployeeDetailID",
+                table: "SalaryDetail",
+                column: "EmployeeDetailID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

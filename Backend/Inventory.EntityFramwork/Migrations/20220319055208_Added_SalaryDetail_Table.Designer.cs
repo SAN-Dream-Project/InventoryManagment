@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318192017_Added_SalaryDetail_Table")]
+    [Migration("20220319055208_Added_SalaryDetail_Table")]
     partial class Added_SalaryDetail_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -520,6 +520,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("EmployeeDetailID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("EmplyeeType")
                         .HasColumnType("int");
 
@@ -545,6 +548,8 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeDetailID");
 
                     b.ToTable("SalaryDetail");
                 });
@@ -809,6 +814,17 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Navigation("Kadata");
 
                     b.Navigation("LabourRate");
+                });
+
+            modelBuilder.Entity("Inventory.Core.SalaryDetails.SalaryDetail", b =>
+                {
+                    b.HasOne("Inventory.Core.EmplyeeDetails.EmployeeDetail", "EmployeeDetail")
+                        .WithMany()
+                        .HasForeignKey("EmployeeDetailID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EmployeeDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.SaleDetails.SaleDetail", b =>
