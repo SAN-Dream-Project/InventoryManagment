@@ -1,5 +1,8 @@
-﻿using Inventory.Application.Shared.Retailers;
+﻿using AutoMapper;
+using Inventory.Application.Shared.Retailers;
 using Inventory.Application.Shared.Retailers.Dto;
+using Inventory.Core.Retailers;
+using Inventory.EntityFramwork.Abstract.Retailers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +13,50 @@ namespace Inventory.Application.Retailers
 {
     public class RetailerAppService : IRetailerAppService
     {
-        public Task CreateOrUpdateRetailer(RetailerInputDto RetailerInputDto)
+        private readonly IRetailerRepository _retailerRepository;
+
+        public RetailerAppService(IRetailerRepository retailerRepository)
         {
-            throw new NotImplementedException();
+            _retailerRepository = retailerRepository;
         }
 
-        public Task DeleteRetailer(Guid retailerId)
+        public async Task CreateOrUpdateRetailer(RetailerInputDto retailerInputDto)
         {
-            throw new NotImplementedException();
+            if (retailerInputDto.Id == null || retailerInputDto.Id == Guid.Empty)
+            {
+                var result = Mapper.Map<RetailerInputDto, Retailer>(retailerInputDto);
+                await _retailerRepository.Add(result);
+            }
+            else
+            {
+                var result = Mapper.Map<RetailerInputDto, Retailer>(retailerInputDto);
+                await _retailerRepository.Update(result);
+            }
         }
 
-        public Task<List<RetailerDto>> GetAllRetailers()
+        public async Task DeleteRetailer(Guid retailerId)
         {
-            throw new NotImplementedException();
+            var result = await _retailerRepository.GetSingle(retailerId);
+            await _retailerRepository.Delete(result);
         }
 
-        public Task<RetailerDto> GetRetailer(Guid retailerId)
+        public async Task<List<RetailerDto>> GetAllRetailers()
         {
-            throw new NotImplementedException();
+            var result = await _retailerRepository.GetAll();
+            var roleResult = result.ToList();
+            var roleList = new List<RetailerDto>();
+            foreach (var test in roleResult)
+            {
+                roleList.Add(Mapper.Map<Retailer, RetailerDto>(test));
+            }
+            return roleList;
+        }
+
+        public async Task<RetailerDto> GetRetailer(Guid retailerId)
+        {
+            var result = await _retailerRepository.GetSingle(retailerId);
+            var returnResult = Mapper.Map<Retailer, RetailerDto>(result);
+            return returnResult;
         }
     }
 }
