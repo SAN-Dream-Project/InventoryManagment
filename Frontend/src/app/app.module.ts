@@ -53,7 +53,7 @@ import { StockSectionComponent } from './components/stock-section/stock-section.
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-bottom-left',
       preventDuplicates: true
     }),
     FormsModule,
