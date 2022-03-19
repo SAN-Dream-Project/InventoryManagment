@@ -11,6 +11,7 @@ namespace Inventory.Application.Shared.SalaryDetails.Dto
     {
         public Guid Id { get; set; }
         public double? MonthlySalary { get; set; }
+        public Guid EmployeeDetailID { get; set; }
         public EmplyeeType? EmplyeeType { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
