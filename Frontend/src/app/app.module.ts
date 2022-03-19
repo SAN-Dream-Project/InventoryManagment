@@ -17,6 +17,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { LoginComponent } from './components/login/login.component';
 import { DataTableComponent } from './components/demos/data-table/data-table.component';
 import {MaterialModule} from "./material/material.module";
+import { GoodsSectionComponent } from './components/goods-section/goods-section.component';
+import { KadataSectionComponent } from './components/kadata-section/kadata-section.component';
+import { LabourSectionComponent } from './components/labour-section/labour-section.component';
+import { RetailerSectionComponent } from './components/retailer-section/retailer-section.component';
+import { GoodsSupplierSectionComponent } from './components/goods-supplier-section/goods-supplier-section.component';
+import { EmployeeSectionComponent } from './components/employee-section/employee-section.component';
+import { LabourRateSectionComponent } from './components/labour-rate-section/labour-rate-section.component';
+import { StockSectionComponent } from './components/stock-section/stock-section.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +35,15 @@ import {MaterialModule} from "./material/material.module";
     UserSectionComponent,
     PageNotFoundComponent,
     LoginComponent,
-    DataTableComponent
+    DataTableComponent,
+    GoodsSectionComponent,
+    KadataSectionComponent,
+    LabourSectionComponent,
+    RetailerSectionComponent,
+    GoodsSupplierSectionComponent,
+    EmployeeSectionComponent,
+    LabourRateSectionComponent,
+    StockSectionComponent
   ],
   imports: [
     BrowserModule,

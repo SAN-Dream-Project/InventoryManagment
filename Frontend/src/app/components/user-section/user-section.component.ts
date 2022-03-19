@@ -14,23 +14,14 @@ export class UserSectionComponent implements OnInit {
 
   users: any = [];
   error: any;
-  userCredentials:object = {
-    userName: "nitingodase",
-    password: "123qwe"
-  };
 
   constructor(private HttpClient: HttpClient, private userService:UserService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.ngxSpinnerService.show();
-    this.getBearerToken(this.userCredentials);
     setTimeout(() => {
       this.getAllUsers();
     }, 1000);
-  }
-
-  getBearerToken(Obj: any) {
-    this.userService.getBearerToken(Obj);
   }
 
   getAllUsers() {

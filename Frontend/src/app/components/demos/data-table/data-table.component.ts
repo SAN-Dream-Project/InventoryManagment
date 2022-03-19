@@ -3,41 +3,67 @@ import { UserService } from "../../../services/user.service";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { User } from '../../../models/User';
+import {ToastrService} from "ngx-toastr";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.less']
 })
+
 export class DataTableComponent implements OnInit, AfterViewInit {
 
-  users:any;
-  displayedColumns = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  users:any = [];
+  displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
+  dataSource: MatTableDataSource<User>;
+  showModal: boolean = false;
+  user: User = {
+    id: '',
+    userName: '',
+    password: '',
+    status: false,
+    firstName: '',
+    lastName: '',
+    primaryMobNo: '',
+    secondaryMobNo: '',
+    telephoneNo: '',
+    gender: '',
+    CreatedBy: '',
+    CreatedDate: '',
+    ModifiedBy: '',
+    ModifiedDate: ''
+  };
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null;
+  @ViewChild(MatSort) sort: MatSort | null;
 
-  constructor(private userService: UserService) {
-    userService.getAllUsers().subscribe((users) => {
-      this.users = [users.json];
-    });
-
-    // Create 100 users
-    const users: UserData[] = [];
-    for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
-
+  constructor(private userService: UserService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) {
+    this.paginator = this.users;
+    this.sort = this.users;
+    this.dataSource = new MatTableDataSource(this.users);
+    /*for (let i = 1; i <= 100; i++) { this.users.push(createNewUser(i)); }*/
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    setTimeout(() => {
+      this.userService.getAllUsers().subscribe((users) => {
+        this.users = users;
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }, 1000);
   }
 
   ngOnInit(): void {
+    this.ngxSpinnerService.show();
+    setTimeout(()=> {
+      this.ngxSpinnerService.hide();
+    }, 1000);
   }
 
   ngAfterViewInit() {
-    // @ts-ignore
     this.dataSource.paginator = this.paginator;
-    // @ts-ignore
     this.dataSource.sort = this.sort;
   }
 
@@ -45,12 +71,59 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
+  }
+
+  openDialog(x:any, y:any) {
+    console.log(y);
+    this.showModal = true;
+    if(x === 'Edit') {
+      this.user = y;
+    } else if(x === 'Create') {
+      this.user = {} as User;
+    }
+  }
+
+  closeDialog() {
+    this.showModal = false;
+  }
+
+  deleteRecord(id: string): void {
+    var result = confirm("Are you sure you want to delete ?");
+    if(result) {
+      this.userService.deleteUser(id).subscribe();
+      this.toastrService.error("Record Deleted...!");
+      location.reload();
+    }
+  }
+
+  convertToBoolean(status:any): boolean{
+    return status === "true";
+  }
+
+  createRecord(userObj: User) {
+    userObj.gender = parseInt(userObj.gender);
+    userObj.status = this.convertToBoolean(userObj.status);
+    this.userService.createUser(userObj).subscribe(()=> {
+      this.toastrService.success("Record Created...!");
+      this.showModal = false;
+      location.reload();
+    });
+  }
+
+  updateRecord(userObj: User) {
+    userObj.gender = parseInt(userObj.gender);
+    userObj.status = this.convertToBoolean(userObj.status)
+    this.userService.createUser(userObj).subscribe(()=> {
+      this.toastrService.info("Record Updated...!");
+      this.showModal = false;
+      location.reload();
+    });
   }
 
 }
 
-/** Builds and returns a new User. */
+/** Builds and returns a new User.
 function createNewUser(id: number): UserData {
   const name =
     NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
@@ -62,19 +135,4 @@ function createNewUser(id: number): UserData {
     progress: Math.round(Math.random() * 100).toString(),
     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
   };
-}
-
-/** Constants used to fill up our data base. */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
+}*/
