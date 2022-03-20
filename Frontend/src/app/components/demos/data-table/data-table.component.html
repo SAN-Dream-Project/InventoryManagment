@@ -63,23 +63,26 @@
 </section>
 
 <ng-container *ngIf="showModal">
-  <div class="c-modal position-fixed h-100 w-100 bg-light top-0 start-0">
+  <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
     <i class="c-close fa fa-remove" (click)="closeDialog()"></i>
-    <div class="container-fuid">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-          <input type="hidden" name="id" [(ngModel)]="user.id">
-          <input type="text" name="userName" [(ngModel)]="user.userName">
-          <input type="text" name="password" [(ngModel)]="user.password">
-          <input type="text" name="status" [(ngModel)]="user.status">
-          <input type="text" name="firstName" [(ngModel)]="user.firstName">
-          <input type="text" name="lastName" [(ngModel)]="user.lastName">
-          <input type="text" name="primaryMobNo" [(ngModel)]="user.primaryMobNo">
-          <input type="text" name="secondaryMobNo" [(ngModel)]="user.secondaryMobNo">
-          <input type="text" name="telephoneNo" [(ngModel)]="user.telephoneNo">
-          <input type="text" name="gender" [(ngModel)]="user.gender">
-          <button (click)="createRecord(user)">Save</button>
-          <button (click)="updateRecord(user)">Update</button>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4 ">
+          <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
+          <hr>
+          <input class="form-control mb-3" type="hidden" name="id" [(ngModel)]="user.id">
+          <input class="form-control mb-3" type="text" name="userName" [(ngModel)]="user.userName" placeholder="Username">
+          <input class="form-control mb-3" type="text" name="password" [(ngModel)]="user.password" placeholder="Password">
+          <input class="form-control mb-3" type="text" name="status" [(ngModel)]="user.status" placeholder="Status">
+          <input class="form-control mb-3" type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name">
+          <input class="form-control mb-3" type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="Last Name">
+          <input class="form-control mb-3" type="text" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number">
+          <input class="form-control mb-3" type="text" name="secondaryMobNo" [(ngModel)]="user.secondaryMobNo" placeholder="Secondary Mobile Number">
+          <input class="form-control mb-3" type="text" name="telephoneNo" [(ngModel)]="user.telephoneNo" placeholder="Telephone Number">
+          <input class="form-control mb-3" type="text" name="gender" [(ngModel)]="user.gender" placeholder="Gender">
+          <button class="form-control btn btn-success" (click)="createRecord(user)" *ngIf="buttonStatus.saveButton">Save</button>
+          <button class="form-control btn btn-info" (click)="updateRecord(user)" *ngIf="buttonStatus.updateButton">Update</button>
         </div>
       </div>
     </div>

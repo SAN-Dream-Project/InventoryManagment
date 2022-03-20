@@ -15,10 +15,14 @@ import {NgxSpinnerService} from "ngx-spinner";
 
 export class DataTableComponent implements OnInit, AfterViewInit {
 
-  users:any = [];
+  users: any = [];
   displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
   dataSource: MatTableDataSource<User>;
   showModal: boolean = false;
+  buttonStatus: any = {
+    saveButton: false,
+    updateButton: false
+  };
   user: User = {
     id: '',
     userName: '',
@@ -74,13 +78,16 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
 
-  openDialog(x:any, y:any) {
-    console.log(y);
+  openDialog(type:any, data:any) {
     this.showModal = true;
-    if(x === 'Edit') {
-      this.user = y;
-    } else if(x === 'Create') {
+    if(type === 'Edit') {
+      this.user = data;
+      this.buttonStatus.updateButton = true;
+      this.buttonStatus.saveButton = false;
+    } else if(type === 'Create') {
       this.user = {} as User;
+      this.buttonStatus.saveButton = true;
+      this.buttonStatus.updateButton = false;
     }
   }
 
@@ -93,7 +100,9 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     if(result) {
       this.userService.deleteUser(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(()=>{
+        location.reload();
+      }, 1000);
     }
   }
 
@@ -106,8 +115,10 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     userObj.status = this.convertToBoolean(userObj.status);
     this.userService.createUser(userObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
+      setTimeout(()=>{
+        location.reload();
+      }, 1000);
       this.showModal = false;
-      location.reload();
     });
   }
 
@@ -116,8 +127,10 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     userObj.status = this.convertToBoolean(userObj.status)
     this.userService.createUser(userObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
+      setTimeout(()=>{
+        location.reload();
+      }, 1000);
       this.showModal = false;
-      location.reload();
     });
   }
 
