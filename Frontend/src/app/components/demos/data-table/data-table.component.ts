@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "../../../services/user.service";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../../models/User';
-import {ToastrService} from "ngx-toastr";
-import {NgxSpinnerService} from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-data-table',
@@ -13,7 +13,7 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./data-table.component.less']
 })
 
-export class DataTableComponent implements OnInit, AfterViewInit {
+export class DataTableComponent implements OnInit {
 
   users: any = [];
   displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
@@ -47,8 +47,6 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     this.paginator = this.users;
     this.sort = this.users;
     this.dataSource = new MatTableDataSource(this.users);
-    /*for (let i = 1; i <= 100; i++) { this.users.push(createNewUser(i)); }*/
-    // Assign the data to the data source for the table to render
     setTimeout(() => {
       this.userService.getAllUsers().subscribe((users) => {
         this.users = users;
@@ -81,18 +79,43 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   openDialog(type:any, data:any) {
     this.showModal = true;
     if(type === 'Edit') {
-      this.user = data;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
+      this.user = data;
     } else if(type === 'Create') {
-      this.user = {} as User;
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
+      this.user = {} as User;
+      this.user.gender = -1;
     }
   }
 
   closeDialog() {
     this.showModal = false;
+  }
+
+  createRecord(userObj: User) {
+    userObj.gender = parseInt(userObj.gender);
+    userObj.status = true;
+    this.userService.createUser(userObj).subscribe(() => {
+      this.toastrService.success("Record Created...!");
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+      this.showModal = false;
+    });
+  }
+
+  updateRecord(userObj: User) {
+    userObj.gender = parseInt(userObj.gender);
+    userObj.status = true;
+    this.userService.createUser(userObj).subscribe(() => {
+      this.toastrService.info("Record Updated...!");
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+      this.showModal = false;
+    });
   }
 
   deleteRecord(id: string): void {
@@ -106,46 +129,4 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  convertToBoolean(status:any): boolean{
-    return status === "true";
-  }
-
-  createRecord(userObj: User) {
-    userObj.gender = parseInt(userObj.gender);
-    userObj.status = this.convertToBoolean(userObj.status);
-    this.userService.createUser(userObj).subscribe(()=> {
-      this.toastrService.success("Record Created...!");
-      setTimeout(()=>{
-        location.reload();
-      }, 1000);
-      this.showModal = false;
-    });
-  }
-
-  updateRecord(userObj: User) {
-    userObj.gender = parseInt(userObj.gender);
-    userObj.status = this.convertToBoolean(userObj.status)
-    this.userService.createUser(userObj).subscribe(()=> {
-      this.toastrService.info("Record Updated...!");
-      setTimeout(()=>{
-        location.reload();
-      }, 1000);
-      this.showModal = false;
-    });
-  }
-
 }
-
-/** Builds and returns a new User.
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}*/
