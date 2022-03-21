@@ -9,7 +9,7 @@
           <mat-form-field class="w-25">
             <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
           </mat-form-field>
-          <button class="btn btn-success float-end mt-1" (click)="openDialog('Create', '')"><i class="fa fa-user me-2"></i>Add User</button>
+          <button class="btn btn-success float-end mt-1" (click)="openCreateModal('Create', '')"><i class="fa fa-user me-2"></i>Add User</button>
         </div>
 
         <div class="example-container mat-elevation-z8">
@@ -34,7 +34,7 @@
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openDialog('Edit', element)"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openUpdateModal('Update', element)"><i class="fa fa-edit"></i></button> |
                 <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i class="fa fa-remove"></i></button>
               </mat-cell>
             </ng-container>
@@ -62,33 +62,199 @@
   </div>
 </section>
 
-<ng-container *ngIf="showModal">
+<ng-container *ngIf="showCreateModal">
   <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
-    <i class="c-close fa fa-remove" (click)="closeDialog()"></i>
+    <i class="c-close fa fa-remove" (click)="closeCreateModal()"></i>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
           <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
           <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
           <hr>
-          <input class="form-control mb-3" type="hidden" [(ngModel)]="user.id" readonly>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.userName" name="userName" placeholder="Username" minlength="3" required>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.password" name="password" placeholder="Password" required>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" required>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" required>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.primaryMobNo" name="primaryMobNo" placeholder="Primary Mobile Number" required>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.secondaryMobNo" name="secondaryMobNo" placeholder="Secondary Mobile Number" required>
-          <input class="form-control mb-3" type="text" [(ngModel)]="user.telephoneNo" name="telephoneNo" placeholder="Telephone Number" required>
-          <select class="form-control mb-3" [(ngModel)]="user.gender" name="gender" required>
-            <option value="-1">-Select Gender-</option>
-            <option value="0">Male</option>
-            <option value="1">Female</option>
-            <option value="2">Other</option>
-          </select>
-          <button class="form-control btn btn-success" (click)="createRecord(user)" *ngIf="buttonStatus.saveButton">Save</button>
-          <button class="form-control btn btn-info" (click)="updateRecord(user)" *ngIf="buttonStatus.updateButton">Update</button>
+          <form [formGroup]="testForm">
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['userName'].errors }" type="text" formControlName="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username" minlength="5" required>
+            <div *ngIf="formSubmitted && formControl['userName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['userName'].errors?.['required']">Username is required.</div>
+              <div *ngIf="formControl['userName'].errors?.['minlength']">Username must be at least 5 characters long.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-lock"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['password'].errors }" type="password" formControlName="password" name="password" [(ngModel)]="user.password" placeholder="Password" minlength="8" required>
+            <div *ngIf="formSubmitted && formControl['password'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['password'].errors?.['required']">Password is required.</div>
+              <div *ngIf="formControl['password'].errors?.['minlength']">Password must be at least 8 characters long.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['firstName'].errors }" type="text" formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name" required>
+            <div *ngIf="formSubmitted && formControl['firstName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['firstName'].errors?.['required']">First name is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['lastName'].errors }" type="text" formControlName="lastName" name="lastName" [(ngModel)]="user.lastName" placeholder="Last Name" required>
+            <div *ngIf="formSubmitted && formControl['lastName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['lastName'].errors?.['required']">Last name is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-mobile"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['primaryMobNo'].errors }" type="text" formControlName="primaryMobNo" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" required>
+            <div *ngIf="formSubmitted && formControl['primaryMobNo'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['primaryMobNo'].errors?.['required']">Primary mobile number is required.</div>
+              <div *ngIf="formControl['primaryMobNo'].errors?.['minlength']">Primary mobile number of exact 10 digits.</div>
+              <div *ngIf="formControl['primaryMobNo'].errors?.['maxlength']">Primary mobile number of exact 10 digits.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-phone-square"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['secondaryMobNo'].errors }" type="text" formControlName="secondaryMobNo" name="secondaryMobNo" [(ngModel)]="user.secondaryMobNo" placeholder="Secondary Mobile Number" minlength="10" maxlength="10">
+            <div *ngIf="formSubmitted && formControl['secondaryMobNo'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['secondaryMobNo'].errors?.['minlength']">Secondary mobile number of exact 10 digits.</div>
+              <div *ngIf="formControl['secondaryMobNo'].errors?.['maxlength']">Secondary mobile number of exact 10 digits.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['telephoneNo'].errors }" type="text" formControlName="telephoneNo" name="telephoneNo" [(ngModel)]="user.telephoneNo" placeholder="Telephone Number" minlength="10" maxlength="10">
+            <div *ngIf="formSubmitted && formControl['password'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['telephoneNo'].errors?.['required']">Telephone number is required.</div>
+              <div *ngIf="formControl['telephoneNo'].errors?.['minlength']">Telephone number must be at least 8 characters long.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-genderless"></i></div>
+              <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="user.gender" required>
+                <option value="">-Select Gender-</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+                <option value="2">Other</option>
+              </select>
+              <!--<div class="row">
+                <div class="col-md-3">Gender : </div>
+                <div class="col-md-3">
+                  Male <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Male" [(ngModel)]="user.gender" required>
+                </div>
+                <div class="col-md-4">
+                  Female : <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Female" [(ngModel)]="user.gender" required>
+                </div>
+                <div class="col-md-4">
+                  Female : <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Other" [(ngModel)]="user.gender" required>
+                </div>
+              </div>-->
+              <div *ngIf="formSubmitted && formControl['gender'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['gender'].errors?.['required']">Gender is required.</div>
+              </div>
+          </div>
+          <button class="form-control btn btn-success" (click)="submitTestForm('Create', user)" *ngIf="buttonStatus.saveButton">Save</button>
+          <button class="form-control btn btn-info" (click)="submitTestForm('Update', user)" *ngIf="buttonStatus.updateButton">Update</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </ng-container>
+
+<ng-container *ngIf="showUpdateModal">
+  <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closeUpdateModal()"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
+          <hr>
+          <form [formGroup]="testForm">
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['userName'].errors }" type="text" formControlName="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username" minlength="5" required>
+              <div *ngIf="formSubmitted && formControl['userName'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['userName'].errors?.['required']">Username is required.</div>
+                <div *ngIf="formControl['userName'].errors?.['minlength']">Username must be at least 5 characters long.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-lock"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['password'].errors }" type="password" formControlName="password" name="password" [(ngModel)]="user.password" placeholder="Password" minlength="8" required>
+              <div *ngIf="formSubmitted && formControl['password'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['password'].errors?.['required']">Password is required.</div>
+                <div *ngIf="formControl['password'].errors?.['minlength']">Password must be at least 8 characters long.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['firstName'].errors }" type="text" formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name" required>
+              <div *ngIf="formSubmitted && formControl['firstName'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['firstName'].errors?.['required']">First name is required.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['lastName'].errors }" type="text" formControlName="lastName" name="lastName" [(ngModel)]="user.lastName" placeholder="Last Name" required>
+              <div *ngIf="formSubmitted && formControl['lastName'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['lastName'].errors?.['required']">Last name is required.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-mobile"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['primaryMobNo'].errors }" type="text" formControlName="primaryMobNo" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" required>
+              <div *ngIf="formSubmitted && formControl['primaryMobNo'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['primaryMobNo'].errors?.['required']">Primary mobile number is required.</div>
+                <div *ngIf="formControl['primaryMobNo'].errors?.['minlength']">Primary mobile number of exact 10 digits.</div>
+                <div *ngIf="formControl['primaryMobNo'].errors?.['maxlength']">Primary mobile number of exact 10 digits.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-phone-square"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['secondaryMobNo'].errors }" type="text" formControlName="secondaryMobNo" name="secondaryMobNo" [(ngModel)]="user.secondaryMobNo" placeholder="Secondary Mobile Number" minlength="10" maxlength="10">
+              <div *ngIf="formSubmitted && formControl['secondaryMobNo'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['secondaryMobNo'].errors?.['minlength']">Secondary mobile number of exact 10 digits.</div>
+                <div *ngIf="formControl['secondaryMobNo'].errors?.['maxlength']">Secondary mobile number of exact 10 digits.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['telephoneNo'].errors }" type="text" formControlName="telephoneNo" name="telephoneNo" [(ngModel)]="user.telephoneNo" placeholder="Telephone Number" minlength="10" maxlength="10">
+              <div *ngIf="formSubmitted && formControl['password'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['telephoneNo'].errors?.['required']">Telephone number is required.</div>
+                <div *ngIf="formControl['telephoneNo'].errors?.['minlength']">Telephone number must be at least 8 characters long.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-genderless"></i></div>
+              <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="user.gender" required>
+                <option value="">-Select Gender-</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+                <option value="2">Other</option>
+              </select>
+              <!--<div class="row">
+                <div class="col-md-3">Gender : </div>
+                <div class="col-md-3">
+                  Male <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Male" [(ngModel)]="user.gender" required>
+                </div>
+                <div class="col-md-4">
+                  Female : <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Female" [(ngModel)]="user.gender" required>
+                </div>
+                <div class="col-md-4">
+                  Female : <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Other" [(ngModel)]="user.gender" required>
+                </div>
+              </div>-->
+              <div *ngIf="formSubmitted && formControl['gender'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['gender'].errors?.['required']">Gender is required.</div>
+              </div>
+            </div>
+            <button class="form-control btn btn-success" (click)="submitTestForm('Create', user)" *ngIf="buttonStatus.saveButton">Save</button>
+            <button class="form-control btn btn-info" (click)="submitTestForm('Update', user)" *ngIf="buttonStatus.updateButton">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

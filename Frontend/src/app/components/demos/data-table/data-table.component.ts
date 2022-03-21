@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../../models/User';
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-data-table',
@@ -18,7 +19,8 @@ export class DataTableComponent implements OnInit {
   users: any = [];
   displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
   dataSource: MatTableDataSource<User>;
-  showModal: boolean = false;
+  showCreateModal: boolean = false;
+  showUpdateModal: boolean = false;
   buttonStatus: any = {
     saveButton: false,
     updateButton: false
@@ -40,13 +42,18 @@ export class DataTableComponent implements OnInit {
     ModifiedDate: ''
   };
 
+  testForm: FormGroup;
+  formSubmitted: boolean = false;
+
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
+  private key: any;
 
-  constructor(private userService: UserService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) {
+  constructor(private userService: UserService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService, private formBuilder: FormBuilder) {
     this.paginator = this.users;
     this.sort = this.users;
     this.dataSource = new MatTableDataSource(this.users);
+    this.testForm = new FormGroup({});
     setTimeout(() => {
       this.userService.getAllUsers().subscribe((users) => {
         this.users = users;
@@ -58,11 +65,43 @@ export class DataTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*this.testForm = new FormGroup({
+      userName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      password: new FormControl('', []),
+      firstName: new FormControl('', []),
+      lastName: new FormControl('', []),
+      primaryMobNo: new FormControl('', [])
+    });*/
+    this.testForm = this.formBuilder.group({
+      userName: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      primaryMobNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      secondaryMobNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
+      telephoneNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
+      gender: ['', [Validators.required]]
+    });
     this.ngxSpinnerService.show();
     setTimeout(()=> {
       this.ngxSpinnerService.hide();
     }, 1000);
   }
+
+  get formControl(): { [key: string]: AbstractControl } {
+    return this.testForm.controls
+  }
+  /*get userName() { return this.testForm.get('userName'); }
+  get password() { return this.testForm.get('password'); }
+  get firstName() { return this.testForm.get('firstName'); }
+  get lastName() { return this.testForm.get('lastName'); }
+  get primaryMobNo() { return this.testForm.get('primaryMobNo'); }
+  get secondaryMobNo() { return this.testForm.get('secondaryMobNo'); }
+  get telephoneNo() { return this.testForm.get('telephoneNo'); }
+  get gender() { return this.testForm.get('gender'); }*/
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -76,34 +115,55 @@ export class DataTableComponent implements OnInit {
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
 
-  openDialog(type:any, data:any) {
-    this.showModal = true;
-    if(type === 'Edit') {
-      this.buttonStatus.updateButton = true;
-      this.buttonStatus.saveButton = false;
-      this.user = data;
-    } else if(type === 'Create') {
-      this.buttonStatus.saveButton = true;
-      this.buttonStatus.updateButton = false;
-      this.user = {} as User;
-      this.user.gender = -1;
-    }
+  openCreateModal(type:any, data:any) {
+    this.showCreateModal = true;
+    this.buttonStatus.saveButton = true;
+    this.buttonStatus.updateButton = false;
+    this.user = {} as User;
+    this.user.gender = '';
   }
 
-  closeDialog() {
-    this.showModal = false;
+  closeCreateModal() {
+    this.showCreateModal = false;
+  }
+
+  openUpdateModal(type:any, userObj:any) {
+    this.showUpdateModal = true;
+    this.buttonStatus.updateButton = true;
+    this.buttonStatus.saveButton = false;
+    this.user = userObj;
+  }
+
+  closeUpdateModal() {
+    this.showUpdateModal = false;
+  }
+
+  submitTestForm(action: string, userObj: User): void {
+    this.formSubmitted = true;
+    if (this.testForm.invalid) {
+      return;
+    }
+    if (action === 'Create') {
+      this.createRecord(userObj);
+    }
+    if (action === 'Update') {
+      this.updateRecord(userObj);
+    }
   }
 
   createRecord(userObj: User) {
     userObj.gender = parseInt(userObj.gender);
     userObj.status = true;
-    this.userService.createUser(userObj).subscribe(() => {
-      this.toastrService.success("Record Created...!");
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
-      this.showModal = false;
-    });
+    this.formSubmitted = true;
+    if (this.testForm.valid) {
+      this.userService.createUser(userObj).subscribe(() => {
+        this.toastrService.success("Record Created...!");
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+        this.showCreateModal = false;
+      });
+    }
   }
 
   updateRecord(userObj: User) {
@@ -114,7 +174,7 @@ export class DataTableComponent implements OnInit {
       setTimeout(() => {
         location.reload();
       }, 1000);
-      this.showModal = false;
+      this.showUpdateModal = false;
     });
   }
 
