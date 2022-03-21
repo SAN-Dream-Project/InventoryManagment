@@ -9,7 +9,7 @@
           <mat-form-field class="w-25">
             <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
           </mat-form-field>
-          <button class="btn btn-success float-end mt-1" (click)="openCreateModal('Create', '')"><i class="fa fa-user me-2"></i>Add User</button>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add User</button>
         </div>
 
         <div class="example-container mat-elevation-z8">
@@ -34,7 +34,7 @@
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openUpdateModal('Update', element)"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Update', element)"><i class="fa fa-edit"></i></button> |
                 <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i class="fa fa-remove"></i></button>
               </mat-cell>
             </ng-container>
@@ -62,9 +62,9 @@
   </div>
 </section>
 
-<ng-container *ngIf="showCreateModal">
+<ng-container *ngIf="showModal">
   <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
-    <i class="c-close fa fa-remove" (click)="closeCreateModal()"></i>
+    <i class="c-close fa fa-remove" (click)="closeModal()"></i>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
@@ -151,8 +151,8 @@
                 <div *ngIf="formControl['gender'].errors?.['required']">Gender is required.</div>
               </div>
           </div>
-          <button class="form-control btn btn-success" (click)="submitTestForm('Create', user)" *ngIf="buttonStatus.saveButton">Save</button>
-          <button class="form-control btn btn-info" (click)="submitTestForm('Update', user)" *ngIf="buttonStatus.updateButton">Update</button>
+          <button class="form-control btn btn-success" (click)="submitForm('Create', user)" *ngIf="buttonStatus.saveButton">Save</button>
+          <button class="form-control btn btn-info" (click)="submitForm('Update', user)" *ngIf="buttonStatus.updateButton">Update</button>
           </form>
         </div>
       </div>
@@ -160,7 +160,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="showUpdateModal">
+<!--<ng-container *ngIf="showUpdateModal">
   <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
     <i class="c-close fa fa-remove" (click)="closeUpdateModal()"></i>
     <div class="container-fluid">
@@ -233,7 +233,7 @@
                 <option value="1">Female</option>
                 <option value="2">Other</option>
               </select>
-              <!--<div class="row">
+              &lt;!&ndash;<div class="row">
                 <div class="col-md-3">Gender : </div>
                 <div class="col-md-3">
                   Male <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Male" [(ngModel)]="user.gender" required>
@@ -244,17 +244,17 @@
                 <div class="col-md-4">
                   Female : <input class="form-control" type="radio" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" value="Other" [(ngModel)]="user.gender" required>
                 </div>
-              </div>-->
+              </div>&ndash;&gt;
               <div *ngIf="formSubmitted && formControl['gender'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['gender'].errors?.['required']">Gender is required.</div>
               </div>
             </div>
-            <button class="form-control btn btn-success" (click)="submitTestForm('Create', user)" *ngIf="buttonStatus.saveButton">Save</button>
-            <button class="form-control btn btn-info" (click)="submitTestForm('Update', user)" *ngIf="buttonStatus.updateButton">Update</button>
+            <button class="form-control btn btn-success" (click)="submitForm('Create', user)" *ngIf="buttonStatus.saveButton">Save</button>
+            <button class="form-control btn btn-info" (click)="submitForm('Update', user)" *ngIf="buttonStatus.updateButton">Update</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-</ng-container>
+</ng-container>-->
 

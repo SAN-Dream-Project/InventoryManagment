@@ -19,8 +19,7 @@ export class DataTableComponent implements OnInit {
   users: any = [];
   displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
   dataSource: MatTableDataSource<User>;
-  showCreateModal: boolean = false;
-  showUpdateModal: boolean = false;
+  showModal: boolean = false;
   buttonStatus: any = {
     saveButton: false,
     updateButton: false
@@ -115,19 +114,26 @@ export class DataTableComponent implements OnInit {
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
 
-  openCreateModal(type:any, data:any) {
-    this.showCreateModal = true;
-    this.buttonStatus.saveButton = true;
-    this.buttonStatus.updateButton = false;
-    this.user = {} as User;
-    this.user.gender = '';
+  openModal(type:any, userObj:any) {
+    if (type === 'Create') {
+      this.showModal = true;
+      this.buttonStatus.saveButton = true;
+      this.buttonStatus.updateButton = false;
+      this.user = {} as User;
+      this.user.gender = '';
+    } else {
+      this.showModal = true;
+      this.buttonStatus.updateButton = true;
+      this.buttonStatus.saveButton = false;
+      this.user = userObj;
+    }
   }
 
-  closeCreateModal() {
-    this.showCreateModal = false;
+  closeModal() {
+    this.showModal = false;
   }
 
-  openUpdateModal(type:any, userObj:any) {
+  /*openUpdateModal(type:any, userObj:any) {
     this.showUpdateModal = true;
     this.buttonStatus.updateButton = true;
     this.buttonStatus.saveButton = false;
@@ -136,9 +142,9 @@ export class DataTableComponent implements OnInit {
 
   closeUpdateModal() {
     this.showUpdateModal = false;
-  }
+  }*/
 
-  submitTestForm(action: string, userObj: User): void {
+  submitForm(action: string, userObj: User): void {
     this.formSubmitted = true;
     if (this.testForm.invalid) {
       return;
@@ -161,7 +167,7 @@ export class DataTableComponent implements OnInit {
         setTimeout(() => {
           location.reload();
         }, 1000);
-        this.showCreateModal = false;
+        this.showModal = false;
       });
     }
   }
@@ -174,7 +180,7 @@ export class DataTableComponent implements OnInit {
       setTimeout(() => {
         location.reload();
       }, 1000);
-      this.showUpdateModal = false;
+      this.showModal = false;
     });
   }
 
