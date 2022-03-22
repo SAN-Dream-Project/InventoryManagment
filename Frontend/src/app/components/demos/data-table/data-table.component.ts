@@ -6,7 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../../models/User';
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CustomValidator} from "./custom-validator";
 
 @Component({
   selector: 'app-data-table',
@@ -46,7 +47,6 @@ export class DataTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  private key: any;
 
   constructor(private userService: UserService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService, private formBuilder: FormBuilder) {
     this.paginator = this.users;
@@ -74,20 +74,24 @@ export class DataTableComponent implements OnInit {
       lastName: new FormControl('', []),
       primaryMobNo: new FormControl('', [])
     });*/
-    this.testForm = this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      primaryMobNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      secondaryMobNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
-      telephoneNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
-      gender: ['', [Validators.required]]
-    });
+    this.validateForm();
     this.ngxSpinnerService.show();
     setTimeout(()=> {
       this.ngxSpinnerService.hide();
     }, 1000);
+  }
+
+  validateForm() {
+    this.testForm = this.formBuilder.group({
+      userName: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      firstName: ['', [Validators.required, CustomValidator]],
+      lastName: ['', [Validators.required]],
+      primaryMobNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9][0-9]$")]],
+      secondaryMobNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
+      telephoneNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
+      gender: ['', [Validators.required]]
+    });
   }
 
   get formControl(): { [key: string]: AbstractControl } {
@@ -115,6 +119,7 @@ export class DataTableComponent implements OnInit {
   }
 
   openModal(type:any, userObj:any) {
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -155,6 +160,11 @@ export class DataTableComponent implements OnInit {
     if (action === 'Update') {
       this.updateRecord(userObj);
     }
+  }
+
+  appendZeros() {
+    let currentValue = this.user.primaryMobNo;
+    currentValue.indexOf('.') !== -1 ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue+'.00';
   }
 
   createRecord(userObj: User) {

@@ -93,6 +93,7 @@
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['firstName'].errors }" type="text" formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name" required>
             <div *ngIf="formSubmitted && formControl['firstName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['firstName'].errors?.['required']">First name is required.</div>
+              <div *ngIf="formControl['firstName'].errors?.['age']">Age must be 18+.</div>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -104,11 +105,12 @@
           </div>
           <div class="input-group mb-3">
             <div class="input-group-text"><i class="c-fa fa fa-mobile"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['primaryMobNo'].errors }" type="text" formControlName="primaryMobNo" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" required>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['primaryMobNo'].errors }" type="text" formControlName="primaryMobNo" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number" pattern="^[0-9]+\.[0-9][0-9]$" (blur)="appendZeros()" minlength="10" maxlength="10" required>
             <div *ngIf="formSubmitted && formControl['primaryMobNo'].errors" class="invalid-feedback">
               <div *ngIf="formControl['primaryMobNo'].errors?.['required']">Primary mobile number is required.</div>
               <div *ngIf="formControl['primaryMobNo'].errors?.['minlength']">Primary mobile number of exact 10 digits.</div>
               <div *ngIf="formControl['primaryMobNo'].errors?.['maxlength']">Primary mobile number of exact 10 digits.</div>
+              <div *ngIf="formControl['primaryMobNo'].errors?.['pattern']">Wrong numeric value.</div>
             </div>
           </div>
           <div class="input-group mb-3">
