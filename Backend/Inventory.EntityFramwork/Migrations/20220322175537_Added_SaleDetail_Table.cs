@@ -40,7 +40,7 @@ namespace Inventory.EntityFramwork.Migrations
                         name: "FK_SaleDetail_LabourRate_LabourRateID",
                         column: x => x.LabourRateID,
                         principalTable: "LabourRate",
-                        principalColumn: "LabourRateId",
+                        principalColumn: "LabourRateID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SaleDetail_Retailer_RetailerID",

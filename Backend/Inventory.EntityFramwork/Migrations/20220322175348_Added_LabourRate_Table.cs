@@ -5,21 +5,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Added_EmployeeDetail_Table : Migration
+    public partial class Added_LabourRate_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EmployeeDetail",
+                name: "LabourRate",
                 columns: table => new
                 {
-                    EmployeeDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmailID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Rate = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -27,14 +22,14 @@ namespace Inventory.EntityFramwork.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeDetail", x => x.EmployeeDetailID);
+                    table.PrimaryKey("PK_LabourRate", x => x.LabourRateID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EmployeeDetail");
+                name: "LabourRate");
         }
     }
 }

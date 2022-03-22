@@ -5,21 +5,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Added_Retailer_Table : Migration
+    public partial class Added_Labour_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Retailer",
+                name: "Labour",
                 columns: table => new
                 {
-                    RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LabourID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<int>(type: "int", nullable: true),
+                    MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -27,14 +28,14 @@ namespace Inventory.EntityFramwork.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Retailer", x => x.RetailerID);
+                    table.PrimaryKey("PK_Labour", x => x.LabourID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Retailer");
+                name: "Labour");
         }
     }
 }

@@ -8,5 +8,7 @@ namespace Inventory.Core.Shared.EmplyeeTypes
 {
     public  enum EmplyeeType
     {
+        Operator=1,
+        Worker=2
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Added_BharadaCreditDetail_Table : Migration
+    public partial class Added_bharadaCreditDetail_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
