@@ -9,6 +9,7 @@ export interface Employee {
     createdBy: string,
     createdDate: string,
     modifiedBy: string,
-    modifiedDate: string
+    modifiedDate: string,
+    gender: any,
   }
   

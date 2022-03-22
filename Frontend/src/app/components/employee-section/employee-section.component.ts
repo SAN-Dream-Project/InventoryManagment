@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,9 +15,15 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class EmployeeSectionComponent implements OnInit, AfterViewInit {
   employees:any = [];
+  employeeForm: FormGroup;
   displayedColumns = ['firstName', 'middleName', 'lastName','mobileNo', 'emailId', 'address', 'action'];
   dataSource: MatTableDataSource<Employee>;
   showModal: boolean = false;
+  buttonStatus: any = {
+    saveButton: false,
+    updateButton: false
+  };
+  formSubmitted: boolean = false;
   employee: Employee = {
     id: '',
     firstName: '',
@@ -28,15 +35,17 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     createdBy: '',
     createdDate: '',
     modifiedBy: '',
-    modifiedDate: ''
+    modifiedDate: '',
+    gender: '',
   };
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  constructor(private employeeService: EmployeeService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) { 
+  constructor(private employeeService: EmployeeService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) { 
     this.paginator = this.employees;
     this.sort = this.employees;
     this.dataSource = new MatTableDataSource(this.employees);
+    this.employeeForm = new FormGroup({});
     /*for (let i = 1; i <= 100; i++) { this.users.push(createNewUser(i)); }*/
     // Assign the data to the data source for the table to render
     setTimeout(() => {
@@ -53,6 +62,18 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     setTimeout(()=> {
       this.ngxSpinnerService.hide();
     }, 1000);
+    this.employeeForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      middleName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      emailID: ['', [Validators.minLength(10)]],
+      address: ['', [Validators.minLength(10)]],
+      gender: ['', [Validators.required]]
+    });
+  }
+  get formControl(): { [key: string]: AbstractControl } {
+    return this.employeeForm.controls
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -64,17 +85,22 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
 
-  openDialog(x:any, y:any) {
-    console.log(y);
-    this.showModal = true;
-    if(x === 'Edit') {
-      this.employee = y;
-    } else if(x === 'Create') {
+  openModal(type:any, userObj:any) {
+    if (type === 'Create') {
+      this.showModal = true;
+      this.buttonStatus.saveButton = true;
+      this.buttonStatus.updateButton = false;
       this.employee = {} as Employee;
+      this.employee.gender = '';
+    } else {
+      this.showModal = true;
+      this.buttonStatus.updateButton = true;
+      this.buttonStatus.saveButton = false;
+      this.employee = userObj;
     }
   }
 
-  closeDialog() {
+  closeModal() {
     this.showModal = false;
   }
 
@@ -91,16 +117,30 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     return status === "true";
   }
 
-  createRecord(userObj: Employee) {
-    this.employeeService.createEmployee(userObj).subscribe(()=> {
+  submitForm(action: string, employeeObj: Employee): void {
+    this.formSubmitted = true;
+    if (this.employeeForm.invalid) {
+      return;
+    }
+    if (action === 'Create') {
+      this.createRecord(employeeObj);
+    }
+    if (action === 'Update') {
+      this.updateRecord(employeeObj);
+    }
+  }
+  createRecord(employeeObj: Employee) {
+    employeeObj.gender = parseInt(employeeObj.gender);
+    this.employeeService.createEmployee(employeeObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
       location.reload();
     });
   }
 
-  updateRecord(userObj: Employee) {
-    this.employeeService.createEmployee(userObj).subscribe(()=> {
+  updateRecord(employeeObj: Employee) {
+    employeeObj.gender = parseInt(employeeObj.gender);
+    this.employeeService.createEmployee(employeeObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
       location.reload();
