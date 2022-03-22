@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318191805_Added_BharadaSaleDetail_Table")]
-    partial class Added_BharadaSaleDetail_Table
+    [Migration("20220322175719_Added_bharadaCreditDetail_Table")]
+    partial class Added_bharadaCreditDetail_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,43 @@ namespace Inventory.EntityFramwork.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BharadaCreditDetailID");
+
+                    b.Property<Guid?>("BharataSaleDetailID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("PaidAmout")
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("RetailerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BharataSaleDetailID");
+
+                    b.HasIndex("RetailerID");
+
+                    b.ToTable("BharadaCreditDetail");
+                });
 
             modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
                 {
@@ -133,6 +170,9 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -264,6 +304,9 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -404,6 +447,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -610,6 +656,21 @@ namespace Inventory.EntityFramwork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
+                {
+                    b.HasOne("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", "BharataSaleDetail")
+                        .WithMany()
+                        .HasForeignKey("BharataSaleDetailID");
+
+                    b.HasOne("Inventory.Core.Retailers.Retailer", "Retailer")
+                        .WithMany()
+                        .HasForeignKey("RetailerID");
+
+                    b.Navigation("BharataSaleDetail");
+
+                    b.Navigation("Retailer");
                 });
 
             modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>

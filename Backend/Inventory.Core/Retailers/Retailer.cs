@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventory.Core.Shared.UserAndRoles.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Inventory.Core.Retailers
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+        public Gender? Gender { get; set; }
         public string MobileNo { get; set; }
         public string EmailID { get; set; }
         public string Address { get; set; }

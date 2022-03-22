@@ -53,7 +53,7 @@ namespace Inventory.EntityFramwork.Migrations
                         name: "FK_Purchase_LabourRate_LabourRateID",
                         column: x => x.LabourRateID,
                         principalTable: "LabourRate",
-                        principalColumn: "LabourRateId");
+                        principalColumn: "LabourRateID");
                 });
 
             migrationBuilder.CreateIndex(

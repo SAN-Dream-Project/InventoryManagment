@@ -9,16 +9,6 @@ namespace Inventory.EntityFramwork.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "LabourRateId",
-                table: "LabourRate",
-                newName: "LabourRateID");
-
-            migrationBuilder.RenameColumn(
-                name: "LabourId",
-                table: "Labour",
-                newName: "LabourID");
-
             migrationBuilder.CreateTable(
                 name: "BharadaSaleDetail",
                 columns: table => new
@@ -79,16 +69,6 @@ namespace Inventory.EntityFramwork.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BharadaSaleDetail");
-
-            migrationBuilder.RenameColumn(
-                name: "LabourRateID",
-                table: "LabourRate",
-                newName: "LabourRateId");
-
-            migrationBuilder.RenameColumn(
-                name: "LabourID",
-                table: "Labour",
-                newName: "LabourId");
         }
     }
 }

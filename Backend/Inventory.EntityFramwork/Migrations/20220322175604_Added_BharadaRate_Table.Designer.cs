@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318060200_Added_SaleDetail_Table")]
-    partial class Added_SaleDetail_Table
+    [Migration("20220322175604_Added_BharadaRate_Table")]
+    partial class Added_BharadaRate_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,6 +73,9 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -161,7 +164,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LabourRateId");
+                        .HasColumnName("LabourRateID");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -188,7 +191,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LabourId");
+                        .HasColumnName("LabourID");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -204,6 +207,9 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -287,6 +293,39 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("Purchase");
                 });
 
+            modelBuilder.Entity("Inventory.Core.RateTables.BharadaRate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BharadaRateID");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Rate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("RateCriteria")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RateCriteriaID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BharadaRate");
+                });
+
             modelBuilder.Entity("Inventory.Core.Retailers.Retailer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -311,6 +350,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()

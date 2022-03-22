@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220318191832_Added_BharadaCreditDetail_Table")]
-    partial class Added_BharadaCreditDetail_Table
+    [Migration("20220322175519_Added_Retailer_Table")]
+    partial class Added_Retailer_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,103 +23,6 @@ namespace Inventory.EntityFramwork.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharadaCreditDetailID");
-
-                    b.Property<Guid?>("BharataSaleDetailID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("PaidAmout")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("RetailerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BharataSaleDetailID");
-
-                    b.HasIndex("RetailerID");
-
-                    b.ToTable("BharadaCreditDetail");
-                });
-
-            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharadaSaleDetailID");
-
-                    b.Property<Guid?>("BharadaRateID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double?>("Discount")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("LabourRateID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double?>("NetAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("PaidAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Quntity")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("RemainingAmount")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("RetailerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double?>("ToatalAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double>("TotalLabourCosting")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BharadaRateID");
-
-                    b.HasIndex("LabourRateID");
-
-                    b.HasIndex("RetailerID");
-
-                    b.ToTable("BharadaSaleDetail");
-                });
 
             modelBuilder.Entity("Inventory.Core.Goods.Good", b =>
                 {
@@ -170,6 +73,9 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -302,6 +208,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -384,39 +293,6 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("Purchase");
                 });
 
-            modelBuilder.Entity("Inventory.Core.RateTables.BharadaRate", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BharadaRateID");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
-
-                    b.Property<string>("RateCriteria")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RateCriteriaID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BharadaRate");
-                });
-
             modelBuilder.Entity("Inventory.Core.Retailers.Retailer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -442,6 +318,9 @@ namespace Inventory.EntityFramwork.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -463,60 +342,6 @@ namespace Inventory.EntityFramwork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Retailer");
-                });
-
-            modelBuilder.Entity("Inventory.Core.SaleDetails.SaleDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("SaleDetailID");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Discount")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("GoodID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LabourRateID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Quntity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("RetailerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("TotalAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double>("TotalLabourCosting")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GoodID");
-
-                    b.HasIndex("LabourRateID");
-
-                    b.HasIndex("RetailerID");
-
-                    b.ToTable("SaleDetail");
                 });
 
             modelBuilder.Entity("Inventory.Core.Stocks.Stock", b =>
@@ -649,42 +474,6 @@ namespace Inventory.EntityFramwork.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Inventory.Core.BharadaCreditDetails.BharadaCreditDetail", b =>
-                {
-                    b.HasOne("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", "BharataSaleDetail")
-                        .WithMany()
-                        .HasForeignKey("BharataSaleDetailID");
-
-                    b.HasOne("Inventory.Core.Retailers.Retailer", "Retailer")
-                        .WithMany()
-                        .HasForeignKey("RetailerID");
-
-                    b.Navigation("BharataSaleDetail");
-
-                    b.Navigation("Retailer");
-                });
-
-            modelBuilder.Entity("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", b =>
-                {
-                    b.HasOne("Inventory.Core.RateTables.BharadaRate", "BharadaRate")
-                        .WithMany()
-                        .HasForeignKey("BharadaRateID");
-
-                    b.HasOne("Inventory.Core.LabourRates.LabourRate", "LabourRate")
-                        .WithMany()
-                        .HasForeignKey("LabourRateID");
-
-                    b.HasOne("Inventory.Core.Retailers.Retailer", "Retailer")
-                        .WithMany()
-                        .HasForeignKey("RetailerID");
-
-                    b.Navigation("BharadaRate");
-
-                    b.Navigation("LabourRate");
-
-                    b.Navigation("Retailer");
-                });
-
             modelBuilder.Entity("Inventory.Core.LabourDetails.LabourDetail", b =>
                 {
                     b.HasOne("Inventory.Core.Labours.Labour", "Labour")
@@ -723,33 +512,6 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Navigation("GoodSupplier");
 
                     b.Navigation("Kadata");
-
-                    b.Navigation("LabourRate");
-                });
-
-            modelBuilder.Entity("Inventory.Core.SaleDetails.SaleDetail", b =>
-                {
-                    b.HasOne("Inventory.Core.Goods.Good", "Good")
-                        .WithMany()
-                        .HasForeignKey("GoodID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Inventory.Core.LabourRates.LabourRate", "LabourRate")
-                        .WithMany()
-                        .HasForeignKey("LabourRateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Inventory.Core.Retailers.Retailer", "GoodSupplier")
-                        .WithMany()
-                        .HasForeignKey("RetailerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Good");
-
-                    b.Navigation("GoodSupplier");
 
                     b.Navigation("LabourRate");
                 });
