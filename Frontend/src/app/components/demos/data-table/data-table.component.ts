@@ -87,7 +87,7 @@ export class DataTableComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       firstName: ['', [Validators.required, CustomValidator]],
       lastName: ['', [Validators.required]],
-      primaryMobNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9][0-9]$")]],
+      primaryMobNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
       secondaryMobNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       telephoneNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       gender: ['', [Validators.required]]
@@ -164,7 +164,8 @@ export class DataTableComponent implements OnInit {
 
   appendZeros() {
     let currentValue = this.user.primaryMobNo;
-    currentValue.indexOf('.') !== -1 || currentValue.match("^[0-9]+\\[0-9]{0,2}") ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue+'.00';
+    let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
+    currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue+'.00';
   }
 
   createRecord(userObj: User) {
