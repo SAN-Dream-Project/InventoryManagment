@@ -9,19 +9,19 @@
           <mat-form-field class="w-25">
             <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
           </mat-form-field>
-          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add Kadata</button>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add Labour Rate</button>
         </div>
 
         <div class="example-container mat-elevation-z8">
 
           <mat-table [dataSource]="dataSource" matSort>
 
-            <ng-container matColumnDef="kadtaQuantity">e
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Kadata Quantity </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.kadtaQuantity}} </mat-cell>
+            <ng-container matColumnDef="rate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="createdBy">e
+            <ng-container matColumnDef="createdBy">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Created Name </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.createdBy}} </mat-cell>
               </ng-container>
@@ -66,16 +66,16 @@
           <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
           <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
           <hr>
-          <form [formGroup]="kadataForm">
+          <form [formGroup]="labourRateForm">
           <div class="input-group mb-3">
             <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaQuantity'].errors }" type="text" formControlName="kadtaQuantity" name="kadtaQuantity" [(ngModel)]="kadata.kadtaQuantity" placeholder="kadata Quantity" required>
-            <div *ngIf="formSubmitted && formControl['kadtaQuantity'].errors" class="invalid-feedback">
-              <div *ngIf="formControl['kadtaQuantity'].errors?.['required']">kadta Quantity is required.</div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rate'].errors }" type="text" formControlName="rate" name="rate" [(ngModel)]="labourRate.rate" placeholder="Rate" required>
+            <div *ngIf="formSubmitted && formControl['rate'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['rate'].errors?.['required']">labour Rate is required.</div>
             </div>
           </div>
-          <button class="form-control btn btn-success" (click)="submitForm('Create', kadata)" *ngIf="buttonStatus.saveButton">Save</button>
-          <button class="form-control btn btn-info" (click)="submitForm('Update', kadata)" *ngIf="buttonStatus.updateButton">Update</button>
+          <button class="form-control btn btn-success" (click)="submitForm('Create', labourRate)" *ngIf="buttonStatus.saveButton">Save</button>
+          <button class="form-control btn btn-info" (click)="submitForm('Update', labourRate)" *ngIf="buttonStatus.updateButton">Update</button>
           </form>
         </div>
       </div>
