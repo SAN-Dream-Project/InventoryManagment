@@ -42,7 +42,7 @@ namespace Inventory.Application.Stocks
 
         public async Task<List<StockDto>> GetAllStocks()
         {
-            var result = await _stockRepository.GetAll();
+            var result =  _stockRepository.AllIncluding(x=>x.Good).ToList();
             var roleResult = result.ToList();
             var roleList = new List<StockDto>();
             foreach (var test in roleResult)

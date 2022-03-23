@@ -1,1 +1,149 @@
-<p>goods-supplier-section works!</p>
+<app-header></app-header>
+<section class="mt-3 table-responsive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5>Supplier Table :</h5>
+        <hr>
+        <div class="example-header">
+          <mat-form-field class="w-25">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
+          </mat-form-field>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add Suppiler</button>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="firstName">e
+              <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="middleName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.middleName }} </mat-cell>
+              </ng-container>
+            <ng-container matColumnDef="lastName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.lastName }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="mobileNo">
+              <mat-header-cell *matHeaderCellDef> Mobile Number </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.mobileNo}} </mat-cell>
+
+            </ng-container><ng-container matColumnDef="emailId">
+                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.emailID}} </mat-cell>
+
+              </ng-container><ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
+              </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Edit', element)"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i class="fa fa-remove"></i></button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef > Edit </mat-header-cell>
+              <mat-cell> <i class="fa fa-edit"></i> </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef > Delete </mat-header-cell>
+              <mat-cell> <i class="fa fa-delete"></i> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-container *ngIf="showModal">
+  <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closeModal()"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
+          <hr>
+          <form [formGroup]="supplierForm">
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['firstName'].errors }" type="text" formControlName="firstName" name="firstName" [(ngModel)]="supplier.firstName" placeholder="First Name" required>
+            <div *ngIf="formSubmitted && formControl['firstName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['firstName'].errors?.['required']">First name is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['middleName'].errors }" type="text" formControlName="middleName" name="middleName" [(ngModel)]="supplier.middleName" placeholder="Middle Name" required>
+            <div *ngIf="formSubmitted && formControl['middleName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['middleName'].errors?.['required']">Middle name is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['lastName'].errors }" type="text" formControlName="lastName" name="lastName" [(ngModel)]="supplier.lastName" placeholder="Last Name" required>
+            <div *ngIf="formSubmitted && formControl['lastName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['lastName'].errors?.['required']">Last name is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-mobile"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['mobileNo'].errors }" type="text" formControlName="mobileNo" name="mobileNo" [(ngModel)]="supplier.mobileNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" required>
+            <div *ngIf="formSubmitted && formControl['mobileNo'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['mobileNo'].errors?.['required']">Primary mobile number is required.</div>
+              <div *ngIf="formControl['mobileNo'].errors?.['minlength']">Primary mobile number of exact 10 digits.</div>
+              <div *ngIf="formControl['mobileNo'].errors?.['maxlength']">Primary mobile number of exact 10 digits.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['emailID'].errors }" type="text" formControlName="emailID" name="emailID" [(ngModel)]="supplier.emailID" placeholder="EmailID" >
+            <div *ngIf="formSubmitted && formControl['emailID'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['emailID'].errors?.['required']">Email is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['address'].errors }" type="text" formControlName="address" name="address" [(ngModel)]="supplier.address" placeholder="Address" >
+            <div *ngIf="formSubmitted && formControl['address'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['address'].errors?.['required']">Address is required.</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-genderless"></i></div>
+              <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="supplier.gender" required>
+                <option value="">-Select Gender-</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+                <option value="2">Other</option>
+              </select>
+              <div *ngIf="formSubmitted && formControl['gender'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['gender'].errors?.['required']">Gender is required.</div>
+              </div>
+          </div>
+          <button class="form-control btn btn-success" (click)="submitForm('Create', supplier)" *ngIf="buttonStatus.saveButton">Save</button>
+          <button class="form-control btn btn-info" (click)="submitForm('Update', supplier)" *ngIf="buttonStatus.updateButton">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
