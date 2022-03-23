@@ -164,7 +164,7 @@ export class DataTableComponent implements OnInit {
 
   appendZeros() {
     let currentValue = this.user.primaryMobNo;
-    currentValue.indexOf('.') !== -1 ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue+'.00';
+    currentValue.indexOf('.') !== -1 || currentValue.match("^[0-9]+\\[0-9]{0,2}") ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue+'.00';
   }
 
   createRecord(userObj: User) {
