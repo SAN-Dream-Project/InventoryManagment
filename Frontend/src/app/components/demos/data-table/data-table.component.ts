@@ -3,12 +3,20 @@ import { UserService } from "../../../services/user.service";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { User } from '../../../models/User';
+import { DropDown, User } from '../../../models/User';
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CustomValidator} from "./custom-validator";
-
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { CustomValidator } from "./custom-validator";
+import { map, Observable, startWith } from 'rxjs';
+export interface Employee {
+  id: number;
+  name: string;
+  jobtype: string;
+  email: string;
+  address: string;
+  imageUrl: string;
+}
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
@@ -16,6 +24,10 @@ import {CustomValidator} from "./custom-validator";
 })
 
 export class DataTableComponent implements OnInit {
+  goodCtrl = new FormControl();
+  filteredGood: Observable<DropDown[]> | undefined;
+
+  goods: DropDown[] = [];
 
   users: any = [];
   displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
@@ -61,8 +73,27 @@ export class DataTableComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
     }, 1000);
-  }
 
+    this.userService.GetGoodList().subscribe((goods) => {
+      this.goods = goods;
+    });
+
+    setTimeout(() => {
+      this.filteredGood = this.goodCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(good => good ? this._filterGoods(good) : this.goods.slice())
+        );
+    }, 1000);
+  }
+  private _filterGoods(value: string): DropDown[] {
+    const filterValue = value.toLowerCase();
+
+    return this.goods.filter(good => good.value.toLowerCase().includes(filterValue));
+  }
+  SeletedGood(good: any) {
+    console.log(good);
+  }
   ngOnInit(): void {
     /*this.testForm = new FormGroup({
       userName: new FormControl('', [
@@ -76,7 +107,7 @@ export class DataTableComponent implements OnInit {
     });*/
     this.validateForm();
     this.ngxSpinnerService.show();
-    setTimeout(()=> {
+    setTimeout(() => {
       this.ngxSpinnerService.hide();
     }, 1000);
   }
@@ -118,7 +149,7 @@ export class DataTableComponent implements OnInit {
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
 
-  openModal(type:any, userObj:any) {
+  openModal(type: any, userObj: any) {
     this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
@@ -165,7 +196,7 @@ export class DataTableComponent implements OnInit {
   appendZeros() {
     let currentValue = this.user.primaryMobNo;
     let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
-    currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue+'.00';
+    currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';
   }
 
   createRecord(userObj: User) {
@@ -197,10 +228,10 @@ export class DataTableComponent implements OnInit {
 
   deleteRecord(id: string): void {
     var result = confirm("Are you sure you want to delete ?");
-    if(result) {
+    if (result) {
       this.userService.deleteUser(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      setTimeout(()=>{
+      setTimeout(() => {
         location.reload();
       }, 1000);
     }

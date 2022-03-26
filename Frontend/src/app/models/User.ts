@@ -14,3 +14,8 @@ export interface User {
   ModifiedBy: string,
   ModifiedDate: string
 }
+
+export interface DropDown{
+  key:any,
+  value:any
+}
