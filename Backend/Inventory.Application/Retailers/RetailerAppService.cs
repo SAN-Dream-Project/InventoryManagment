@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Application.Shared.Retailers;
 using Inventory.Application.Shared.Retailers.Dto;
 using Inventory.Core.Retailers;
@@ -57,6 +58,13 @@ namespace Inventory.Application.Retailers
             var result = await _retailerRepository.GetSingle(retailerId);
             var returnResult = Mapper.Map<Retailer, RetailerDto>(result);
             return returnResult;
+        }
+
+        public async Task<List<Dropdown>> GetRetailerList()
+        {
+            return _retailerRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.FirstName + " " + x.MiddleName + " " + x.LastName }).ToList();
+
         }
     }
 }

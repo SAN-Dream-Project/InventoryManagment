@@ -1,4 +1,5 @@
 ﻿using Inventory.Application.Shared.BharadaRates.Dto;
+using Inventory.Application.Shared.Dropdowns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace Inventory.Application.Shared.BharadaRates
         Task DeleteBharadaRate(Guid bharadaRateId);
         Task<BharadaRateDto> GetBharadaRate(Guid bharadaRateId);
         Task<List<BharadaRateDto>> GetAllBharadaRates();
+
+        Task<List<Dropdown>> GetBharadaRateList();
     }
 }

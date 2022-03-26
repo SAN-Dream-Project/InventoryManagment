@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.Goods.Dto;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.Goods.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.Goods
         Task DeleteGood(Guid goodId);
         Task<GoodDto> GetGood(Guid goodId);
         Task<List<GoodDto>> GetAllGoods();
+        Task<List<Dropdown>> GetGoodList();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.Kadatas;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.Kadatas;
 using Inventory.Application.Shared.Kadatas.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -72,6 +73,20 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
                 return null;
+            }
+        }
+        [HttpGet("GetKadataList")]
+        public async Task<List<Dropdown>> GetKadataList()
+        {
+            try
+            {
+                return await _kadataAppService.GetKadataList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<Dropdown>();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.Kadatas.Dto;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.Kadatas.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.Kadatas
         Task DeleteKadata(Guid kadataId);
         Task<KadataDto> GetKadata(Guid kadataId);
         Task<List<KadataDto>> GetAllKadatas();
+        Task<List<Dropdown>> GetKadataList();
     }
 }

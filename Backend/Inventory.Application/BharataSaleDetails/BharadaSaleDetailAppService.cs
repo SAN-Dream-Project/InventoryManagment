@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Inventory.Application.Shared.BharadaSaleDetails;
 using Inventory.Application.Shared.BharadaSaleDetails.Dto;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Core.BharadaSaleDetails;
 using Inventory.EntityFramwork.Abstract.BharadaSaleDetails;
 using System;
@@ -57,6 +58,12 @@ namespace Inventory.Application.BharataSaleDetails
             var result = await _bharadaSaleDetailRepository.GetSingle(BharadaSaleDetailId);
             var returnResult = Mapper.Map<BharadaSaleDetail, BharadaSaleDetailDto>(result);
             return returnResult;
+        }
+        public async Task<List<Dropdown>> GetBharadaSaleDetailList()
+        {
+            return _bharadaSaleDetailRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.Quntity.ToString() }).ToList();
+
         }
     }
 }

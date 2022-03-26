@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Application.Shared.EmployeeDetails;
 using Inventory.Application.Shared.EmployeeDetails.Dto;
 using Inventory.Core.EmplyeeDetails;
@@ -57,6 +58,12 @@ namespace Inventory.Application.EmployeeDetails
             var result = await _employeeDetailRepository.GetSingle(employeeDetailId);
             var returnResult = Mapper.Map<EmployeeDetail, EmployeeDetailDto>(result);
             return returnResult;
+        }
+        public async Task<List<Dropdown>> GetEmployeeList()
+        {
+            return _employeeDetailRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.FirstName+" "+x.MiddleName+" "+x.LastName }).ToList();
+
         }
     }
 }
