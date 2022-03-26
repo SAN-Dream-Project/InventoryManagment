@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Application.Shared.LabourRates;
 using Inventory.Application.Shared.LabourRates.Dto;
 using Inventory.Core.LabourRates;
@@ -57,6 +58,12 @@ namespace Inventory.Application.LabourRates
             var result = await _labourRateRepository.GetSingle(labourRateId);
             var returnResult = Mapper.Map<LabourRate, LabourRateDto>(result);
             return returnResult;
+        }
+        public async Task<List<Dropdown>> GetLabourRateList()
+        {
+            return _labourRateRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.Rate.ToString() }).ToList();
+
         }
     }
 }

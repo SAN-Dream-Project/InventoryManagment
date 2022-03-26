@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.Retailers;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.Retailers;
 using Inventory.Application.Shared.Retailers.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -74,6 +75,20 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
                 return null;
+            }
+        }
+        [HttpGet("GetRetailerList")]
+        public async Task<List<Dropdown>> GoodRetailerList()
+        {
+            try
+            {
+                return await _retailerAppService.GetRetailerList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<Dropdown>();
             }
         }
     }

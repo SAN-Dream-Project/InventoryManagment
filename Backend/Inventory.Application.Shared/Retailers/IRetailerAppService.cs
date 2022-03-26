@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.Retailers.Dto;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.Retailers.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.Retailers
         Task DeleteRetailer(Guid retailerId);
         Task<RetailerDto> GetRetailer(Guid retailerId);
         Task<List<RetailerDto>> GetAllRetailers();
+        Task<List<Dropdown>> GetRetailerList();
     }
 }

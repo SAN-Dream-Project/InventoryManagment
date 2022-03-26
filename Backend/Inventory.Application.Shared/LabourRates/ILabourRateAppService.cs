@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.LabourRates.Dto;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.LabourRates.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.LabourRates
         Task DeleteLabourRate(Guid userRateId);
         Task<LabourRateDto> GetLabourRate(Guid labourRateId);
         Task<List<LabourRateDto>> GetAllLabourRates();
+        Task<List<Dropdown>> GetLabourRateList();
     }
 }

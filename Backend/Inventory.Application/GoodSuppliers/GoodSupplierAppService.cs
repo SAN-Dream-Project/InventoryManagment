@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Application.Shared.GoodSuppliers;
 using Inventory.Application.Shared.GoodSuppliers.Dto;
 using Inventory.Core.GoodSuppliers;
@@ -57,6 +58,12 @@ namespace Inventory.Application.GoodSuppliers
             var result = await _goodSupplierRepository.GetSingle(goodSupplierId);
             var returnResult = Mapper.Map<GoodSupplier, GoodSupplierDto>(result);
             return returnResult;
+        }
+        public async Task<List<Dropdown>> GetSupplierList()
+        {
+            return _goodSupplierRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.FirstName + " " + x.MiddleName + " " + x.LastName }).ToList();
+
         }
     }
 }

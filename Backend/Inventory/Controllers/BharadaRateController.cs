@@ -1,5 +1,6 @@
 ﻿using Inventory.Application.Shared.BharadaRates;
 using Inventory.Application.Shared.BharadaRates.Dto;
+using Inventory.Application.Shared.Dropdowns;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -74,6 +75,20 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
                 return null;
+            }
+        }
+        [HttpGet("GetGoodList")]
+        public async Task<List<Dropdown>> GetBharadaRateList()
+        {
+            try
+            {
+                return await _bharadaRatedAppService.GetBharadaRateList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<Dropdown>();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.GoodSuppliers;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.GoodSuppliers;
 using Inventory.Application.Shared.GoodSuppliers.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -72,6 +73,20 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
                 return null;
+            }
+        }
+        [HttpGet("GetGoodSuppilerList")]
+        public async Task<List<Dropdown>> GoodSuppilerList()
+        {
+            try
+            {
+                return await _goodSupplierAppService.GetSupplierList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<Dropdown>();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.GoodSuppliers.Dto;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.GoodSuppliers.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.GoodSuppliers
         Task DeleteGoodSupplier(Guid goodSupplierId);
         Task<GoodSupplierDto> GetGoodSupplier(Guid goodSupplierId);
         Task<List<GoodSupplierDto>> GetAllGoodSuppliers();
+        Task<List<Dropdown>> GetSupplierList();
     }
 }

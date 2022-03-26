@@ -1,5 +1,6 @@
 ﻿using Inventory.Application.Shared.BharadaSaleDetails;
 using Inventory.Application.Shared.BharadaSaleDetails.Dto;
+using Inventory.Application.Shared.Dropdowns;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -75,6 +76,20 @@ namespace Inventory.Host.Controllers
                 _logger.LogInformation(ex.Message);
                 _logger.LogInformation(ex.StackTrace);
                 return null;
+            }
+        }
+        [HttpGet("GetBharadaSaleDetailList")]
+        public async Task<List<Dropdown>> GetBharadaSaleDetailList()
+        {
+            try
+            {
+                return await _bharadaSaleDetaildAppService.GetBharadaSaleDetailList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<Dropdown>();
             }
         }
     }

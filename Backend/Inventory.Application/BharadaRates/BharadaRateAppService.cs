@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Inventory.Application.Shared.BharadaRates;
 using Inventory.Application.Shared.BharadaRates.Dto;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Core.RateTables;
 using Inventory.EntityFramwork.Abstract.BharadaRates;
 using System;
@@ -57,6 +58,12 @@ namespace Inventory.Application.BharadaRates
             var result = await _bharadaRateRepository.GetSingle(bharadaRateId);
             var returnResult = Mapper.Map<BharadaRate, BharadaRateDto>(result);
             return returnResult;
+        }
+        public async Task<List<Dropdown>> GetBharadaRateList()
+        {
+            return _bharadaRateRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.RateCriteria }).ToList();
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Inventory.Application.Shared.BharadaSaleDetails.Dto;
+using Inventory.Application.Shared.Dropdowns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.BharadaSaleDetails
         Task DeleteBharadaSaleDetail(Guid bharadaSaleDetailId);
         Task<BharadaSaleDetailDto> GetBharadaSaleDetail(Guid bharadaSaleDetailId);
         Task<List<BharadaSaleDetailDto>> GetAllBharadaSaleDetails();
+        Task<List<Dropdown>> GetBharadaSaleDetailList();
     }
 }

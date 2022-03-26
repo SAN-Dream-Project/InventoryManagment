@@ -1,4 +1,5 @@
-﻿using Inventory.Application.Shared.EmployeeDetails.Dto;
+﻿using Inventory.Application.Shared.Dropdowns;
+using Inventory.Application.Shared.EmployeeDetails.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Inventory.Application.Shared.EmployeeDetails
         Task DeleteEmployeeDetail(Guid employeeDetailId);
         Task<EmployeeDetailDto> GetEmployeeDetail(Guid goodId);
         Task<List<EmployeeDetailDto>> GetAllEmployeeDetails();
+        Task<List<Dropdown>> GetEmployeeList();
     }
 }

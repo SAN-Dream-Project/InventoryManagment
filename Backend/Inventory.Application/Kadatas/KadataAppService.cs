@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Shared.Dropdowns;
 using Inventory.Application.Shared.Kadatas;
 using Inventory.Application.Shared.Kadatas.Dto;
 using Inventory.Core.Kadatas;
@@ -57,6 +58,12 @@ namespace Inventory.Application.Kadatas
             var result = await _kadataRepository.GetSingle(kadataId);
             var returnResult = Mapper.Map<Kadata, KadataDto>(result);
             return returnResult;
+        }
+        public async Task<List<Dropdown>> GetKadataList()
+        {
+            return _kadataRepository.GetAll().Result.
+                Select(x => new Dropdown() { Key = x.Id, Value = x.KadtaQuantity.ToString()  }).ToList();
+
         }
     }
 }
