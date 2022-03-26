@@ -32,10 +32,10 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
     modifiedBy: '',
     modifiedDate: ''
   };
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  
+
   constructor(private goodService:GoodService,
      private toastrService: ToastrService,
      private ngxSpinnerService: NgxSpinnerService,
@@ -59,22 +59,26 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
       this.ngxSpinnerService.hide();
     }, 1000);
     this.goodForm = this.formBuilder.group({
-      goodName: ['', [Validators.required]],
+      goodName: ['', [Validators.required]]
     });
-  } 
+  }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.goodForm.controls
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
+
   openModal(type:any, goodObj:any) {
     this.formSubmitted = true;
     if (type === 'Create') {
@@ -87,11 +91,14 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
       this.good = goodObj;
+      this.formSubmitted = false;
     }
   }
+
   closeModal() {
     this.showModal = false;
   }
+
   deleteRecord(id: string): void {
     var result = confirm("Are you sure you want to delete ?");
     if(result) {
@@ -100,6 +107,7 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
       location.reload();
     }
   }
+
   submitForm(action: string, userObj: Good): void {
     this.formSubmitted = true;
     if (this.goodForm.invalid) {
@@ -112,12 +120,27 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
       this.updateRecord(userObj);
     }
   }
+
+  hasError: boolean = false;
+
+  checkIfProductDuplicate(goodName: any) {
+    this.goods.map((goods: any) => {
+      if(goods.goodName === goodName) {
+        this.good.goodName = '';
+        this.hasError = true;
+      }
+    });
+  }
+
   createRecord(userObj: Good) {
     userObj.createdBy="nitingodase";
+    this.formSubmitted = true;
     this.goodService.createGood(userObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -125,7 +148,9 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
     this.goodService.createGood(userObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 }

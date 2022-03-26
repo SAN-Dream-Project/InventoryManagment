@@ -41,7 +41,7 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  constructor(private employeeService: EmployeeService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) { 
+  constructor(private employeeService: EmployeeService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) {
     this.paginator = this.employees;
     this.sort = this.employees;
     this.dataSource = new MatTableDataSource(this.employees);
@@ -66,9 +66,9 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
       firstName: ['', [Validators.required]],
       middleName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      emailID: ['', [Validators.minLength(10)]],
-      address: ['', [Validators.minLength(10)]],
+      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
+      emailID: ['', [Validators.email]],
+      address: ['', [Validators.maxLength(100)]],
       gender: ['', [Validators.required]]
     });
   }
@@ -134,7 +134,9 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     this.employeeService.createEmployee(employeeObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -143,7 +145,9 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     this.employeeService.createEmployee(employeeObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 

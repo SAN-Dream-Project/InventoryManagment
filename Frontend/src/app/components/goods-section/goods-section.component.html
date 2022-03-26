@@ -9,7 +9,7 @@
           <mat-form-field class="w-25">
             <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
           </mat-form-field>
-          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add Good</button>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-product-hunt me-2"></i>Add Good</button>
         </div>
 
         <div class="example-container mat-elevation-z8">
@@ -68,10 +68,11 @@
           <hr>
           <form [formGroup]="goodForm">
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodName'].errors }" type="text" formControlName="goodName" name="goodName" [(ngModel)]="good.goodName" placeholder="Good Name" required>
+            <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodName'].errors }" type="text" formControlName="goodName" name="goodName" [(ngModel)]="good.goodName" placeholder="Good Name" required maxlength="20" (blur)="checkIfProductDuplicate(good.goodName)">
             <div *ngIf="formSubmitted && formControl['goodName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['goodName'].errors?.['required']">Good Name is required.</div>
+              <div *ngIf="hasError">Good Name is already exist.</div>
             </div>
           </div>
           <button class="form-control btn btn-success" (click)="submitForm('Create', good)" *ngIf="buttonStatus.saveButton">Save</button>
