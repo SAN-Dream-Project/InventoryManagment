@@ -41,6 +41,7 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
+
   constructor(private employeeService: EmployeeService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) {
     this.paginator = this.employees;
     this.sort = this.employees;
@@ -72,13 +73,17 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
       gender: ['', [Validators.required]]
     });
   }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.employeeForm.controls
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }applyFilter(event: KeyboardEvent) {
+  }
+
+  applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -86,6 +91,7 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
   }
 
   openModal(type:any, userObj:any) {
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -109,12 +115,10 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
     if(result) {
       this.employeeService.deleteEmployee(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
-  }
-
-  convertToBoolean(status:any): boolean{
-    return status === "true";
   }
 
   submitForm(action: string, employeeObj: Employee): void {
@@ -129,6 +133,7 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
       this.updateRecord(employeeObj);
     }
   }
+
   createRecord(employeeObj: Employee) {
     employeeObj.gender = parseInt(employeeObj.gender);
     this.employeeService.createEmployee(employeeObj).subscribe(()=> {

@@ -32,10 +32,10 @@ export class LabourRateSectionComponent implements OnInit {
     modifiedBy: '',
     modifiedDate: ''
   };
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  
+
   constructor(private labourRateService:LabourRateService,
     private toastrService: ToastrService,
     private ngxSpinnerService: NgxSpinnerService,
@@ -59,24 +59,28 @@ export class LabourRateSectionComponent implements OnInit {
       this.ngxSpinnerService.hide();
     }, 1000);
     this.labourRateForm = this.formBuilder.group({
-      rate: ['', [Validators.required]],
+      rate: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
     });
-  } 
+  }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.labourRateForm.controls
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
+
   openModal(type:any, labourRateObj:any) {
-    this.formSubmitted = true;
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -89,17 +93,22 @@ export class LabourRateSectionComponent implements OnInit {
       this.labourRate = labourRateObj;
     }
   }
+
   closeModal() {
     this.showModal = false;
   }
+
   deleteRecord(id: string): void {
     var result = confirm("Are you sure you want to delete ?");
     if(result) {
       this.labourRateService.deleteLabourRate(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
+
   submitForm(action: string, labourRateObj: LabourRate): void {
     this.formSubmitted = true;
     if (this.labourRateForm.invalid) {
@@ -112,12 +121,21 @@ export class LabourRateSectionComponent implements OnInit {
       this.updateRecord(labourRateObj);
     }
   }
+
+  appendZeros() {
+    let currentValue = this.labourRate.rate;
+    let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
+    currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.labourRate.rate = currentValue : this.labourRate.rate = currentValue+'.00';
+  }
+
   createRecord(labourRateObj: LabourRate) {
     labourRateObj.createdBy="nitingodase";
     this.labourRateService.createLabourRate(labourRateObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -125,7 +143,9 @@ export class LabourRateSectionComponent implements OnInit {
     this.labourRateService.createLabourRate(labourRateObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 }

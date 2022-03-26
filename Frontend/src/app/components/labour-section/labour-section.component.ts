@@ -41,7 +41,8 @@ export class LabourSectionComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  constructor(private labourService: LabourService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) { 
+
+  constructor(private labourService: LabourService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) {
     this.paginator = this.labours;
     this.sort = this.labours;
     this.dataSource = new MatTableDataSource(this.labours);
@@ -66,19 +67,23 @@ export class LabourSectionComponent implements OnInit {
       firstName: ['', [Validators.required]],
       middleName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      emailID: ['', [Validators.minLength(10)]],
-      address: ['', [Validators.minLength(10)]],
+      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
+      emailID: ['', [Validators.email]],
+      address: ['', [Validators.maxLength(100)]],
       gender: ['', [Validators.required]]
     });
   }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.labourForm.controls
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }applyFilter(event: KeyboardEvent) {
+  }
+
+  applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -86,6 +91,7 @@ export class LabourSectionComponent implements OnInit {
   }
 
   openModal(type:any, labourObj:any) {
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -109,12 +115,10 @@ export class LabourSectionComponent implements OnInit {
     if(result) {
       this.labourService.deleteLabour(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
-  }
-
-  convertToBoolean(status:any): boolean{
-    return status === "true";
   }
 
   submitForm(action: string, labourObj: Labour): void {
@@ -129,12 +133,15 @@ export class LabourSectionComponent implements OnInit {
       this.updateRecord(labourObj);
     }
   }
+
   createRecord(labourObj: Labour) {
     labourObj.gender = parseInt(labourObj.gender);
     this.labourService.createLabour(labourObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -143,7 +150,9 @@ export class LabourSectionComponent implements OnInit {
     this.labourService.createLabour(labourObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 

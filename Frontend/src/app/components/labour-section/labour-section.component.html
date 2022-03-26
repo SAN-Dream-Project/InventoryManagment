@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h5>Labour Table :</h5>
+        <h5>Labour Details :</h5>
         <hr>
         <div class="example-header">
           <mat-form-field class="w-25">
@@ -78,8 +78,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
-          <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
-          <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
+          <h5 *ngIf="buttonStatus.saveButton">Create New Labour :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Labour :</h5>
           <hr>
           <form [formGroup]="labourForm">
           <div class="input-group mb-3">
@@ -104,30 +104,31 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-mobile"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['mobileNo'].errors }" type="text" formControlName="mobileNo" name="mobileNo" [(ngModel)]="labour.mobileNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" required>
+            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['mobileNo'].errors }" type="text" formControlName="mobileNo" name="mobileNo" [(ngModel)]="labour.mobileNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10"  pattern="^[0-9]*$" required>
             <div *ngIf="formSubmitted && formControl['mobileNo'].errors" class="invalid-feedback">
               <div *ngIf="formControl['mobileNo'].errors?.['required']">Primary mobile number is required.</div>
               <div *ngIf="formControl['mobileNo'].errors?.['minlength']">Primary mobile number of exact 10 digits.</div>
               <div *ngIf="formControl['mobileNo'].errors?.['maxlength']">Primary mobile number of exact 10 digits.</div>
+              <div *ngIf="formControl['mobileNo'].errors?.['pattern']">Enter only numbers.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['emailID'].errors }" type="text" formControlName="emailID" name="emailID" [(ngModel)]="labour.emailID" placeholder="EmailID" >
+            <div class="input-group-text"><i class="c-fa fa fa-envelope"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['emailID'].errors }" type="email" formControlName="emailID" name="emailID" [(ngModel)]="labour.emailID" placeholder="EmailID" >
             <div *ngIf="formSubmitted && formControl['emailID'].errors" class="invalid-feedback">
-              <div *ngIf="formControl['emailID'].errors?.['required']">Email is required.</div>
+              <div *ngIf="formControl['emailID'].errors?.['email']">EmailID is not in correct format.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['address'].errors }" type="text" formControlName="address" name="address" [(ngModel)]="labour.address" placeholder="Address" >
             <div *ngIf="formSubmitted && formControl['address'].errors" class="invalid-feedback">
-              <div *ngIf="formControl['address'].errors?.['required']">Address is required.</div>
+              <div *ngIf="formControl['address'].errors?.['maxlength']">Maximum 100 characters allowed for address.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-genderless"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-users"></i></div>
               <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="labour.gender" required>
                 <option value="">-Select Gender-</option>
                 <option value="0">Male</option>

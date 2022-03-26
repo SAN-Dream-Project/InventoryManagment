@@ -80,7 +80,7 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
   }
 
   openModal(type:any, goodObj:any) {
-    this.formSubmitted = true;
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -91,7 +91,6 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
       this.good = goodObj;
-      this.formSubmitted = false;
     }
   }
 
@@ -104,7 +103,9 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
     if(result) {
       this.goodService.deleteGood(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
 
@@ -134,7 +135,6 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
 
   createRecord(userObj: Good) {
     userObj.createdBy="nitingodase";
-    this.formSubmitted = true;
     this.goodService.createGood(userObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;

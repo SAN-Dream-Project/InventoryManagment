@@ -23,7 +23,8 @@ export class StockSectionComponent implements OnInit {
   };
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  constructor(private stockService: StockService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) { 
+
+  constructor(private stockService: StockService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) {
     this.paginator = this.stocks;
     this.sort = this.stocks;
     this.dataSource = new MatTableDataSource(this.stocks);
@@ -41,14 +42,17 @@ export class StockSectionComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
+
 }

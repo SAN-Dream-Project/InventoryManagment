@@ -14,7 +14,7 @@ import { KadataService } from 'src/app/services/kadata.service';
   styleUrls: ['./kadata-section.component.less']
 })
 export class KadataSectionComponent implements OnInit {
-  kadatas: any = [];  
+  kadatas: any = [];
   kadataForm: FormGroup;
   displayedColumns = ['kadtaQuantity', 'createdBy','action'];
   dataSource: MatTableDataSource<Kadata>;
@@ -34,6 +34,7 @@ export class KadataSectionComponent implements OnInit {
   };
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
+
   constructor(private kadataService:KadataService,
     private toastrService: ToastrService,
     private ngxSpinnerService: NgxSpinnerService,
@@ -55,25 +56,30 @@ export class KadataSectionComponent implements OnInit {
   ngOnInit(): void { setTimeout(()=> {
     this.ngxSpinnerService.hide();
   }, 1000);
+
   this.kadataForm = this.formBuilder.group({
-    kadtaQuantity: ['', [Validators.required]],
-  });
+      kadtaQuantity: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+    });
   }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.kadataForm.controls
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
+
   openModal(type:any, kadataObj:any) {
-    this.formSubmitted = true;
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -86,17 +92,22 @@ export class KadataSectionComponent implements OnInit {
       this.kadata = kadataObj;
     }
   }
+
   closeModal() {
     this.showModal = false;
   }
+
   deleteRecord(id: string): void {
     var result = confirm("Are you sure you want to delete ?");
     if(result) {
       this.kadataService.deleteKadata(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
+
   submitForm(action: string, kadataObj: Kadata): void {
     this.formSubmitted = true;
     if (this.kadataForm.invalid) {
@@ -109,12 +120,15 @@ export class KadataSectionComponent implements OnInit {
       this.updateRecord(kadataObj);
     }
   }
+
   createRecord(kadataObj: Kadata) {
     kadataObj.createdBy="nitingodase";
     this.kadataService.createKadata(kadataObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -122,7 +136,9 @@ export class KadataSectionComponent implements OnInit {
     this.kadataService.createKadata(kadataObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 }

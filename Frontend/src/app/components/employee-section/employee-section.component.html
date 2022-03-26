@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h5>Employee Table :</h5>
+        <h5>Employee Details :</h5>
         <hr>
         <div class="example-header">
           <mat-form-field class="w-25">
@@ -78,8 +78,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
-          <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
-          <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
+          <h5 *ngIf="buttonStatus.saveButton">Create New Employee :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Employee :</h5>
           <hr>
           <form [formGroup]="employeeForm">
           <div class="input-group mb-3">
@@ -122,7 +122,7 @@
           </div>
           <div class="input-group mb-3">
             <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['address'].errors }" type="text" formControlName="address" name="address" [(ngModel)]="employee.address" placeholder="Address" >
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['address'].errors }" type="text" formControlName="address" name="address" [(ngModel)]="employee.address" placeholder="Address" maxlength="100">
             <div *ngIf="formSubmitted && formControl['address'].errors" class="invalid-feedback">
               <div *ngIf="formControl['address'].errors?.['maxlength']">Maximum 100 characters allowed for address.</div>
             </div>

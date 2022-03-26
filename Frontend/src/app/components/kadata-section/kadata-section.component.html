@@ -3,13 +3,13 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h5>Kadata Table :</h5>
+        <h5>Kadata Details :</h5>
         <hr>
         <div class="example-header">
           <mat-form-field class="w-25">
             <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
           </mat-form-field>
-          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add Kadata</button>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-balance-scale me-2"></i>Add Kadata</button>
         </div>
 
         <div class="example-container mat-elevation-z8">
@@ -63,15 +63,16 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
-          <h5 *ngIf="buttonStatus.saveButton">Create New Reocrd :</h5>
-          <h5 *ngIf="buttonStatus.updateButton">Update Record :</h5>
+          <h5 *ngIf="buttonStatus.saveButton">Create New Kadata :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Kadata :</h5>
           <hr>
           <form [formGroup]="kadataForm">
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaQuantity'].errors }" type="text" formControlName="kadtaQuantity" name="kadtaQuantity" [(ngModel)]="kadata.kadtaQuantity" placeholder="kadata Quantity" required>
+            <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaQuantity'].errors }" type="text" formControlName="kadtaQuantity" name="kadtaQuantity" [(ngModel)]="kadata.kadtaQuantity" placeholder="kadata Quantity" pattern="^[0-9]*$" maxlength="2" required>
             <div *ngIf="formSubmitted && formControl['kadtaQuantity'].errors" class="invalid-feedback">
               <div *ngIf="formControl['kadtaQuantity'].errors?.['required']">kadta Quantity is required.</div>
+              <div *ngIf="formControl['kadtaQuantity'].errors?.['pattern']">Enter only numbers.</div>
             </div>
           </div>
           <button class="form-control btn btn-success" (click)="submitForm('Create', kadata)" *ngIf="buttonStatus.saveButton">Save</button>

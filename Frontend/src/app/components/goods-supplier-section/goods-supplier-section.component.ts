@@ -41,7 +41,7 @@ export class GoodsSupplierSectionComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  constructor(private supplierService: SupplierService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) { 
+  constructor(private supplierService: SupplierService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) {
     this.paginator = this.suppliers;
     this.sort = this.suppliers;
     this.dataSource = new MatTableDataSource(this.suppliers);
@@ -66,9 +66,9 @@ export class GoodsSupplierSectionComponent implements OnInit {
       firstName: ['', [Validators.required]],
       middleName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      emailID: ['', [Validators.minLength(10)]],
-      address: ['', [Validators.minLength(10)]],
+      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
+      emailID: ['', [Validators.email]],
+      address: ['', [Validators.maxLength(100)]],
       gender: ['', [Validators.required]]
     });
   }
@@ -86,6 +86,7 @@ export class GoodsSupplierSectionComponent implements OnInit {
   }
 
   openModal(type:any, supplierbj:any) {
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -109,12 +110,10 @@ export class GoodsSupplierSectionComponent implements OnInit {
     if(result) {
       this.supplierService.deleteSuppilers(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
-  }
-
-  convertToBoolean(status:any): boolean{
-    return status === "true";
   }
 
   submitForm(action: string, employeeObj: Supplier): void {
@@ -134,7 +133,9 @@ export class GoodsSupplierSectionComponent implements OnInit {
     this.supplierService.createSuppilers(supplierObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -143,7 +144,9 @@ export class GoodsSupplierSectionComponent implements OnInit {
     this.supplierService.createSuppilers(supplierObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 

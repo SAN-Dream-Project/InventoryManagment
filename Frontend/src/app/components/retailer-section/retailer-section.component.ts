@@ -41,7 +41,8 @@ export class RetailerSectionComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
-  constructor(private retailerService: RetailerService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) { 
+
+  constructor(private retailerService: RetailerService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService,private formBuilder: FormBuilder) {
     this.paginator = this.retailers;
     this.sort = this.retailers;
     this.dataSource = new MatTableDataSource(this.retailers);
@@ -66,19 +67,23 @@ export class RetailerSectionComponent implements OnInit {
       firstName: ['', [Validators.required]],
       middleName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      emailID: ['', [Validators.minLength(10)]],
-      address: ['', [Validators.minLength(10)]],
+      mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
+      emailID: ['', [Validators.email]],
+      address: ['', [Validators.maxLength(100)]],
       gender: ['', [Validators.required]]
     });
   }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.retailerForm.controls
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }applyFilter(event: KeyboardEvent) {
+  }
+
+  applyFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -86,6 +91,7 @@ export class RetailerSectionComponent implements OnInit {
   }
 
   openModal(type:any, retailerObj:any) {
+    this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
@@ -109,12 +115,10 @@ export class RetailerSectionComponent implements OnInit {
     if(result) {
       this.retailerService.deleteRetailer(id).subscribe();
       this.toastrService.error("Record Deleted...!");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
-  }
-
-  convertToBoolean(status:any): boolean{
-    return status === "true";
   }
 
   submitForm(action: string, retailerObj: Retailer): void {
@@ -129,12 +133,15 @@ export class RetailerSectionComponent implements OnInit {
       this.updateRecord(retailerObj);
     }
   }
+
   createRecord(retailerObj: Retailer) {
     retailerObj.gender = parseInt(retailerObj.gender);
     this.retailerService.createRetailer(retailerObj).subscribe(()=> {
       this.toastrService.success("Record Created...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
@@ -143,7 +150,9 @@ export class RetailerSectionComponent implements OnInit {
     this.retailerService.createRetailer(retailerObj).subscribe(()=> {
       this.toastrService.info("Record Updated...!");
       this.showModal = false;
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     });
   }
 
