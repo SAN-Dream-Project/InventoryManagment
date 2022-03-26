@@ -11,6 +11,7 @@ export class UserService {
   URL_TO_GET_USER_DETAILS: string = "https://localhost:5001/api/v1/User/GetAllUser";
   URL_TO_CREATE_OR_UPDATE_USER = "https://localhost:5001/api/v1/User/AddUser";
   URL_TO_DELETE_USER_DETAILS: string = "https://localhost:5001/api/v1/User/DeleteUser";
+  URL_TO_CREATE_OR_UPDATE_GOODLIST = "https://localhost:5001/api/v1/Good/GetGoodList";
   bearerToken:any = '';
 
   constructor(private httpClient: HttpClient) {
@@ -30,5 +31,7 @@ export class UserService {
   createUser(userObj: User) {
     return this.httpClient.post<any>(this.URL_TO_CREATE_OR_UPDATE_USER, userObj,{headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
-
+  GetGoodList():Observable<any>{
+    return this.httpClient.get<any>(this.URL_TO_CREATE_OR_UPDATE_GOODLIST, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
+  }
 }

@@ -260,3 +260,15 @@
   </div>
 </ng-container>-->
 
+<mat-form-field class="example-full-width">
+
+  <input matInput placeholder="Search Good" [matAutocomplete]="auto" [formControl]="goodCtrl">
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let good of filteredGood | async" (click)="SeletedGood(good)" [value]="good.value">
+      <small> {{good.value}}</small>
+
+    </mat-option>
+  </mat-autocomplete>
+
+</mat-form-field>
