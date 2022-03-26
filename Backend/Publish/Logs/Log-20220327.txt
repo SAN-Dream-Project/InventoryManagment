@@ -1,0 +1,221 @@
+2022-03-27T00:04:32.8221974+05:30 0HMGFAT1MRFKA:00000003 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:04:34.5810505+05:30 0HMGFAT1MRFKA:00000003 [INF] Executed DbCommand ("85"ms) [Parameters=["@__userCredential_UserName_0='?' (Size = 4000), @__userCredential_Password_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]
+WHERE ([u].[UserName] = @__userCredential_UserName_0) AND ([u].[Password] = @__userCredential_Password_1)" (0723d8ff)
+2022-03-27T00:04:41.5222175+05:30 0HMGFAT1MRFKA:00000007 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:04:41.5590253+05:30 0HMGFAT1MRFKA:00000007 [INF] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:04:43.8641474+05:30 0HMGFAT1MRFKB:00000003 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:04:43.8693800+05:30 0HMGFAT1MRFKB:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:04:44.8815554+05:30 0HMGFAT1MRFKB:00000007 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:04:44.8963781+05:30 0HMGFAT1MRFKB:00000007 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T00:04:55.5551635+05:30 0HMGFAT1MRFKB:0000000B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:04:55.5617460+05:30 0HMGFAT1MRFKB:0000000B [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T00:05:05.3227684+05:30 0HMGFAT1MRFKB:0000000F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:05:05.3284537+05:30 0HMGFAT1MRFKB:0000000F [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:05:06.3500106+05:30 0HMGFAT1MRFKB:00000013 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:05:06.3516463+05:30 0HMGFAT1MRFKB:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T00:08:12.7885210+05:30 0HMGFAT1MRFKC:00000003 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:12.7923158+05:30 0HMGFAT1MRFKC:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:08:12.8257805+05:30 0HMGFAT1MRFKC:00000005 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:12.8277384+05:30 0HMGFAT1MRFKC:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:08:13.7474770+05:30 0HMGFAT1MRFKC:00000009 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:13.7531056+05:30 0HMGFAT1MRFKC:00000009 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T00:08:13.8246833+05:30 0HMGFAT1MRFKC:0000000B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:13.8261637+05:30 0HMGFAT1MRFKC:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T00:08:19.1728842+05:30 0HMGFAT1MRFKC:0000000F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:19.1743903+05:30 0HMGFAT1MRFKC:0000000F [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T00:08:30.6221363+05:30 0HMGFAT1MRFKC:00000013 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:30.6261288+05:30 0HMGFAT1MRFKC:00000013 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:08:48.8312116+05:30 0HMGFAT1MRFKC:00000017 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:49.1326881+05:30 0HMGFAT1MRFKC:00000017 [INF] Executed DbCommand ("43"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Goods] ([GoodID], [CreatedBy], [CreatedDate], [GoodName], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);" (0723d8ff)
+2022-03-27T00:08:51.5860640+05:30 0HMGFAT1MRFKC:0000001B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:51.5882884+05:30 0HMGFAT1MRFKC:0000001B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:08:51.6360900+05:30 0HMGFAT1MRFKC:0000001D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:51.6378501+05:30 0HMGFAT1MRFKC:0000001D [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:08:58.4185135+05:30 0HMGFAT1MRFKC:00000021 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:08:58.4288548+05:30 0HMGFAT1MRFKC:00000021 [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Goods] ([GoodID], [CreatedBy], [CreatedDate], [GoodName], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);" (0723d8ff)
+2022-03-27T00:09:00.7151322+05:30 0HMGFAT1MRFKC:00000025 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:00.7210889+05:30 0HMGFAT1MRFKC:00000025 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:09:00.7267819+05:30 0HMGFAT1MRFKC:00000027 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:00.7280092+05:30 0HMGFAT1MRFKC:00000027 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:09:10.6016696+05:30 0HMGFAT1MRFKC:0000002B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:10.6116109+05:30 0HMGFAT1MRFKC:0000002B [INF] Executed DbCommand ("8"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Goods] ([GoodID], [CreatedBy], [CreatedDate], [GoodName], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);" (0723d8ff)
+2022-03-27T00:09:12.8851394+05:30 0HMGFAT1MRFKC:0000002F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:12.8875940+05:30 0HMGFAT1MRFKC:0000002F [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:09:12.8963104+05:30 0HMGFAT1MRFKC:00000031 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:12.8974746+05:30 0HMGFAT1MRFKC:00000031 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:09:17.9050583+05:30 0HMGFAT1MRFKC:00000035 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:17.9667248+05:30 0HMGFAT1MRFKC:00000035 [INF] Executed DbCommand ("46"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[EmployeeDetailID], [e].[Address], [e].[CreatedBy], [e].[CreatedDate], [e].[EmailID], [e].[EmplyeeType], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[MiddleName], [e].[MobileNo], [e].[ModifiedBy], [e].[ModifiedDate]
+FROM [EmployeeDetail] AS [e]" (0723d8ff)
+2022-03-27T00:09:25.2830348+05:30 0HMGFAT1MRFKC:00000039 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:25.3755827+05:30 0HMGFAT1MRFKC:00000039 [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (DbType = Int32), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [EmployeeDetail] ([EmployeeDetailID], [Address], [CreatedBy], [CreatedDate], [EmailID], [EmplyeeType], [FirstName], [Gender], [LastName], [MiddleName], [MobileNo], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);" (0723d8ff)
+2022-03-27T00:09:27.7420878+05:30 0HMGFAT1MRFKC:0000003D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:27.7437236+05:30 0HMGFAT1MRFKC:0000003D [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[EmployeeDetailID], [e].[Address], [e].[CreatedBy], [e].[CreatedDate], [e].[EmailID], [e].[EmplyeeType], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[MiddleName], [e].[MobileNo], [e].[ModifiedBy], [e].[ModifiedDate]
+FROM [EmployeeDetail] AS [e]" (0723d8ff)
+2022-03-27T00:09:27.7690642+05:30 0HMGFAT1MRFKC:0000003F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:27.7708467+05:30 0HMGFAT1MRFKC:0000003F [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[EmployeeDetailID], [e].[Address], [e].[CreatedBy], [e].[CreatedDate], [e].[EmailID], [e].[EmplyeeType], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[MiddleName], [e].[MobileNo], [e].[ModifiedBy], [e].[ModifiedDate]
+FROM [EmployeeDetail] AS [e]" (0723d8ff)
+2022-03-27T00:09:32.0181608+05:30 0HMGFAT1MRFKC:00000043 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:32.0388772+05:30 0HMGFAT1MRFKC:00000043 [INF] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodSupplierID], [g].[Address], [g].[CreatedBy], [g].[CreatedDate], [g].[EmailID], [g].[FirstName], [g].[Gender], [g].[LastName], [g].[MiddleName], [g].[MobileNo], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [GoodSuppliers] AS [g]" (0723d8ff)
+2022-03-27T00:09:36.4611669+05:30 0HMGFAT1MRFKC:00000047 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:36.5140888+05:30 0HMGFAT1MRFKC:00000047 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [GoodSuppliers] ([GoodSupplierID], [Address], [CreatedBy], [CreatedDate], [EmailID], [FirstName], [Gender], [LastName], [MiddleName], [MobileNo], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2022-03-27T00:09:38.7887968+05:30 0HMGFAT1MRFKC:0000004B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:38.7901661+05:30 0HMGFAT1MRFKC:0000004B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodSupplierID], [g].[Address], [g].[CreatedBy], [g].[CreatedDate], [g].[EmailID], [g].[FirstName], [g].[Gender], [g].[LastName], [g].[MiddleName], [g].[MobileNo], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [GoodSuppliers] AS [g]" (0723d8ff)
+2022-03-27T00:09:38.8106384+05:30 0HMGFAT1MRFKC:0000004D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:38.8123886+05:30 0HMGFAT1MRFKC:0000004D [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodSupplierID], [g].[Address], [g].[CreatedBy], [g].[CreatedDate], [g].[EmailID], [g].[FirstName], [g].[Gender], [g].[LastName], [g].[MiddleName], [g].[MobileNo], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [GoodSuppliers] AS [g]" (0723d8ff)
+2022-03-27T00:09:41.7643735+05:30 0HMGFAT1MRFKC:00000051 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:41.7787926+05:30 0HMGFAT1MRFKC:00000051 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:09:46.6605891+05:30 0HMGFAT1MRFKC:00000055 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:46.7234171+05:30 0HMGFAT1MRFKC:00000055 [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Kadatas] ([KadataID], [CreatedBy], [CreatedDate], [KadtaQuantity], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);" (0723d8ff)
+2022-03-27T00:09:49.0583397+05:30 0HMGFAT1MRFKC:00000059 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:49.0601137+05:30 0HMGFAT1MRFKC:00000059 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:09:49.0784365+05:30 0HMGFAT1MRFKC:0000005B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:49.0796369+05:30 0HMGFAT1MRFKC:0000005B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:09:56.3362200+05:30 0HMGFAT1MRFKC:0000005F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:56.3388727+05:30 0HMGFAT1MRFKC:0000005F [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Kadatas] ([KadataID], [CreatedBy], [CreatedDate], [KadtaQuantity], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);" (0723d8ff)
+2022-03-27T00:09:58.6596735+05:30 0HMGFAT1MRFKC:00000065 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:58.6610750+05:30 0HMGFAT1MRFKC:00000065 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:09:58.6659834+05:30 0HMGFAT1MRFKC:00000067 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:09:58.6672700+05:30 0HMGFAT1MRFKC:00000067 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:10:02.1378386+05:30 0HMGFAT1MRFKC:0000006B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:02.1405773+05:30 0HMGFAT1MRFKC:0000006B [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Kadatas] ([KadataID], [CreatedBy], [CreatedDate], [KadtaQuantity], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);" (0723d8ff)
+2022-03-27T00:10:04.4704893+05:30 0HMGFAT1MRFKC:0000006F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:04.4737793+05:30 0HMGFAT1MRFKC:0000006F [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:10:04.4820907+05:30 0HMGFAT1MRFKC:00000071 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:04.4835248+05:30 0HMGFAT1MRFKC:00000071 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate]
+FROM [Kadatas] AS [k]" (0723d8ff)
+2022-03-27T00:10:13.6133606+05:30 0HMGFAT1MRFKC:00000075 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:13.6267481+05:30 0HMGFAT1MRFKC:00000075 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [l].[LabourID], [l].[Address], [l].[CreatedBy], [l].[CreatedDate], [l].[EmailID], [l].[FirstName], [l].[Gender], [l].[LastName], [l].[MiddleName], [l].[MobileNo], [l].[ModifiedBy], [l].[ModifiedDate]
+FROM [Labour] AS [l]" (0723d8ff)
+2022-03-27T00:10:18.0745350+05:30 0HMGFAT1MRFKC:00000079 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:18.1601462+05:30 0HMGFAT1MRFKC:00000079 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Labour] ([LabourID], [Address], [CreatedBy], [CreatedDate], [EmailID], [FirstName], [Gender], [LastName], [MiddleName], [MobileNo], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2022-03-27T00:10:20.5020808+05:30 0HMGFAT1MRFKC:0000007D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:20.5035092+05:30 0HMGFAT1MRFKC:0000007D [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [l].[LabourID], [l].[Address], [l].[CreatedBy], [l].[CreatedDate], [l].[EmailID], [l].[FirstName], [l].[Gender], [l].[LastName], [l].[MiddleName], [l].[MobileNo], [l].[ModifiedBy], [l].[ModifiedDate]
+FROM [Labour] AS [l]" (0723d8ff)
+2022-03-27T00:10:20.5211083+05:30 0HMGFAT1MRFKC:0000007F [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:20.5224499+05:30 0HMGFAT1MRFKC:0000007F [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [l].[LabourID], [l].[Address], [l].[CreatedBy], [l].[CreatedDate], [l].[EmailID], [l].[FirstName], [l].[Gender], [l].[LastName], [l].[MiddleName], [l].[MobileNo], [l].[ModifiedBy], [l].[ModifiedDate]
+FROM [Labour] AS [l]" (0723d8ff)
+2022-03-27T00:10:25.7645499+05:30 0HMGFAT1MRFKC:00000083 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:25.7808036+05:30 0HMGFAT1MRFKC:00000083 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[RetailerID], [r].[Address], [r].[CreatedBy], [r].[CreatedDate], [r].[EmailID], [r].[FirstName], [r].[Gender], [r].[LastName], [r].[MiddleName], [r].[MobileNo], [r].[ModifiedBy], [r].[ModifiedDate]
+FROM [Retailer] AS [r]" (0723d8ff)
+2022-03-27T00:10:31.5539023+05:30 0HMGFAT1MRFKC:00000087 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:31.6273971+05:30 0HMGFAT1MRFKC:00000087 [INF] Executed DbCommand ("7"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Retailer] ([RetailerID], [Address], [CreatedBy], [CreatedDate], [EmailID], [FirstName], [Gender], [LastName], [MiddleName], [MobileNo], [ModifiedBy], [ModifiedDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2022-03-27T00:10:33.9599820+05:30 0HMGFAT1MRFKC:0000008B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:33.9613477+05:30 0HMGFAT1MRFKC:0000008B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[RetailerID], [r].[Address], [r].[CreatedBy], [r].[CreatedDate], [r].[EmailID], [r].[FirstName], [r].[Gender], [r].[LastName], [r].[MiddleName], [r].[MobileNo], [r].[ModifiedBy], [r].[ModifiedDate]
+FROM [Retailer] AS [r]" (0723d8ff)
+2022-03-27T00:10:33.9799321+05:30 0HMGFAT1MRFKC:0000008D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:33.9808941+05:30 0HMGFAT1MRFKC:0000008D [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[RetailerID], [r].[Address], [r].[CreatedBy], [r].[CreatedDate], [r].[EmailID], [r].[FirstName], [r].[Gender], [r].[LastName], [r].[MiddleName], [r].[MobileNo], [r].[ModifiedBy], [r].[ModifiedDate]
+FROM [Retailer] AS [r]" (0723d8ff)
+2022-03-27T00:10:37.8974604+05:30 0HMGFAT1MRFKC:00000091 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:10:38.0341743+05:30 0HMGFAT1MRFKC:00000091 [INF] Executed DbCommand ("41"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [s].[StockId], [s].[CreatedBy], [s].[CreatedDate], [s].[GoodID], [s].[ModifiedBy], [s].[ModifiedDate], [s].[Quantity], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Stock] AS [s]
+INNER JOIN [Goods] AS [g] ON [s].[GoodID] = [g].[GoodID]" (0723d8ff)
+2022-03-27T00:12:10.0687010+05:30 0HMGFAT1MRFKC:00000095 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:12:10.1195010+05:30 0HMGFAT1MRFKC:00000095 [INF] Executed DbCommand ("46"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [s].[StockId], [s].[CreatedBy], [s].[CreatedDate], [s].[GoodID], [s].[ModifiedBy], [s].[ModifiedDate], [s].[Quantity], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Stock] AS [s]
+INNER JOIN [Goods] AS [g] ON [s].[GoodID] = [g].[GoodID]" (0723d8ff)
+2022-03-27T00:12:46.6156815+05:30 0HMGFAT1MRFKC:00000099 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:12:46.6185443+05:30 0HMGFAT1MRFKC:00000099 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)
+2022-03-27T00:12:47.6191631+05:30 0HMGFAT1MRFKC:0000009D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T00:12:47.6243668+05:30 0HMGFAT1MRFKC:0000009D [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)

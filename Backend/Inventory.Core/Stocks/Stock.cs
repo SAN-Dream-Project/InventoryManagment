@@ -15,7 +15,7 @@ namespace Inventory.Core.Stocks
         public Guid Id { get; set; }
         public virtual Guid GoodID { get; set; }
         public Good Good { get; set; }
-        public double Quantity { get; set; }
+        public double? Quantity { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

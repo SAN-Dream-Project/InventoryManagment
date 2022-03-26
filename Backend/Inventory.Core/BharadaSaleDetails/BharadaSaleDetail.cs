@@ -24,7 +24,7 @@ namespace Inventory.Core.BharadaSaleDetails
         public double? Discount { get; set; }
         public virtual Guid? LabourRateID { get; set; }
         public  LabourRate LabourRate { get; set; }
-        public double TotalLabourCosting { get; set; }
+        public double? TotalLabourCosting { get; set; }
         public double? NetAmount { get; set; }
         public double? PaidAmount { get; set; }
         public double? RemainingAmount { get; set; }

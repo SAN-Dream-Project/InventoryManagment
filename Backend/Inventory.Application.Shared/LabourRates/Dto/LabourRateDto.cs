@@ -9,7 +9,7 @@ namespace Inventory.Application.Shared.LabourRates.Dto
     public class LabourRateDto
     {
         public Guid Id { get; set; }
-        public int Rate { get; set; }
+        public int? Rate { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

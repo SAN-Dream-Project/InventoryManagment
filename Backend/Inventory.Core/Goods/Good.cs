@@ -12,7 +12,7 @@ namespace Inventory.Core.Goods
     {
         [Column("GoodID")]
         public Guid Id { get; set; }
-        public string GoodName { get; set; }
+        public string? GoodName { get; set; }
         public string? CreatedBy { get ; set ; }
         public DateTime? CreatedDate { get ; set ; }
         public string? ModifiedBy { get ; set; }

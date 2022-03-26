@@ -12,7 +12,7 @@ namespace Inventory.Core.Kadatas
     {
         [Column("KadataID")]
         public Guid Id { get; set; }
-        public int KadtaQuantity { get; set; }
+        public int? KadtaQuantity { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }
