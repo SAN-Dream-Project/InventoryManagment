@@ -15,7 +15,7 @@ namespace Inventory.Application.Shared.BharadaSaleDetails.Dto
         public double? ToatalAmount { get; set; }
         public double? Discount { get; set; }
         public virtual Guid? LabourRateID { get; set; }
-        public double TotalLabourCosting { get; set; }
+        public double? TotalLabourCosting { get; set; }
         public double? NetAmount { get; set; }
         public double? PaidAmount { get; set; }
         public double? RemainingAmount { get; set; }

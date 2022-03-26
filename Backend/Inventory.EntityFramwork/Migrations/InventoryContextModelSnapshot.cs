@@ -44,7 +44,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("PaidAmout")
+                    b.Property<double?>("PaidAmout")
                         .HasColumnType("float");
 
                     b.Property<Guid?>("RetailerID")
@@ -105,7 +105,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<double?>("ToatalAmount")
                         .HasColumnType("float");
 
-                    b.Property<double>("TotalLabourCosting")
+                    b.Property<double?>("TotalLabourCosting")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -181,7 +181,6 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GoodName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
@@ -253,7 +252,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("KadtaQuantity")
+                    b.Property<int?>("KadtaQuantity")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
@@ -274,7 +273,7 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LabourDetailID");
 
-                    b.Property<double>("Amount")
+                    b.Property<double?>("Amount")
                         .HasColumnType("float");
 
                     b.Property<string>("CreatedBy")
@@ -283,7 +282,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsPaid")
+                    b.Property<bool?>("IsPaid")
                         .HasColumnType("bit");
 
                     b.Property<Guid>("LabourID")
@@ -321,7 +320,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -461,7 +460,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("RateCriteria")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RateCriteriaID")
+                    b.Property<int?>("RateCriteriaID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -477,7 +476,6 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnName("RetailerID");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
@@ -487,26 +485,21 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EmailID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
@@ -533,7 +526,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("EmployeeDetailID")
+                    b.Property<Guid?>("EmployeeDetailID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("EmplyeeType")
@@ -545,19 +538,19 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Month")
+                    b.Property<int?>("Month")
                         .HasColumnType("int");
 
                     b.Property<double?>("MonthlySalary")
                         .HasColumnType("float");
 
-                    b.Property<double>("PaidAmount")
+                    b.Property<double?>("PaidAmount")
                         .HasColumnType("float");
 
-                    b.Property<double>("WorkingDays")
+                    b.Property<double?>("WorkingDays")
                         .HasColumnType("float");
 
-                    b.Property<int>("Year")
+                    b.Property<int?>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -580,7 +573,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Discount")
+                    b.Property<double?>("Discount")
                         .HasColumnType("float");
 
                     b.Property<Guid>("GoodID")
@@ -595,19 +588,19 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Quntity")
+                    b.Property<double?>("Quntity")
                         .HasColumnType("float");
 
-                    b.Property<double>("Rate")
+                    b.Property<double?>("Rate")
                         .HasColumnType("float");
 
                     b.Property<Guid>("RetailerID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("TotalAmount")
+                    b.Property<double?>("TotalAmount")
                         .HasColumnType("float");
 
-                    b.Property<double>("TotalLabourCosting")
+                    b.Property<double?>("TotalLabourCosting")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -643,7 +636,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Quantity")
+                    b.Property<double?>("Quantity")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -833,9 +826,7 @@ namespace Inventory.EntityFramwork.Migrations
                 {
                     b.HasOne("Inventory.Core.EmplyeeDetails.EmployeeDetail", "EmployeeDetail")
                         .WithMany()
-                        .HasForeignKey("EmployeeDetailID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployeeDetailID");
 
                     b.Navigation("EmployeeDetail");
                 });

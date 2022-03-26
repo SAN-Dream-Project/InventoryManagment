@@ -12,7 +12,7 @@ namespace Inventory.Core.RateTables
     {
         [Column("BharadaRateID")]
         public Guid Id { get; set; }
-        public int RateCriteriaID { get; set; }
+        public int? RateCriteriaID { get; set; }
         public string? RateCriteria { get; set; }
         public double Rate { get; set; }
         public string? CreatedBy { get; set; }

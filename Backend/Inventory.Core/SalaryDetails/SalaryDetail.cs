@@ -16,12 +16,12 @@ namespace Inventory.Core.SalaryDetails
         public Guid Id { get; set; }
         public double? MonthlySalary { get; set; }
         public EmplyeeType? EmplyeeType { get; set; }
-        public Guid EmployeeDetailID { get; set; }
+        public Guid? EmployeeDetailID { get; set; }
         public EmployeeDetail EmployeeDetail { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-        public double WorkingDays { get; set; }
-        public double PaidAmount { get; set; }
+        public int? Month { get; set; }
+        public int? Year { get; set; }
+        public double? WorkingDays { get; set; }
+        public double? PaidAmount { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }
