@@ -46,7 +46,6 @@ export class GoodsSectionComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.goods);setTimeout(() => {
       this.goodService.getAllGoods().subscribe((goods) => {
         this.goods = goods;
-        console.log(this.goods);
         this.dataSource = new MatTableDataSource(this.goods);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

@@ -29,7 +29,6 @@ export class UserSectionComponent implements OnInit {
     this.userService.getAllUsers().subscribe((usersDetails) => {
       this.users = usersDetails;
     }, (error) => {
-      console.log(error);
       this.error = this.handleError(error);
     });
     setTimeout(() => {

@@ -89,7 +89,6 @@ export class DataTableComponent implements OnInit {
   }
 
   SeletedGood(good: any) {
-    console.log(good);
   }
 
   ngOnInit(): void {
