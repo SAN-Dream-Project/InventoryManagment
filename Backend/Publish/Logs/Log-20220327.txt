@@ -386,3 +386,64 @@ INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
 INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
 LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
 LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T15:28:45.8653388+05:30 0HMGFMLL4U53P:00000009 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T15:28:46.2280544+05:30 0HMGFMLL4U53P:00000009 [INF] Executed DbCommand ("10"ms) [Parameters=["@__userCredential_UserName_0='?' (Size = 4000), @__userCredential_Password_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]
+WHERE ([u].[UserName] = @__userCredential_UserName_0) AND ([u].[Password] = @__userCredential_Password_1)" (0723d8ff)
+2022-03-27T15:28:48.6208876+05:30 0HMGFMLL4U53P:0000000D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T15:28:48.6470915+05:30 0HMGFMLL4U53P:0000000D [INF] Executed DbCommand ("25"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[PurchaseId], [p].[CreatedBy], [p].[CreatedDate], [p].[GoodID], [p].[GoodRate], [p].[GoodSupplierID], [p].[GrossGoodQuantity], [p].[KadataID], [p].[KadtaTotal], [p].[LabourRateID], [p].[ModifiedBy], [p].[ModifiedDate], [p].[NetGoodQuantity], [p].[TotalAmout], [p].[TotalLabourCosting], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate], [g0].[GoodSupplierID], [g0].[Address], [g0].[CreatedBy], [g0].[CreatedDate], [g0].[EmailID], [g0].[FirstName], [g0].[Gender], [g0].[LastName], [g0].[MiddleName], [g0].[MobileNo], [g0].[ModifiedBy], [g0].[ModifiedDate], [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate], [l].[LabourRateID], [l].[CreatedBy], [l].[CreatedDate], [l].[ModifiedBy], [l].[ModifiedDate], [l].[Rate]
+FROM [Purchase] AS [p]
+INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
+INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
+LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
+LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T15:49:39.2481429+05:30 0HMGFMLL4U53Q:00000005 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T15:49:39.5105454+05:30 0HMGFMLL4U53Q:00000005 [INF] Executed DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[PurchaseId], [p].[CreatedBy], [p].[CreatedDate], [p].[GoodID], [p].[GoodRate], [p].[GoodSupplierID], [p].[GrossGoodQuantity], [p].[KadataID], [p].[KadtaTotal], [p].[LabourRateID], [p].[ModifiedBy], [p].[ModifiedDate], [p].[NetGoodQuantity], [p].[TotalAmout], [p].[TotalLabourCosting], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate], [g0].[GoodSupplierID], [g0].[Address], [g0].[CreatedBy], [g0].[CreatedDate], [g0].[EmailID], [g0].[FirstName], [g0].[Gender], [g0].[LastName], [g0].[MiddleName], [g0].[MobileNo], [g0].[ModifiedBy], [g0].[ModifiedDate], [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate], [l].[LabourRateID], [l].[CreatedBy], [l].[CreatedDate], [l].[ModifiedBy], [l].[ModifiedDate], [l].[Rate]
+FROM [Purchase] AS [p]
+INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
+INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
+LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
+LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T15:49:39.5175158+05:30 0HMGFMLL4U53Q:00000007 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T15:49:39.5192880+05:30 0HMGFMLL4U53Q:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[PurchaseId], [p].[CreatedBy], [p].[CreatedDate], [p].[GoodID], [p].[GoodRate], [p].[GoodSupplierID], [p].[GrossGoodQuantity], [p].[KadataID], [p].[KadtaTotal], [p].[LabourRateID], [p].[ModifiedBy], [p].[ModifiedDate], [p].[NetGoodQuantity], [p].[TotalAmout], [p].[TotalLabourCosting], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate], [g0].[GoodSupplierID], [g0].[Address], [g0].[CreatedBy], [g0].[CreatedDate], [g0].[EmailID], [g0].[FirstName], [g0].[Gender], [g0].[LastName], [g0].[MiddleName], [g0].[MobileNo], [g0].[ModifiedBy], [g0].[ModifiedDate], [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate], [l].[LabourRateID], [l].[CreatedBy], [l].[CreatedDate], [l].[ModifiedBy], [l].[ModifiedDate], [l].[Rate]
+FROM [Purchase] AS [p]
+INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
+INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
+LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
+LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T15:50:43.2378434+05:30 0HMGFMLL4U53Q:0000000B [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T15:50:43.2510033+05:30 0HMGFMLL4U53Q:0000000B [INF] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[PurchaseId], [p].[CreatedBy], [p].[CreatedDate], [p].[GoodID], [p].[GoodRate], [p].[GoodSupplierID], [p].[GrossGoodQuantity], [p].[KadataID], [p].[KadtaTotal], [p].[LabourRateID], [p].[ModifiedBy], [p].[ModifiedDate], [p].[NetGoodQuantity], [p].[TotalAmout], [p].[TotalLabourCosting], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate], [g0].[GoodSupplierID], [g0].[Address], [g0].[CreatedBy], [g0].[CreatedDate], [g0].[EmailID], [g0].[FirstName], [g0].[Gender], [g0].[LastName], [g0].[MiddleName], [g0].[MobileNo], [g0].[ModifiedBy], [g0].[ModifiedDate], [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate], [l].[LabourRateID], [l].[CreatedBy], [l].[CreatedDate], [l].[ModifiedBy], [l].[ModifiedDate], [l].[Rate]
+FROM [Purchase] AS [p]
+INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
+INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
+LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
+LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T15:50:43.2573008+05:30 0HMGFMLL4U53Q:0000000D [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T15:50:43.2591610+05:30 0HMGFMLL4U53Q:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[PurchaseId], [p].[CreatedBy], [p].[CreatedDate], [p].[GoodID], [p].[GoodRate], [p].[GoodSupplierID], [p].[GrossGoodQuantity], [p].[KadataID], [p].[KadtaTotal], [p].[LabourRateID], [p].[ModifiedBy], [p].[ModifiedDate], [p].[NetGoodQuantity], [p].[TotalAmout], [p].[TotalLabourCosting], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate], [g0].[GoodSupplierID], [g0].[Address], [g0].[CreatedBy], [g0].[CreatedDate], [g0].[EmailID], [g0].[FirstName], [g0].[Gender], [g0].[LastName], [g0].[MiddleName], [g0].[MobileNo], [g0].[ModifiedBy], [g0].[ModifiedDate], [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate], [l].[LabourRateID], [l].[CreatedBy], [l].[CreatedDate], [l].[ModifiedBy], [l].[ModifiedDate], [l].[Rate]
+FROM [Purchase] AS [p]
+INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
+INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
+LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
+LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T16:22:11.3616597+05:30 0HMGFMLL4U53R:00000003 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T16:22:11.7905705+05:30 0HMGFMLL4U53R:00000003 [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[PurchaseId], [p].[CreatedBy], [p].[CreatedDate], [p].[GoodID], [p].[GoodRate], [p].[GoodSupplierID], [p].[GrossGoodQuantity], [p].[KadataID], [p].[KadtaTotal], [p].[LabourRateID], [p].[ModifiedBy], [p].[ModifiedDate], [p].[NetGoodQuantity], [p].[TotalAmout], [p].[TotalLabourCosting], [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate], [g0].[GoodSupplierID], [g0].[Address], [g0].[CreatedBy], [g0].[CreatedDate], [g0].[EmailID], [g0].[FirstName], [g0].[Gender], [g0].[LastName], [g0].[MiddleName], [g0].[MobileNo], [g0].[ModifiedBy], [g0].[ModifiedDate], [k].[KadataID], [k].[CreatedBy], [k].[CreatedDate], [k].[KadtaQuantity], [k].[ModifiedBy], [k].[ModifiedDate], [l].[LabourRateID], [l].[CreatedBy], [l].[CreatedDate], [l].[ModifiedBy], [l].[ModifiedDate], [l].[Rate]
+FROM [Purchase] AS [p]
+INNER JOIN [Goods] AS [g] ON [p].[GoodID] = [g].[GoodID]
+INNER JOIN [GoodSuppliers] AS [g0] ON [p].[GoodSupplierID] = [g0].[GoodSupplierID]
+LEFT JOIN [Kadatas] AS [k] ON [p].[KadataID] = [k].[KadataID]
+LEFT JOIN [LabourRate] AS [l] ON [p].[LabourRateID] = [l].[LabourRateID]" (0723d8ff)
+2022-03-27T16:29:20.2360969+05:30 0HMGFMLL4U53S:00000003 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T16:29:20.6288220+05:30 0HMGFMLL4U53S:00000003 [INF] Executed DbCommand ("103"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[UserId], [u].[CreatedBy], [u].[CreatedDate], [u].[DeleteDate], [u].[DeletedBy], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[ModifiedBy], [u].[ModifiedDate], [u].[Password], [u].[PrimaryMobNo], [u].[SecondaryMobNo], [u].[Status], [u].[TelephoneNo], [u].[UserName]
+FROM [Users] AS [u]" (0723d8ff)
+2022-03-27T16:29:25.0040909+05:30 0HMGFMLL4U53S:00000007 [INF] Entity Framework Core "6.0.0" initialized '"InventoryContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-03-27T16:29:25.0316823+05:30 0HMGFMLL4U53S:00000007 [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[GoodID], [g].[CreatedBy], [g].[CreatedDate], [g].[GoodName], [g].[ModifiedBy], [g].[ModifiedDate]
+FROM [Goods] AS [g]" (0723d8ff)

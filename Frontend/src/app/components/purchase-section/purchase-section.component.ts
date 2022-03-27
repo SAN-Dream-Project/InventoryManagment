@@ -75,14 +75,16 @@ export class PurchaseSectionComponent implements OnInit {
 
   validateForm() {
     this.purchaseForm = this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      firstName: ['', [Validators.required, CustomValidator]],
-      lastName: ['', [Validators.required]],
-      primaryMobNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
-      secondaryMobNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
-      telephoneNo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
-      gender: ['', [Validators.required]]
+      goodName: ['', [Validators.required]],
+      goodSupplierName: ['', [Validators.required]],
+      grossGoodQuantity: ['', [Validators.required]],
+      goodRate: ['', [Validators.required]],
+      kadataQuantity: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
+      kadtaTotal: ['', [Validators.required]],
+      netGoodQuantity: ['', [Validators.required]],
+      labourRate: ['', [Validators.required]],
+      totalLabourCosting: ['', [Validators.required]],
+      totalAmout: ['', [Validators.required]]
     });
   }
 

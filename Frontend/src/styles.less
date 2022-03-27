@@ -1,5 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "./fonts.less";
+@import "./colors.less";
+@import "./animations.less";
 
 * {
   box-sizing: border-box;
@@ -48,7 +50,7 @@ i.c-fa {
   z-index: -1;
 }
 .c-text-white {
-  color: #FFFFFF !important;
+  color: @white !important;
 }
 .c-close {
   position: absolute;
@@ -56,7 +58,7 @@ i.c-fa {
   right: 47px;
   font-size: 11px;
   border-radius: 50%;
-  border: 2px solid #000;
+  border: 2px solid @black;
   padding: 5px;
   height: 24px;
   width: 24px;
@@ -64,4 +66,31 @@ i.c-fa {
 }
 .c-close:hover {
   cursor: pointer;
+}
+.c-ah {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: @open-sans-bold;
+}
+.c-card {
+  transition: all 0.25s ease-in-out;
+  .c-ah {
+    > i.fa {
+      font-size: 30px;
+    }
+  }
+  &:hover {
+    background-color: @black !important;
+    color: @white !important;
+    .c-ah {
+      color: @white !important;
+      text-decoration: initial;
+      > i.fa {
+        color: @white !important;
+        animation: animateHeading 0.5s linear;
+      }
+    }
+  }
 }
