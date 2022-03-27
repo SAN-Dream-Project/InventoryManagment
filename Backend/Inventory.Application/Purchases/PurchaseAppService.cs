@@ -42,14 +42,14 @@ namespace Inventory.Application.Purchases
 
         public async Task<List<PurchaseDto>> GetAllPurchases()
         {
-            var result = await _purchaseRepository.GetAll();
-            var roleResult = result.ToList();
-            var roleList = new List<PurchaseDto>();
-            foreach (var test in roleResult)
-            {
-                roleList.Add(Mapper.Map<Purchase, PurchaseDto>(test));
-            }
-            return roleList;
+                var result = _purchaseRepository.AllIncluding(g=>g.Good,gs=>gs.GoodSupplier,k=>k.Kadata,lr=>lr.LabourRate).ToList();
+                var purchesResult = result.ToList();
+                var purchesList = new List<PurchaseDto>();
+                foreach (var test in purchesResult)
+                {
+                    purchesList.Add(Mapper.Map<Purchase, PurchaseDto>(test));
+                }
+                return purchesList;
         }
 
         public async Task<PurchaseDto> GetPurchase(Guid purchaseId)
