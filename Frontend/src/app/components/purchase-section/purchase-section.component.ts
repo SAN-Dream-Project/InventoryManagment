@@ -20,6 +20,7 @@ export class PurchaseSectionComponent implements OnInit {
   dataSource: MatTableDataSource<Purchase>;
   showModal: boolean = false;
   users: any = [];
+  purchases:any=[];
   purchaseForm: FormGroup;
   formSubmitted: boolean = false;
   buttonStatus: any = {
@@ -57,6 +58,15 @@ export class PurchaseSectionComponent implements OnInit {
         console.table(users);
         this.users = users;
         this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }, 1000);
+    setTimeout(() => {
+      this.userService.getAllPurchases().subscribe((purchases) => {
+        console.table(purchases);
+        this.purchases = purchases;
+        this.dataSource = new MatTableDataSource(this.purchases);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
