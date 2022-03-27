@@ -8,6 +8,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {ToastrService} from "ngx-toastr";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomValidator} from "../demos/data-table/custom-validator";
+import {PurchaseService} from "../../services/purchase.service";
 
 @Component({
   selector: 'app-purchase-section',
@@ -48,22 +49,13 @@ export class PurchaseSectionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
 
-  constructor(private userService: UserService, private ngxSpinnerService: NgxSpinnerService, private toastrService: ToastrService, private formBuilder: FormBuilder) {
+  constructor(private purchaseService: PurchaseService, private ngxSpinnerService: NgxSpinnerService, private toastrService: ToastrService, private formBuilder: FormBuilder) {
     this.paginator = this.users;
     this.sort = this.users;
     this.dataSource = new MatTableDataSource(this.users);
     this.purchaseForm = new FormGroup({});
     setTimeout(() => {
-      this.userService.getAllUsers().subscribe((users) => {
-        console.table(users);
-        this.users = users;
-        this.dataSource = new MatTableDataSource(this.users);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      });
-    }, 1000);
-    setTimeout(() => {
-      this.userService.getAllPurchases().subscribe((purchases) => {
+      this.purchaseService.getAllPurchases().subscribe((purchases) => {
         console.table(purchases);
         this.purchases = purchases;
         this.dataSource = new MatTableDataSource(this.purchases);
@@ -110,7 +102,7 @@ export class PurchaseSectionComponent implements OnInit {
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
 
-  openModal(type: any, userObj: any) {
+  openModal(type: any, purchaseObj: any) {
     this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
@@ -121,7 +113,7 @@ export class PurchaseSectionComponent implements OnInit {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
-      this.purchase = userObj;
+      this.purchase = purchaseObj;
     }
   }
 
@@ -153,7 +145,7 @@ export class PurchaseSectionComponent implements OnInit {
     purchaseObj.status = true;
     this.formSubmitted = true;
     if (this.purchaseForm.valid) {
-      this.userService.createUser(purchaseObj).subscribe(() => {
+      this.purchaseService.createPurchase(purchaseObj).subscribe(() => {
         this.toastrService.success("Record Created...!");
         setTimeout(() => {
           location.reload();
@@ -164,9 +156,7 @@ export class PurchaseSectionComponent implements OnInit {
   }
 
   updateRecord(purchaseObj: Purchase) {
-    /*purchaseObj.gender = parseInt(purchaseObj.gender);
-    purchaseObj.status = true;
-    this.userService.createUser(purchaseObj).subscribe(() => {
+    /*this.purchaseService.createPurchase(purchaseObj).subscribe(() => {
       this.toastrService.info("Record Updated...!");
       setTimeout(() => {
         location.reload();
@@ -176,14 +166,14 @@ export class PurchaseSectionComponent implements OnInit {
   }
 
   deleteRecord(id: string): void {
-    var result = confirm("Are you sure you want to delete ?");
+    /*var result = confirm("Are you sure you want to delete ?");
     if (result) {
-      this.userService.deleteUser(id).subscribe();
+      this.purchaseService.deletePurchase(id).subscribe();
       this.toastrService.error("Record Deleted...!");
       setTimeout(() => {
         location.reload();
       }, 1000);
-    }
+    }*/
   }
 
 }
