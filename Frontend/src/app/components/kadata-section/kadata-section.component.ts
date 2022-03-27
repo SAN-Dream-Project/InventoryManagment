@@ -45,7 +45,6 @@ export class KadataSectionComponent implements OnInit {
    this.dataSource = new MatTableDataSource(this.kadatas);setTimeout(() => {
      this.kadataService.getAllKadatas().subscribe((kadatas) => {
        this.kadatas = kadatas;
-       console.log(this.kadatas);
        this.dataSource = new MatTableDataSource(this.kadatas);
        this.dataSource.paginator = this.paginator;
        this.dataSource.sort = this.sort;

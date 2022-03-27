@@ -15,3 +15,21 @@ export interface Purchase{
   modifiedBy:any
   modifiedDate:any
 }
+
+export interface PurchaseInput{
+  id:any
+  goodID:any
+  goodSupplierID:any
+  grossGoodQuantity:any
+  goodRate:any
+  kadataID:any
+  kadtaTotal:any
+  netGoodQuantity:any
+  labourRateID:any
+  totalLabourCosting:any
+  totalAmout:any
+  createdBy:any
+  createdDate:any
+  modifiedBy:any
+  modifiedDate:any
+}

@@ -1,14 +1,17 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {Purchase} from "../../models/Purchase";
-import {UserService} from "../../services/user.service";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CustomValidator} from "../demos/data-table/custom-validator";
-import {PurchaseService} from "../../services/purchase.service";
+import { Purchase, PurchaseInput } from "../../models/Purchase";
+import { UserService } from "../../services/user.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { CustomValidator } from "../demos/data-table/custom-validator";
+import { PurchaseService } from "../../services/purchase.service";
+import { DropdownService } from 'src/app/services/dropdown.service';
+import { DropDown } from 'src/app/models/User';
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-purchase-section',
@@ -21,23 +24,45 @@ export class PurchaseSectionComponent implements OnInit {
   dataSource: MatTableDataSource<Purchase>;
   showModal: boolean = false;
   users: any = [];
-  purchases:any=[];
+  purchases: any = [];
+
+  goods: DropDown[] = [];
+  filteredGood: Observable<DropDown[]> | undefined;
+  goodCtrl = new FormControl();
+
+  suppilers: DropDown[] = [];
+  filteredSuppiler: Observable<DropDown[]> | undefined;
+  supplierCtrl = new FormControl();
+
+  kadatas: DropDown[] = [];
+  filteredKadata: Observable<DropDown[]> | undefined;
+  kadataCtrl = new FormControl();
+
+  labourCharges: DropDown[] = [];
+  filteredlabourCharge: Observable<DropDown[]> | undefined;
+  labourChargeCtrl = new FormControl();
+
+  selectedGood: any;
+  selectedSupplier: any;
+  selectedKadata:any;
+  seletedlabourCharge:any;
+
   purchaseForm: FormGroup;
   formSubmitted: boolean = false;
   buttonStatus: any = {
     saveButton: false,
     updateButton: false
   };
-  purchase: Purchase = {
+  purchase: PurchaseInput = {
     id: '',
-    goodName: '',
-    goodSupplierName: '',
+    goodID: '',
+    goodSupplierID: '',
     grossGoodQuantity: '',
     goodRate: '',
-    kadataQuantity: '',
+    kadataID: '',
     kadtaTotal: '',
     netGoodQuantity: '',
-    labourRate: '',
+    labourRateID: '',
     totalLabourCosting: '',
     totalAmout: '',
     createdBy: '',
@@ -49,22 +74,87 @@ export class PurchaseSectionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
 
-  constructor(private purchaseService: PurchaseService, private ngxSpinnerService: NgxSpinnerService, private toastrService: ToastrService, private formBuilder: FormBuilder) {
+  constructor(private purchaseService: PurchaseService, private dropdownService: DropdownService, private ngxSpinnerService: NgxSpinnerService, private toastrService: ToastrService, private formBuilder: FormBuilder) {
     this.paginator = this.users;
     this.sort = this.users;
     this.dataSource = new MatTableDataSource(this.users);
     this.purchaseForm = new FormGroup({});
     setTimeout(() => {
       this.purchaseService.getAllPurchases().subscribe((purchases) => {
-        console.table(purchases);
         this.purchases = purchases;
         this.dataSource = new MatTableDataSource(this.purchases);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
     }, 1000);
-  }
 
+    this.dropdownService.getGoodList().subscribe((goods) => {
+      this.goods = goods;
+    });
+    this.dropdownService.getSupplierList().subscribe((suppilers) => {
+      this.suppilers = suppilers;
+    });
+    this.dropdownService.getKadataList().subscribe((kadatas) => {
+      this.kadatas = kadatas;
+    });
+    this.dropdownService.getLabourRateList().subscribe((labourCharges) => {
+      this.labourCharges = labourCharges;
+    });
+    this.filteredGood = this.goodCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(good => good ? this._filterGoods(good) : this.goods.slice())
+      ); 
+      
+      this.filteredSuppiler = this.supplierCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(suppiler => suppiler ? this._filterSuppliers(suppiler) : this.suppilers.slice())
+        );
+
+        this.filteredKadata = this.kadataCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(kadata => kadata ? this._filterKadatas(kadata) : this.kadatas.slice())
+        );
+        this.filteredlabourCharge = this.labourChargeCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(labourCharge => labourCharge ? this._filterlabourCharges(labourCharge) : this.labourCharges.slice())
+        );
+  }
+  private _filterGoods(value: string): DropDown[] {
+    const filterValue = value.toLowerCase();
+    return this.goods.filter(x => x.value.toLowerCase().includes(filterValue));
+  }
+  private _filterSuppliers(value: string): DropDown[] {
+    const filterValue = value.toLowerCase();
+    return this.suppilers.filter(x => x.value.toLowerCase().includes(filterValue));
+  }
+  private _filterKadatas(value: string): DropDown[] {
+    const filterValue = value.toLowerCase();
+    return this.kadatas.filter(x => x.value.toLowerCase().includes(filterValue));
+  }
+  private _filterlabourCharges(value: string): DropDown[] {
+    const filterValue = value.toLowerCase();
+    return this.labourCharges.filter(x => x.value.toLowerCase().includes(filterValue));
+  }
+  SelectedGood(good: any) {
+    this.purchase.goodID = good.key;
+  }
+  SelectedSupplier(suppiler: any) {
+    this.purchase.goodSupplierID = suppiler.key;
+  }
+  SelectedKadata(kadata: any) {
+    this.purchase.kadataID = kadata.key;
+    this.purchase.kadtaTotal = (this.purchase.grossGoodQuantity/100)*kadata.value;
+    this.purchase.netGoodQuantity = this.purchase.grossGoodQuantity - this.purchase.kadtaTotal;
+  }
+  SelectedlabourCharge(labourRate: any) {
+    this.purchase.labourRateID = labourRate.key;
+    this.purchase.totalLabourCosting = (this.purchase.grossGoodQuantity/100)*labourRate.value;
+    this.purchase.totalAmout = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
+  }
   ngOnInit(): void {
     this.validateForm();
     this.ngxSpinnerService.show();
@@ -75,14 +165,15 @@ export class PurchaseSectionComponent implements OnInit {
 
   validateForm() {
     this.purchaseForm = this.formBuilder.group({
-      goodName: ['', [Validators.required]],
-      goodSupplierName: ['', [Validators.required]],
+      goodID: ['', [Validators.required]],
+      goodSupplierID: ['', [Validators.required]],
       grossGoodQuantity: ['', [Validators.required]],
       goodRate: ['', [Validators.required]],
-      kadataQuantity: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
+      kadataID: ['', [Validators.required]],
+     // kadataID: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
       kadtaTotal: ['', [Validators.required]],
       netGoodQuantity: ['', [Validators.required]],
-      labourRate: ['', [Validators.required]],
+      labourRateID: ['', [Validators.required]],
       totalLabourCosting: ['', [Validators.required]],
       totalAmout: ['', [Validators.required]]
     });
@@ -110,12 +201,16 @@ export class PurchaseSectionComponent implements OnInit {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
-      this.purchase = {} as Purchase;
+      this.purchase = {} as PurchaseInput;
     } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
       this.purchase = purchaseObj;
+      this.selectedGood = purchaseObj.goodName;
+      this.selectedSupplier = purchaseObj.goodSupplierName;
+      this.selectedKadata = purchaseObj.kadataQuantity;
+      this.seletedlabourCharge = purchaseObj.labourRate
     }
   }
 
@@ -123,7 +218,7 @@ export class PurchaseSectionComponent implements OnInit {
     this.showModal = false;
   }
 
-  submitForm(action: string, userObj: Purchase): void {
+  submitForm(action: string, userObj: PurchaseInput): void {
     this.formSubmitted = true;
     if (this.purchaseForm.invalid) {
       return;
@@ -142,9 +237,7 @@ export class PurchaseSectionComponent implements OnInit {
     currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';*/
   }
 
-  createRecord(purchaseObj: Purchase) {
-    /*purchaseObj.gender = parseInt(purchaseObj.gender);
-    purchaseObj.status = true;
+  createRecord(purchaseObj: PurchaseInput) {
     this.formSubmitted = true;
     if (this.purchaseForm.valid) {
       this.purchaseService.createPurchase(purchaseObj).subscribe(() => {
@@ -154,17 +247,17 @@ export class PurchaseSectionComponent implements OnInit {
         }, 1000);
         this.showModal = false;
       });
-    }*/
+    }
   }
 
-  updateRecord(purchaseObj: Purchase) {
-    /*this.purchaseService.createPurchase(purchaseObj).subscribe(() => {
+  updateRecord(purchaseObj: PurchaseInput) {
+    this.purchaseService.createPurchase(purchaseObj).subscribe(() => {
       this.toastrService.info("Record Updated...!");
       setTimeout(() => {
         location.reload();
       }, 1000);
       this.showModal = false;
-    });*/
+    });
   }
 
   deleteRecord(id: string): void {

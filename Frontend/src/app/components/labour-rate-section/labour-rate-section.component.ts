@@ -46,7 +46,6 @@ export class LabourRateSectionComponent implements OnInit {
    this.dataSource = new MatTableDataSource(this.labourRates);setTimeout(() => {
      this.labourRateService.getAllLabourRates().subscribe((labourRates) => {
        this.labourRates = labourRates;
-       console.log(this.labourRates);
        this.dataSource = new MatTableDataSource(this.labourRates);
        this.dataSource.paginator = this.paginator;
        this.dataSource.sort = this.sort;
