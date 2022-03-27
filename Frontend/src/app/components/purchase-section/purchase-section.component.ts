@@ -138,12 +138,12 @@ export class PurchaseSectionComponent implements OnInit {
     currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';*/
   }
 
-  createRecord(userObj: Purchase) {
-    /*userObj.gender = parseInt(userObj.gender);
-    userObj.status = true;
+  createRecord(purchaseObj: Purchase) {
+    /*purchaseObj.gender = parseInt(purchaseObj.gender);
+    purchaseObj.status = true;
     this.formSubmitted = true;
     if (this.purchaseForm.valid) {
-      this.userService.createUser(userObj).subscribe(() => {
+      this.userService.createUser(purchaseObj).subscribe(() => {
         this.toastrService.success("Record Created...!");
         setTimeout(() => {
           location.reload();
@@ -153,10 +153,10 @@ export class PurchaseSectionComponent implements OnInit {
     }*/
   }
 
-  updateRecord(userObj: Purchase) {
-    /*userObj.gender = parseInt(userObj.gender);
-    userObj.status = true;
-    this.userService.createUser(userObj).subscribe(() => {
+  updateRecord(purchaseObj: Purchase) {
+    /*purchaseObj.gender = parseInt(purchaseObj.gender);
+    purchaseObj.status = true;
+    this.userService.createUser(purchaseObj).subscribe(() => {
       this.toastrService.info("Record Updated...!");
       setTimeout(() => {
         location.reload();
