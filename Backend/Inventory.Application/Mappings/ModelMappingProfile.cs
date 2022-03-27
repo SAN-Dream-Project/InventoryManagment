@@ -66,7 +66,11 @@ namespace Inventory.Application
             CreateMap<BharadaRate, BharadaRateInputDto>().ReverseMap();
             CreateMap<BharadaRate, BharadaRateDto>().ReverseMap();
             CreateMap<Purchase, PurchaseInputDto>().ReverseMap();
-            CreateMap<Purchase, PurchaseDto>().ReverseMap();
+            CreateMap<Purchase, PurchaseDto>().ForMember(d => d.GoodName, o => o.MapFrom(s => s.Good.GoodName)).
+            ForMember(d => d.GoodSupplierName, o => o.MapFrom(s => s.GoodSupplier.FirstName+" "+s.GoodSupplier.MiddleName+" "+s.GoodSupplier.LastName)).
+            ForMember(d => d.KadataQuantity, o => o.MapFrom(s => s.Kadata.KadtaQuantity)).
+            ForMember(d => d.LabourRate, o => o.MapFrom(s => s.LabourRate.Rate));
+            CreateMap<PurchaseDto, Purchase>();
             CreateMap<LabourDetail, LabourDetailInputDto>().ReverseMap();
             CreateMap<LabourDetail, LabourDetailDto>().ReverseMap();
             CreateMap<SaleDetail, SaleDetailInputDto>().ReverseMap();
