@@ -31,7 +31,8 @@ export class UserService {
   createUser(userObj: User) {
     return this.httpClient.post<any>(this.URL_TO_CREATE_OR_UPDATE_USER, userObj,{headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
-  GetGoodList():Observable<any>{
+
+  getGoodList():Observable<any>{
     return this.httpClient.get<any>(this.URL_TO_CREATE_OR_UPDATE_GOODLIST, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
 }

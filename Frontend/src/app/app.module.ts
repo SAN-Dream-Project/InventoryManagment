@@ -25,6 +25,7 @@ import { GoodsSupplierSectionComponent } from './components/goods-supplier-secti
 import { EmployeeSectionComponent } from './components/employee-section/employee-section.component';
 import { LabourRateSectionComponent } from './components/labour-rate-section/labour-rate-section.component';
 import { StockSectionComponent } from './components/stock-section/stock-section.component';
+import { PurchaseSectionComponent } from './components/purchase-section/purchase-section.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { StockSectionComponent } from './components/stock-section/stock-section.
     GoodsSupplierSectionComponent,
     EmployeeSectionComponent,
     LabourRateSectionComponent,
-    StockSectionComponent
+    StockSectionComponent,
+    PurchaseSectionComponent
   ],
   imports: [
     BrowserModule,

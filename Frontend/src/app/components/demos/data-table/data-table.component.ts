@@ -9,14 +9,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { CustomValidator } from "./custom-validator";
 import { map, Observable, startWith } from 'rxjs';
-export interface Employee {
-  id: number;
-  name: string;
-  jobtype: string;
-  email: string;
-  address: string;
-  imageUrl: string;
-}
+
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
@@ -60,7 +53,10 @@ export class DataTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
 
-  constructor(private userService: UserService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService,
+              private toastrService: ToastrService,
+              private ngxSpinnerService: NgxSpinnerService,
+              private formBuilder: FormBuilder) {
     this.paginator = this.users;
     this.sort = this.users;
     this.dataSource = new MatTableDataSource(this.users);
@@ -74,7 +70,7 @@ export class DataTableComponent implements OnInit {
       });
     }, 1000);
 
-    this.userService.GetGoodList().subscribe((goods) => {
+    this.userService.getGoodList().subscribe((goods) => {
       this.goods = goods;
     });
 
@@ -86,14 +82,16 @@ export class DataTableComponent implements OnInit {
         );
     }, 1000);
   }
+
   private _filterGoods(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
-
     return this.goods.filter(good => good.value.toLowerCase().includes(filterValue));
   }
+
   SeletedGood(good: any) {
     console.log(good);
   }
+
   ngOnInit(): void {
     /*this.testForm = new FormGroup({
       userName: new FormControl('', [
