@@ -1,0 +1,86 @@
+<app-header></app-header>
+<section class="mt-3 table-responsive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5>Sale Details :</h5>
+        <hr>
+        <div class="example-header">
+          <mat-form-field class="w-25">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+          </mat-form-field>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i
+              class="fa fa-money me-2"></i>Add New Sale</button>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="goodName">e
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Good Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.goodName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="goodSupplierName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Good Supplier Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.goodSupplierName }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="quntity">
+              <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.quntity}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="rate">
+              <mat-header-cell *matHeaderCellDef> Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="labourRate">
+              <mat-header-cell *matHeaderCellDef> Labour Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.labourRate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalLabourCosting">
+              <mat-header-cell *matHeaderCellDef> Total Labour Costing </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.totalLabourCosting}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalAmount">
+              <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.totalAmount}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Update', element)"><i
+                    class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i
+                    class="fa fa-remove"></i></button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+              <mat-cell> <i class="fa fa-edit"></i> </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell> <i class="fa fa-delete"></i> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

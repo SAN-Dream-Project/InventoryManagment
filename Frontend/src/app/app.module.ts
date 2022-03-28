@@ -26,6 +26,7 @@ import { EmployeeSectionComponent } from './components/employee-section/employee
 import { LabourRateSectionComponent } from './components/labour-rate-section/labour-rate-section.component';
 import { StockSectionComponent } from './components/stock-section/stock-section.component';
 import { PurchaseSectionComponent } from './components/purchase-section/purchase-section.component';
+import { SaleSectionComponent } from './components/sale-section/sale-section.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PurchaseSectionComponent } from './components/purchase-section/purchase
     EmployeeSectionComponent,
     LabourRateSectionComponent,
     StockSectionComponent,
-    PurchaseSectionComponent
+    PurchaseSectionComponent,
+    SaleSectionComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ export class PurchaseService {
 
   URL_TO_GET_PURCHASE_DETAILS: string = "https://localhost:5001/api/Purchase/GetAllPurchase";
   URL_TO_GET_ADD_PURCHASE: string = "https://localhost:5001/api/Purchase/AddPurchase";
+  URL_TO_GET_DELETE_PURCHASE: string = "https://localhost:5001/api/Purchase/DeletePurchase";
   bearerToken:any = '';
 
   constructor(private httpClient: HttpClient) {
@@ -24,4 +25,8 @@ export class PurchaseService {
   createPurchase(userObj: PurchaseInput) {
     return this.httpClient.post<any>(this.URL_TO_GET_ADD_PURCHASE, userObj,{headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
+  deletePurchase(id: string): Observable<any> {
+    return this.httpClient.delete<any>(this.URL_TO_GET_DELETE_PURCHASE+"?id="+id, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
+  }
+  
 }

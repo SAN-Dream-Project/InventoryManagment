@@ -106,18 +106,18 @@ export class PurchaseSectionComponent implements OnInit {
         map(good => good ? this._filterGoods(good) : this.goods.slice())
       ); 
       
-      this.filteredSuppiler = this.supplierCtrl.valueChanges
+    this.filteredSuppiler = this.supplierCtrl.valueChanges
         .pipe(
           startWith(''),
           map(suppiler => suppiler ? this._filterSuppliers(suppiler) : this.suppilers.slice())
         );
 
-        this.filteredKadata = this.kadataCtrl.valueChanges
+    this.filteredKadata = this.kadataCtrl.valueChanges
         .pipe(
           startWith(''),
           map(kadata => kadata ? this._filterKadatas(kadata) : this.kadatas.slice())
         );
-        this.filteredlabourCharge = this.labourChargeCtrl.valueChanges
+    this.filteredlabourCharge = this.labourChargeCtrl.valueChanges
         .pipe(
           startWith(''),
           map(labourCharge => labourCharge ? this._filterlabourCharges(labourCharge) : this.labourCharges.slice())
@@ -202,6 +202,10 @@ export class PurchaseSectionComponent implements OnInit {
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
       this.purchase = {} as PurchaseInput;
+      this.selectedGood = null;
+      this.selectedSupplier = null;
+      this.selectedKadata = null;
+      this.seletedlabourCharge = null;
     } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
@@ -210,7 +214,7 @@ export class PurchaseSectionComponent implements OnInit {
       this.selectedGood = purchaseObj.goodName;
       this.selectedSupplier = purchaseObj.goodSupplierName;
       this.selectedKadata = purchaseObj.kadataQuantity;
-      this.seletedlabourCharge = purchaseObj.labourRate
+      this.seletedlabourCharge = purchaseObj.labourRate;
     }
   }
 
@@ -261,14 +265,14 @@ export class PurchaseSectionComponent implements OnInit {
   }
 
   deleteRecord(id: string): void {
-    /*var result = confirm("Are you sure you want to delete ?");
+    var result = confirm("Are you sure you want to delete ?");
     if (result) {
       this.purchaseService.deletePurchase(id).subscribe();
       this.toastrService.error("Record Deleted...!");
       setTimeout(() => {
         location.reload();
       }, 1000);
-    }*/
+    }
   }
 
 }

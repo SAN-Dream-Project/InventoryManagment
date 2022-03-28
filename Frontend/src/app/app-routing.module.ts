@@ -14,6 +14,7 @@ import { RetailerSectionComponent } from './components/retailer-section/retailer
 import { StockSectionComponent } from './components/stock-section/stock-section.component';
 import { LabourRateSectionComponent } from './components/labour-rate-section/labour-rate-section.component';
 import {PurchaseSectionComponent} from "./components/purchase-section/purchase-section.component";
+import { SaleSectionComponent } from './components/sale-section/sale-section.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'stock-section', component: StockSectionComponent },
   { path: 'labour-rate-section', component: LabourRateSectionComponent },
   { path: 'purchase-section', component: PurchaseSectionComponent },
+  { path: 'sale-section', component: SaleSectionComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `main-component`
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
