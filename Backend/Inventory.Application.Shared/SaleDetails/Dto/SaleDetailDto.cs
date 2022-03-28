@@ -9,11 +9,11 @@ namespace Inventory.Application.Shared.SaleDetails.Dto
     public class SaleDetailDto
     {
         public Guid Id { get; set; }
-        public virtual Guid GoodID { get; set; }
-        public virtual Guid RetailerID { get; set; }
+        public string GoodName { get; set; }
+        public string GoodSupplierName { get; set; }
         public double? Quntity { get; set; }
         public double? Rate { get; set; }
-        public virtual Guid LabourRateID { get; set; }
+        public double LabourRate { get; set; }
         public double? TotalLabourCosting { get; set; }
         public double? Discount { get; set; }
         public double? TotalAmount { get; set; }

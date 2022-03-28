@@ -42,7 +42,7 @@ namespace Inventory.Application.SaleDetails
 
         public async Task<List<SaleDetailDto>> GetAllSaleDetails()
         {
-            var result = await _saleDetailRepository.GetAll();
+            var result =  _saleDetailRepository.AllIncluding(g=>g.Good,gs=>gs.GoodSupplier,lr=>lr.LabourRate).ToList();
             var roleResult = result.ToList();
             var roleList = new List<SaleDetailDto>();
             foreach (var test in roleResult)
