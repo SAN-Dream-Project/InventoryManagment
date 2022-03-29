@@ -43,7 +43,7 @@ namespace Inventory.Application.BharataSaleDetails
 
         public async Task<List<BharadaSaleDetailDto>> GetAllBharadaSaleDetails()
         {
-            var result = await _bharadaSaleDetailRepository.GetAll();
+            var result =  _bharadaSaleDetailRepository.AllIncluding(g => g.BharadaRate, gs => gs.Retailer, lr => lr.LabourRate).ToList();
             var roleResult = result.ToList();
             var roleList = new List<BharadaSaleDetailDto>();
             foreach (var test in roleResult)
@@ -62,7 +62,7 @@ namespace Inventory.Application.BharataSaleDetails
         public async Task<List<Dropdown>> GetBharadaSaleDetailList()
         {
             return _bharadaSaleDetailRepository.GetAll().Result.
-                Select(x => new Dropdown() { Key = x.Id, Value = x.Quntity.ToString() }).ToList();
+                Select(x => new Dropdown() { Key = x.Id, Value = x.Quantity.ToString() }).ToList();
 
         }
     }

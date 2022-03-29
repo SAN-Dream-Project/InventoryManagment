@@ -18,7 +18,7 @@ namespace Inventory.Application.Shared.Purchases.Dto
         public double? NetGoodQuantity { get; set; }
         public double LabourRate { get; set; }
         public double? TotalLabourCosting { get; set; }
-        public double? TotalAmout { get; set; }
+        public double? TotalAmount { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

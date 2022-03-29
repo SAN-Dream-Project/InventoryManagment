@@ -62,9 +62,9 @@
               <mat-cell *matCellDef="let row"> {{row.totalLabourCosting}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="totalAmout">
+            <ng-container matColumnDef="totalAmount">
               <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.totalAmout}} </mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.totalAmount}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="action">
@@ -251,12 +251,12 @@
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
               <input class="form-control"
-                [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmout'].errors }" type="text"
-                formControlName="totalAmout" name="totalAmout" [(ngModel)]="purchase.totalAmout"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }" type="text"
+                formControlName="totalAmount" name="totalAmount" [(ngModel)]="purchase.totalAmount"
                 placeholder="Total Amout" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
-              <div *ngIf="formSubmitted && formControl['totalAmout'].errors" class="invalid-feedback">
-                <div *ngIf="formControl['totalAmout'].errors?.['required']">Total Amount is required.</div>
-                <div *ngIf="formControl['totalAmout'].errors?.['pattern']">Wrong numeric value.</div>
+              <div *ngIf="formSubmitted && formControl['totalAmount'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['totalAmount'].errors?.['required']">Total Amount is required.</div>
+                <div *ngIf="formControl['totalAmount'].errors?.['pattern']">Wrong numeric value.</div>
               </div>
             </div>
             <button class="form-control btn btn-success" (click)="submitForm('Create', purchase)"

@@ -17,13 +17,13 @@ export interface Sale{
   export interface SaleInput{
     id:any
     goodID:any
-    goodSupplierID:any
+    retailerID:any
     quantity:any
     rate:any
     labourRateID:any
     totalLabourCosting:any
     discount:any
-    totalAmout:any
+    totalAmount:any
     createdBy:any
     createdDate:any
     modifiedBy:any

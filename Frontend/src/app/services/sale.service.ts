@@ -8,8 +8,8 @@ import { SaleInput } from '../models/Sale';
 })
 export class SaleService {
   URL_TO_GET_SALE_DETAILS: string = "https://localhost:5001/api/v1/SaleDetail/GetAllSaleDetail";
-  URL_TO_GET_ADD_SALE: string = "https://localhost:5001/api/SaleDetail/AddSaleDetail";
-  URL_TO_GET_DELETE_SALE: string = "https://localhost:5001/api/SaleDetail/DeleteSaleDetail";
+  URL_TO_GET_ADD_SALE: string = "https://localhost:5001/api/v1/SaleDetail/AddSaleDetail";
+  URL_TO_DELETE_SALE: string = "https://localhost:5001/api/v1/SaleDetail/DeleteSaleDetail";
   bearerToken:any = '';
 
   constructor(private httpClient: HttpClient) {
@@ -25,6 +25,6 @@ export class SaleService {
     return this.httpClient.post<any>(this.URL_TO_GET_ADD_SALE, userObj,{headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
   deleteSale(id: string): Observable<any> {
-    return this.httpClient.delete<any>(this.URL_TO_GET_DELETE_SALE+"?id="+id, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
+    return this.httpClient.delete<any>(this.URL_TO_DELETE_SALE+"?id="+id, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
 }
