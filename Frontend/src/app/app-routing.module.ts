@@ -15,6 +15,9 @@ import { StockSectionComponent } from './components/stock-section/stock-section.
 import { LabourRateSectionComponent } from './components/labour-rate-section/labour-rate-section.component';
 import {PurchaseSectionComponent} from "./components/purchase-section/purchase-section.component";
 import { SaleSectionComponent } from './components/sale-section/sale-section.component';
+import { BharadaRateSectionComponent } from './components/bharada-rate-section/bharada-rate-section.component';
+import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.component';
+import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,6 +34,9 @@ const routes: Routes = [
   { path: 'labour-rate-section', component: LabourRateSectionComponent },
   { path: 'purchase-section', component: PurchaseSectionComponent },
   { path: 'sale-section', component: SaleSectionComponent },
+  { path: 'bharada-rate-section', component: BharadaRateSectionComponent },
+  { path: 'bharada-sale-section', component: BharadaSaleComponent },
+  { path: 'bharada-credit-section', component: BharadaCreditComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `main-component`
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];

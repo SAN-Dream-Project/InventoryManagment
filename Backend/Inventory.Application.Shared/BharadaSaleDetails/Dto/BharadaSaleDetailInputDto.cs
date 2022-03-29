@@ -12,7 +12,7 @@ namespace Inventory.Application.Shared.BharadaSaleDetails.Dto
         public virtual Guid? BharadaRateID { get; set; }
         public double? Quntity { get; set; }
         public virtual Guid? RetailerID { get; set; }
-        public double? ToatalAmount { get; set; }
+        public double? TotalAmount { get; set; }
         public double? Discount { get; set; }
         public virtual Guid? LabourRateID { get; set; }
         public double? TotalLabourCosting { get; set; }

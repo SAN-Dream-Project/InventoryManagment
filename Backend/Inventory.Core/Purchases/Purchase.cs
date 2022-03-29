@@ -29,7 +29,7 @@ namespace Inventory.Core.Purchases
         public virtual Guid? LabourRateID { get; set; }
         public LabourRate LabourRate { get; set; }
         public double? TotalLabourCosting { get; set; }
-        public double? TotalAmout { get; set; }
+        public double? TotalAmount { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

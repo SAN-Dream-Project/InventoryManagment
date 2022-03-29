@@ -27,6 +27,9 @@ import { LabourRateSectionComponent } from './components/labour-rate-section/lab
 import { StockSectionComponent } from './components/stock-section/stock-section.component';
 import { PurchaseSectionComponent } from './components/purchase-section/purchase-section.component';
 import { SaleSectionComponent } from './components/sale-section/sale-section.component';
+import { BharadaRateSectionComponent } from './components/bharada-rate-section/bharada-rate-section.component';
+import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.component';
+import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { SaleSectionComponent } from './components/sale-section/sale-section.com
     LabourRateSectionComponent,
     StockSectionComponent,
     PurchaseSectionComponent,
-    SaleSectionComponent
+    SaleSectionComponent,
+    BharadaRateSectionComponent,
+    BharadaSaleComponent,
+    BharadaCreditComponent
   ],
   imports: [
     BrowserModule,

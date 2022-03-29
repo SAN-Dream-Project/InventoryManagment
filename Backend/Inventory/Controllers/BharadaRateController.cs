@@ -77,7 +77,7 @@ namespace Inventory.Host.Controllers
                 return null;
             }
         }
-        [HttpGet("GetGoodList")]
+        [HttpGet("GetBharadaRateList")]
         public async Task<List<Dropdown>> GetBharadaRateList()
         {
             try

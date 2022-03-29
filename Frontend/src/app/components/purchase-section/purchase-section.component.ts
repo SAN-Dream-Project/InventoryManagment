@@ -20,7 +20,7 @@ import { map, Observable, startWith } from 'rxjs';
 })
 export class PurchaseSectionComponent implements OnInit {
 
-  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'kadtaTotal', 'netGoodQuantity', 'labourRate', 'totalLabourCosting', 'totalAmout', 'action'];
+  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'kadtaTotal', 'netGoodQuantity', 'labourRate', 'totalLabourCosting', 'totalAmount', 'action'];
   dataSource: MatTableDataSource<Purchase>;
   showModal: boolean = false;
   users: any = [];
@@ -64,7 +64,7 @@ export class PurchaseSectionComponent implements OnInit {
     netGoodQuantity: '',
     labourRateID: '',
     totalLabourCosting: '',
-    totalAmout: '',
+    totalAmount: '',
     createdBy: '',
     createdDate: '',
     modifiedBy: '',
@@ -153,7 +153,7 @@ export class PurchaseSectionComponent implements OnInit {
   SelectedlabourCharge(labourRate: any) {
     this.purchase.labourRateID = labourRate.key;
     this.purchase.totalLabourCosting = (this.purchase.grossGoodQuantity/100)*labourRate.value;
-    this.purchase.totalAmout = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
+    this.purchase.totalAmount = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
   }
   ngOnInit(): void {
     this.validateForm();
@@ -175,7 +175,7 @@ export class PurchaseSectionComponent implements OnInit {
       netGoodQuantity: ['', [Validators.required]],
       labourRateID: ['', [Validators.required]],
       totalLabourCosting: ['', [Validators.required]],
-      totalAmout: ['', [Validators.required]]
+      totalAmount: ['', [Validators.required]]
     });
   }
 

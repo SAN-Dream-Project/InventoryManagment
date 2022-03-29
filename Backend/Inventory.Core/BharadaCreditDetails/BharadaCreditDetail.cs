@@ -16,9 +16,9 @@ namespace Inventory.Core.BharadaCreditDetails
         public Guid Id { get; set; }
         public Guid? RetailerID { get; set; }
         public Retailer Retailer { get; set; }
-        public Guid? BharataSaleDetailID { get; set; }
+        public Guid? BharadaSaleDetailID { get; set; }
         public BharadaSaleDetail BharataSaleDetail { get; set; }
-        public double? PaidAmout { get; set; }
+        public double? PaidAmount { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

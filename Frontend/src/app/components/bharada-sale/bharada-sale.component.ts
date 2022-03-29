@@ -6,21 +6,21 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, startWith } from 'rxjs';
-import { Sale, SaleInput } from 'src/app/models/Sale';
+import { BharadaSale, BharadaSaleInput } from 'src/app/models/BharadaSale';
 import { DropDown } from 'src/app/models/User';
+import { BharadaSaleService } from 'src/app/services/bharada-sale.service';
 import { DropdownService } from 'src/app/services/dropdown.service';
-import { SaleService } from 'src/app/services/sale.service';
 
 @Component({
-  selector: 'app-sale-section',
-  templateUrl: './sale-section.component.html',
-  styleUrls: ['./sale-section.component.less']
+  selector: 'app-bharada-sale',
+  templateUrl: './bharada-sale.component.html',
+  styleUrls: ['./bharada-sale.component.less']
 })
-export class SaleSectionComponent implements OnInit {
-  displayedColumns = ['goodName', 'goodSupplierName', 'quantity', 'rate', 'labourRate', 'totalLabourCosting', 'totalAmount', 'action'];
-  dataSource: MatTableDataSource<Sale>;
+export class BharadaSaleComponent implements OnInit {
+  displayedColumns = ['bharadaRate', 'quantity', 'retailerName', 'totalAmount', 'labourRate', 'totalLabourCosting', 'netAmount','paidAmount','remainingAmount', 'action'];
+  dataSource: MatTableDataSource<BharadaSale>;
   showModal: boolean = false;
-  sales: any = [];
+  bharadaSales: any = [];
   formSubmitted: boolean = false;
   buttonStatus: any = {
     saveButton: false,
@@ -31,9 +31,9 @@ export class SaleSectionComponent implements OnInit {
   filteredRetailer: Observable<DropDown[]> | undefined;
   retailerCtrl = new FormControl();
 
-  goods: DropDown[] = [];
-  filteredGood: Observable<DropDown[]> | undefined;
-  goodCtrl = new FormControl();
+  bharadaRates: DropDown[] = [];
+  filteredbharadaRate: Observable<DropDown[]> | undefined;
+  bharadaRateCtrl = new FormControl();
 
   labourCharges: DropDown[] = [];
   filteredlabourCharge: Observable<DropDown[]> | undefined;
@@ -41,57 +41,62 @@ export class SaleSectionComponent implements OnInit {
 
   seletedlabourCharge:any;
   selectedRetailer: any;
-  selectedGood = null;
-  sale: SaleInput = {
+  selectedBharadaRate = null;
+  bharadaSale: BharadaSaleInput = {
     id: '',
-    goodID: '',
-    retailerID: '',
-    quantity: '',
-    rate: '',
-    labourRateID: '',
-    totalLabourCosting: '',
-    discount:'',
-    totalAmount: '',
+    bharadaRateID:'',
+    quantity:'',
+    retailerID:'',
+    totalAmount:'',
+    discount :'',
+    labourRateID:'',
+    totalLabourCosting:'',
+    netAmount:'',
+    paidAmount:'',
+    remainingAmount:'',
     createdBy: '',
     createdDate: '',
     modifiedBy: '',
     modifiedDate: ''
   };
-  saleForm: FormGroup;
+  bharadaSaleForm: FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   @ViewChild(MatSort) sort: MatSort | null;
 
-  constructor(private saleService: SaleService, private dropdownService: DropdownService, private ngxSpinnerService: NgxSpinnerService, private toastrService: ToastrService, private formBuilder: FormBuilder) {
-    this.paginator = this.sales;
-    this.sort = this.sales;
-    this.dataSource = new MatTableDataSource(this.sales);
-    this.saleForm = new FormGroup({});
+  constructor(private bharadaSaleService: BharadaSaleService, private dropdownService: DropdownService, private ngxSpinnerService: NgxSpinnerService, private toastrService: ToastrService, private formBuilder: FormBuilder) {
+    this.paginator = this.bharadaSales;
+    this.sort = this.bharadaSales;
+    this.dataSource = new MatTableDataSource(this.bharadaSales);
+    this.bharadaSaleForm = new FormGroup({});
     setTimeout(() => {
-      this.saleService.GetAllSaleDetails().subscribe((sales) => {
-        this.sales = sales;
-        this.dataSource = new MatTableDataSource(this.sales);
+      this.bharadaSaleService.getAllBharadaSales().subscribe((bharadaSales) => {
+        this.bharadaSales = bharadaSales;
+        this.dataSource = new MatTableDataSource(this.bharadaSales);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
     }, 1000); 
     this.dropdownService.getRetailerList().subscribe((retailers) => {
       this.retailers = retailers;
+      console.log(this.retailers);
     });
     this.filteredRetailer = this.retailerCtrl.valueChanges
         .pipe(
           startWith(''),
           map(retailer => retailer ? this._filterRetailers(retailer) : this.retailers.slice())
         );
-    this.dropdownService.getGoodList().subscribe((goods) => {
-        this.goods = goods;
+    this.dropdownService.getBharadaCrateriaList().subscribe((bharadaRates) => {
+        this.bharadaRates = bharadaRates;
+        console.log(this.bharadaRates);
         });
-    this.filteredGood = this.goodCtrl.valueChanges
+    this.filteredbharadaRate = this.bharadaRateCtrl.valueChanges
         .pipe(
             startWith(''),
-          map(good => good ? this._filterGoods(good) : this.goods.slice())
+          map(bharadaRate => bharadaRate ? this._filterBharadaRates(bharadaRate) : this.bharadaRates.slice())
           );
     this.dropdownService.getLabourRateList().subscribe((labourCharges) => {
         this.labourCharges = labourCharges;
+        console.log(this.labourCharges);
         });
     this.filteredlabourCharge = this.labourChargeCtrl.valueChanges
         .pipe(
@@ -103,24 +108,24 @@ export class SaleSectionComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.retailers.filter(x => x.value.toLowerCase().includes(filterValue));
   }
-  private _filterGoods(value: string): DropDown[] {
+  private _filterBharadaRates(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
-    return this.goods.filter(x => x.value.toLowerCase().includes(filterValue));
+    return this.bharadaRates.filter(x => x.value.toLowerCase().includes(filterValue));
   }
   private _filterlabourCharges(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.labourCharges.filter(x => x.value.toLowerCase().includes(filterValue));
   }
-  SelectedGood(good: any) {
-    this.sale.goodID = good.key;
+  SelectedBharadaRate(bharadaRate: any) {
+    this.bharadaSale.bharadaRateID = bharadaRate.key;
   }
   SelectedRetailer(retailer: any) {
-    this.sale.retailerID = retailer.key;
+    this.bharadaSale.retailerID = retailer.key;
   }
   SelectedlabourCharge(labourRate: any) {
-    this.sale.labourRateID = labourRate.key;
-    this.sale.totalLabourCosting = (this.sale.quantity/100)*labourRate.value;
-    this.sale.totalAmount = (this.sale.quantity * this.sale.rate)-((this.sale.quantity/100)*labourRate.value);
+    this.bharadaSale.labourRateID = labourRate.key;
+    this.bharadaSale.totalLabourCosting = (this.bharadaSale.quantity/100)*labourRate.value;
+    // this.bharadaSale.toatalAmount = (this.bharadaSale.quntity * this.bharadaSale.rate)-((this.sale.quntity/100)*labourRate.value);
   }
   ngOnInit(): void {
     this.validateForm();
@@ -130,18 +135,20 @@ export class SaleSectionComponent implements OnInit {
     }, 1000);
   }
   validateForm() {
-    this.saleForm = this.formBuilder.group({
-      goodID:['', [Validators.required]],
+    this.bharadaSaleForm = this.formBuilder.group({
+      bharadaRateID: ['', [Validators.required]],
       retailerID: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
-      rate: ['', [Validators.required]],
       labourRateID: ['', [Validators.required]],
       totalLabourCosting: ['', [Validators.required]],
       totalAmount: ['', [Validators.required]],
+      netAmount: ['', [Validators.required]],
+      paidAmount: ['', [Validators.required]],
+      remainingAmount: ['', [Validators.required]]
     });
   }
   get formControl(): { [key: string]: AbstractControl } {
-    return this.saleForm.controls
+    return this.bharadaSaleForm.controls
   }
   appendZeros() {
     /*let currentValue = this.user.primaryMobNo;
@@ -160,35 +167,35 @@ export class SaleSectionComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   } 
-  openModal(type: any, purchaseObj: any) {
+  openModal(type: any, bharadaSaleObj: any) {
     this.formSubmitted = false;
     if (type === 'Create') {
       this.showModal = true;
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
-      this.sale = {} as SaleInput;
-       this.selectedGood = null;
+      this.bharadaSale = {} as BharadaSaleInput;
+       this.selectedBharadaRate = null;
        this.selectedRetailer = null;
        this.seletedlabourCharge = null;
     } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
-      this.sale = purchaseObj;
-      this.selectedGood = purchaseObj.goodName;
-      this.sale.goodID = this.goods.find(x=>x.value === purchaseObj.goodName)?.key;
-      this.selectedRetailer = purchaseObj.goodSupplierName;
-      this.sale.retailerID = this.retailers.find(x=>x.value === purchaseObj.goodSupplierName)?.key;
-      this.seletedlabourCharge = purchaseObj.labourRate;
-      this.sale.labourRateID = this.labourCharges.find(x=>x.value == purchaseObj.labourRate)?.key;
+      this.bharadaSale = bharadaSaleObj;
+      this.selectedBharadaRate = bharadaSaleObj.bharadaRate;
+      this.bharadaSale.bharadaRateID = this.bharadaRates.find(x=>x.value === bharadaSaleObj.bharadaRate)?.key;
+      this.selectedRetailer = bharadaSaleObj.retailerName;
+      this.bharadaSale.retailerID = this.retailers.find(x=>x.value === bharadaSaleObj.retailerName)?.key;
+      this.seletedlabourCharge = bharadaSaleObj.labourRate;
+      this.bharadaSale.labourRateID = this.labourCharges.find(x=>x.value == bharadaSaleObj.labourRate)?.key;
     }
   }
   closeModal() {
     this.showModal = false;
   }
-  submitForm(action: string, saleObj: SaleInput): void {
+  submitForm(action: string, saleObj: BharadaSaleInput): void {
     this.formSubmitted = true;
-    if (this.saleForm.invalid) {
+    if (this.bharadaSaleForm.invalid) {
       return;
     }
     if (action === 'Create') {
@@ -198,10 +205,10 @@ export class SaleSectionComponent implements OnInit {
       this.updateRecord(saleObj);
     }
   }
-  createRecord(saleObj: SaleInput) {
+  createRecord(bharadaSaleObj: BharadaSaleInput) {
     this.formSubmitted = true;
-    if (this.saleForm.valid) {
-      this.saleService.createSaleDetail(saleObj).subscribe(() => {
+    if (this.bharadaSaleForm.valid) {
+      this.bharadaSaleService.createBharadaSale(bharadaSaleObj).subscribe(() => {
         this.toastrService.success("Record Created...!");
         setTimeout(() => {
           location.reload();
@@ -211,8 +218,8 @@ export class SaleSectionComponent implements OnInit {
     }
   }
 
-  updateRecord(saleObj: SaleInput) {
-    this.saleService.createSaleDetail(saleObj).subscribe(() => {
+  updateRecord(bharadaSaleObj: BharadaSaleInput) {
+    this.bharadaSaleService.createBharadaSale(bharadaSaleObj).subscribe(() => {
       this.toastrService.info("Record Updated...!");
       setTimeout(() => {
         location.reload();
@@ -223,7 +230,7 @@ export class SaleSectionComponent implements OnInit {
   deleteRecord(id: string): void {
     var result = confirm("Are you sure you want to delete ?");
     if (result) {
-      this.saleService.deleteSale(id).subscribe();
+      this.bharadaSaleService.deleteBharadaSale(id).subscribe();
       this.toastrService.error("Record Deleted...!");
       setTimeout(() => {
         location.reload();

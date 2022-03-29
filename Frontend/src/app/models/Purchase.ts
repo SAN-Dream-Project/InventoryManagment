@@ -27,7 +27,7 @@ export interface PurchaseInput{
   netGoodQuantity:any
   labourRateID:any
   totalLabourCosting:any
-  totalAmout:any
+  totalAmount:any
   createdBy:any
   createdDate:any
   modifiedBy:any
