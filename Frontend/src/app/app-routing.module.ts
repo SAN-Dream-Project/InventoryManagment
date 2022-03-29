@@ -18,12 +18,12 @@ import { SaleSectionComponent } from './components/sale-section/sale-section.com
 import { BharadaRateSectionComponent } from './components/bharada-rate-section/bharada-rate-section.component';
 import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.component';
 import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
+import {LanguageTranslationComponent} from "./components/demos/language-translation/language-translation.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: MainComponent },
   { path: 'user-section', component: UserSectionComponent },
-  { path: 'demos/table-data', component: DataTableComponent },
   { path: 'goods-section', component: GoodsSectionComponent },
   { path: 'employee-section', component: EmployeeSectionComponent },
   { path: 'goods-supplier-section', component: GoodsSupplierSectionComponent },
@@ -37,6 +37,8 @@ const routes: Routes = [
   { path: 'bharada-rate-section', component: BharadaRateSectionComponent },
   { path: 'bharada-sale-section', component: BharadaSaleComponent },
   { path: 'bharada-credit-section', component: BharadaCreditComponent },
+  { path: 'demos/table-data', component: DataTableComponent },
+  { path: 'demos/language-translation', component: LanguageTranslationComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `main-component`
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
