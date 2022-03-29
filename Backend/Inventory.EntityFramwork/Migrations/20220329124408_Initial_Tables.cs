@@ -296,7 +296,7 @@ namespace Inventory.EntityFramwork.Migrations
                     NetGoodQuantity = table.Column<double>(type: "float", nullable: true),
                     LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TotalLabourCosting = table.Column<double>(type: "float", nullable: true),
-                    TotalAmout = table.Column<double>(type: "float", nullable: true),
+                    TotalAmount = table.Column<double>(type: "float", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -335,9 +335,9 @@ namespace Inventory.EntityFramwork.Migrations
                 {
                     BharadaSaleDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BharadaRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Quntity = table.Column<double>(type: "float", nullable: true),
+                    Quantity = table.Column<double>(type: "float", nullable: true),
                     RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ToatalAmount = table.Column<double>(type: "float", nullable: true),
+                    TotalAmount = table.Column<double>(type: "float", nullable: true),
                     Discount = table.Column<double>(type: "float", nullable: true),
                     LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TotalLabourCosting = table.Column<double>(type: "float", nullable: true),
@@ -416,8 +416,8 @@ namespace Inventory.EntityFramwork.Migrations
                 {
                     BharadaCreditDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    BharataSaleDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    PaidAmout = table.Column<double>(type: "float", nullable: true),
+                    BharadaSaleDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    PaidAmount = table.Column<double>(type: "float", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -427,8 +427,8 @@ namespace Inventory.EntityFramwork.Migrations
                 {
                     table.PrimaryKey("PK_BharadaCreditDetail", x => x.BharadaCreditDetailID);
                     table.ForeignKey(
-                        name: "FK_BharadaCreditDetail_BharadaSaleDetail_BharataSaleDetailID",
-                        column: x => x.BharataSaleDetailID,
+                        name: "FK_BharadaCreditDetail_BharadaSaleDetail_BharadaSaleDetailID",
+                        column: x => x.BharadaSaleDetailID,
                         principalTable: "BharadaSaleDetail",
                         principalColumn: "BharadaSaleDetailID");
                     table.ForeignKey(
@@ -439,9 +439,9 @@ namespace Inventory.EntityFramwork.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BharadaCreditDetail_BharataSaleDetailID",
+                name: "IX_BharadaCreditDetail_BharadaSaleDetailID",
                 table: "BharadaCreditDetail",
-                column: "BharataSaleDetailID");
+                column: "BharadaSaleDetailID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BharadaCreditDetail_RetailerID",

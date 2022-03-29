@@ -19,7 +19,7 @@ namespace Inventory.Core.SaleDetails
         public Good Good { get; set; }
         public virtual Guid RetailerID { get; set; }
         public Retailer GoodSupplier { get; set; }
-        public double? Quntity { get; set; }
+        public double? Quantity { get; set; }
         public double? Rate { get; set; }
         public virtual Guid LabourRateID { get; set; }
         public LabourRate LabourRate { get; set; }

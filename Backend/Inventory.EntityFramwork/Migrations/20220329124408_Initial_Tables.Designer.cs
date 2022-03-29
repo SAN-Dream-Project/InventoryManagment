@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220326182516_Initial_Tables")]
+    [Migration("20220329124408_Initial_Tables")]
     partial class Initial_Tables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace Inventory.EntityFramwork.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("BharadaCreditDetailID");
 
-                    b.Property<Guid?>("BharataSaleDetailID")
+                    b.Property<Guid?>("BharadaSaleDetailID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
@@ -46,7 +46,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("PaidAmout")
+                    b.Property<double?>("PaidAmount")
                         .HasColumnType("float");
 
                     b.Property<Guid?>("RetailerID")
@@ -54,7 +54,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BharataSaleDetailID");
+                    b.HasIndex("BharadaSaleDetailID");
 
                     b.HasIndex("RetailerID");
 
@@ -95,7 +95,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<double?>("PaidAmount")
                         .HasColumnType("float");
 
-                    b.Property<double?>("Quntity")
+                    b.Property<double?>("Quantity")
                         .HasColumnType("float");
 
                     b.Property<double?>("RemainingAmount")
@@ -104,7 +104,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<Guid?>("RetailerID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double?>("ToatalAmount")
+                    b.Property<double?>("TotalAmount")
                         .HasColumnType("float");
 
                     b.Property<double?>("TotalLabourCosting")
@@ -418,7 +418,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<double?>("NetGoodQuantity")
                         .HasColumnType("float");
 
-                    b.Property<double?>("TotalAmout")
+                    b.Property<double?>("TotalAmount")
                         .HasColumnType("float");
 
                     b.Property<double?>("TotalLabourCosting")
@@ -750,7 +750,7 @@ namespace Inventory.EntityFramwork.Migrations
                 {
                     b.HasOne("Inventory.Core.BharadaSaleDetails.BharadaSaleDetail", "BharataSaleDetail")
                         .WithMany()
-                        .HasForeignKey("BharataSaleDetailID");
+                        .HasForeignKey("BharadaSaleDetailID");
 
                     b.HasOne("Inventory.Core.Retailers.Retailer", "Retailer")
                         .WithMany()

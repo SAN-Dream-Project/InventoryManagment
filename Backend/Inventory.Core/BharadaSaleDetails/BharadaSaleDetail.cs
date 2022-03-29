@@ -17,10 +17,10 @@ namespace Inventory.Core.BharadaSaleDetails
         public Guid Id { get; set; }
         public virtual Guid? BharadaRateID { get; set; }
         public  BharadaRate BharadaRate { get; set; }
-        public double? Quntity { get; set; }
+        public double? Quantity { get; set; }
         public virtual Guid? RetailerID { get; set; }
         public  Retailer Retailer { get; set; }
-        public double? ToatalAmount { get; set; }
+        public double? TotalAmount { get; set; }
         public double? Discount { get; set; }
         public virtual Guid? LabourRateID { get; set; }
         public  LabourRate LabourRate { get; set; }
