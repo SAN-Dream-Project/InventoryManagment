@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -30,6 +30,8 @@ import { SaleSectionComponent } from './components/sale-section/sale-section.com
 import { BharadaRateSectionComponent } from './components/bharada-rate-section/bharada-rate-section.component';
 import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.component';
 import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
+import { LanguageTranslationComponent } from './components/demos/language-translation/language-translation.component';
+import {LanguageInterceptor} from "./interceptors/language.interceptor";
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { BharadaCreditComponent } from './components/bharada-credit/bharada-cred
     SaleSectionComponent,
     BharadaRateSectionComponent,
     BharadaSaleComponent,
-    BharadaCreditComponent
+    BharadaCreditComponent,
+    LanguageTranslationComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,13 @@ import { BharadaCreditComponent } from './components/bharada-credit/bharada-cred
     MaterialModule
   ],
   entryComponents: [DataTableComponent],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LanguageInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

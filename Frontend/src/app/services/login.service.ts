@@ -9,19 +9,19 @@ export class LoginService {
 
   URL_TO_GET_BEARER_TOKEN: string = "https://localhost:5001/api/v1/TokenAuthentication/authentication";
   constructor(private httpClient: HttpClient, private router: Router) { }
-  httpOptions: object = {
+  httpOptions: any = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: ''
     })
   };
-  userCredentials:object = {
+  userCredentials: any = {
     userName: "nitingodase",
     password: "123qwe"
   };
 
   getBearerToken(Obj: any): void {
-    this.httpClient.post<any>(this.URL_TO_GET_BEARER_TOKEN, Obj, this.httpOptions).subscribe((tokenInformation) => {
+    this.httpClient.post<any>(this.URL_TO_GET_BEARER_TOKEN, Obj, this.httpOptions).subscribe((tokenInformation: any) => {
       sessionStorage.setItem('bearerToken', 'Bearer '+tokenInformation.token);
     });
   }

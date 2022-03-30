@@ -1,0 +1,20 @@
+<app-header></app-header>
+<section class="mt-3">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col mb-3">
+        <h5>Language Translation :</h5>
+        <hr>
+        <select class="form-control" (change)="selectLanguage($event)">
+          <option value="en" [selected]="language == 'en'">English</option>
+          <option value="mr" [selected]="language == 'mr'">Marathi</option>
+        </select>
+      </div>
+      <hr>
+      <ul class="mt-3" *ngFor="let user of users">
+        <li>{{ user.userName }}</li>
+        <li>{{ user.firstName }} {{ user.lastName }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
