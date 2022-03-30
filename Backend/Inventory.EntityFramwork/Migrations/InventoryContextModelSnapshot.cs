@@ -588,7 +588,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("Quntity")
+                    b.Property<double?>("Quantity")
                         .HasColumnType("float");
 
                     b.Property<double?>("Rate")

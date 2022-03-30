@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.EntityFramwork.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20220329124408_Initial_Tables")]
-    partial class Initial_Tables
+    [Migration("20220330060105_Added_Initial_Tables")]
+    partial class Added_Initial_Tables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -590,7 +590,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("Quntity")
+                    b.Property<double?>("Quantity")
                         .HasColumnType("float");
 
                     b.Property<double?>("Rate")

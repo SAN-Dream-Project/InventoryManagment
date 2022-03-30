@@ -17,7 +17,7 @@ import { DropdownService } from 'src/app/services/dropdown.service';
   styleUrls: ['./bharada-credit.component.less']
 })
 export class BharadaCreditComponent implements OnInit {
-  displayedColumns = ['retailerName', 'bharadaSaleDetail', 'paidAmount', 'createdBy', 'action'];
+  displayedColumns = ['retailerName', 'totalAmount', 'remaningAmount', 'createdBy', 'action'];
   dataSource: MatTableDataSource<BharadaCredit>;
   showModal: boolean = false;
   bharadaCredits: any = [];
@@ -142,8 +142,9 @@ export class BharadaCreditComponent implements OnInit {
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
       this.bharadaCreditSale = {} as BharadaCreditInput;
-       this.selectedBharadaSaleDetail = null;
-       this.selectedRetailer = null;
+      this.selectedBharadaSaleDetail = null;
+      this.selectedRetailer = null;
+      this.bharadaCreditSale.createdBy="nitingodase";
     } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
@@ -153,6 +154,7 @@ export class BharadaCreditComponent implements OnInit {
       this.bharadaCreditSale.BharadaSaleDetailID = this.bharadaSaleDetails.find(x=>x.value === bharadaSaleObj.bharadaRate)?.key;
       this.selectedRetailer = bharadaSaleObj.retailerName;
       this.bharadaCreditSale.retailerID = this.retailers.find(x=>x.value === bharadaSaleObj.retailerName)?.key;
+      this.bharadaCreditSale.createdBy="nitingodase";
     }
   }
   closeModal() {

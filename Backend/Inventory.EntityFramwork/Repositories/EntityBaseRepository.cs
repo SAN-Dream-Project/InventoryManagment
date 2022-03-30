@@ -72,6 +72,7 @@ namespace Inventory.EntityFramwork.Repositories
 
         public virtual async Task Add(T entity)
         {
+            entity.CreatedDate = DateTime.Now;
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             await _context.Set<T>().AddAsync(entity);
             Commit();
@@ -79,6 +80,7 @@ namespace Inventory.EntityFramwork.Repositories
 
         public virtual async Task Update(T entity)
         {
+            entity.ModifiedDate = DateTime.Now;
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Modified;
             Commit();
