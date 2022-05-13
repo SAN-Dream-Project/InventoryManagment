@@ -14,12 +14,31 @@ namespace Inventory.Application.Stocks
     public class StockAppService : IStockAppService
     {
         private readonly IStockRepository _stockRepository;
-
         public StockAppService(IStockRepository stockRepository)
         {
             _stockRepository = stockRepository;
         }
 
+        public async Task AddPurchesStock(StockInputDto stockInputDto)
+        {
+            var stock = _stockRepository.FindBy(x => x.GoodID == stockInputDto.GoodID).First();
+            if (stock != null)
+            {
+                stockInputDto.Id = stock.Id;
+                stockInputDto.Quantity = stock.Quantity + stockInputDto.Quantity;
+                await CreateOrUpdateStock(stockInputDto);
+            }
+        }
+        public async Task SubPurchesStock(StockInputDto stockInputDto)
+        {
+            var stock = _stockRepository.FindBy(x => x.GoodID == stockInputDto.GoodID).First();
+            if (stock != null)
+            {
+                stockInputDto.Id = stock.Id;
+                stockInputDto.Quantity = stock.Quantity - stockInputDto.Quantity;
+                await CreateOrUpdateStock(stockInputDto);
+            }
+        }
         public async Task CreateOrUpdateStock(StockInputDto goodInputDto)
         {
             if (goodInputDto.Id == null || goodInputDto.Id == Guid.Empty)
