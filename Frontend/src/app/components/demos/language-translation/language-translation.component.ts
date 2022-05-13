@@ -24,6 +24,7 @@ export class LanguageTranslationComponent implements OnInit {
       this.httpClient.get<any>("https://localhost:5001/api/v1/User/GetAllUser",
         {headers:
             new HttpHeaders({
+              'Accept-Language': this.language,
               'Authorization': this.bearerToken
             })
         }).subscribe((users)=>{

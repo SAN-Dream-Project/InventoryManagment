@@ -8,7 +8,8 @@ export  class LanguageInterceptor implements HttpInterceptor {
     const language = localStorage.getItem('selectedLanguage') || 'en';
     req = req.clone({
       setHeaders: {
-        'Accept-Language': language
+        'Accept-Language': language,
+        'Content-Language': language
       }
     });
     return next.handle(req);
