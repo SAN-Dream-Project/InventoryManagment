@@ -17,8 +17,8 @@ namespace Inventory.EntityFramwork.Abstract
         T GetSingle(Expression<Func<T, bool>> predicate);
         T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
-        Task Add(T entity);
-        Task Update(T entity);
+        Task<T> Add(T entity);
+        Task<T> Update(T entity);
         Task Delete(T entity);
         void DeleteWhere(Expression<Func<T, bool>> predicate);
         void Commit();

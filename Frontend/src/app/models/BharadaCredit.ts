@@ -1,7 +1,7 @@
 export interface BharadaCredit {
     id: any,
     retailerName:any,
-    bharadaSaleDetail:any
+    totalAmount:any
     paidAmount:any
     createdBy: string,
     createdDate: string,

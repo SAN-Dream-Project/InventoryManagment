@@ -11,7 +11,7 @@ namespace Inventory.Application.Shared.SaleDetails.Dto
         public Guid Id { get; set; }
         public string GoodName { get; set; }
         public string GoodSupplierName { get; set; }
-        public double? Quntity { get; set; }
+        public double? Quantity { get; set; }
         public double? Rate { get; set; }
         public double LabourRate { get; set; }
         public double? TotalLabourCosting { get; set; }

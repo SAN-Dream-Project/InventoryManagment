@@ -42,7 +42,7 @@ namespace Inventory.Application.BharadaCreditDetails
 
         public async Task<List<BharadaCreditDetailDto>> GetAllBharadaCreditDetails()
         {
-            var result = await _bharadaCreditDetailRepository.GetAll();
+            var result =  _bharadaCreditDetailRepository.AllIncluding(r=>r.Retailer,bs=>bs.BharataSaleDetail).ToList();
             var roleResult = result.ToList();
             var roleList = new List<BharadaCreditDetailDto>();
             foreach (var test in roleResult)

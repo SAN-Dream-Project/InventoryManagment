@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Inventory.Application.Shared.SaleDetails;
 using Inventory.Application.Shared.SaleDetails.Dto;
+using Inventory.Application.Shared.Stocks;
+using Inventory.Application.Shared.Stocks.Dto;
 using Inventory.Core.SaleDetails;
 using Inventory.EntityFramwork.Abstract.SaleDetails;
 using System;
@@ -14,23 +16,39 @@ namespace Inventory.Application.SaleDetails
     public class SaleDetailAppService : ISaleDetailAppService
     {
         private readonly ISaleDetailRepository _saleDetailRepository;
+        private readonly IStockAppService _IStockAppService;
 
-        public SaleDetailAppService(ISaleDetailRepository saleDetailRepository)
+        public SaleDetailAppService(ISaleDetailRepository saleDetailRepository, IStockAppService IStockAppService)
         {
             _saleDetailRepository = saleDetailRepository;
+            _IStockAppService = IStockAppService;
         }
 
         public async Task CreateOrUpdateSaleDetail(SaleDetailInputDto SaleDetailInputDto)
         {
+            var stock = new StockInputDto();
+            stock.Id = Guid.Empty;
+            stock.GoodID = SaleDetailInputDto.GoodID;
+
             if (SaleDetailInputDto.Id == null || SaleDetailInputDto.Id == Guid.Empty)
             {
                 var result = Mapper.Map<SaleDetailInputDto, SaleDetail>(SaleDetailInputDto);
-                await _saleDetailRepository.Add(result);
+                var returnResult = await _saleDetailRepository.Add(result);
+                if (stock.GoodID != null || stock.GoodID != Guid.Empty)
+                {
+                    stock.Quantity = returnResult.Quantity;
+                    await _IStockAppService.SubPurchesStock(stock);
+                }
             }
             else
             {
                 var result = Mapper.Map<SaleDetailInputDto, SaleDetail>(SaleDetailInputDto);
-                await _saleDetailRepository.Update(result);
+                var returnResult = await _saleDetailRepository.Update(result);
+                if (stock.GoodID != null || stock.GoodID != Guid.Empty)
+                {
+                    stock.Quantity = returnResult.Quantity;
+                    await _IStockAppService.SubPurchesStock(stock);
+                }
             }
         }
 

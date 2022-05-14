@@ -22,14 +22,14 @@
               <mat-cell *matCellDef="let row"> {{row.retailerName}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="bharadaSaleDetail">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Bharada Sale Detail </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{ row.bharadaSaleDetail }} </mat-cell>
+            <ng-container matColumnDef="totalAmount">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.totalAmount }} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="paidAmount">
-              <mat-header-cell *matHeaderCellDef> Paid Amount </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.paidAmount}} </mat-cell>
+            <ng-container matColumnDef="remaningAmount">
+              <mat-header-cell *matHeaderCellDef> Remaining Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.remaningAmount}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="createdBy">

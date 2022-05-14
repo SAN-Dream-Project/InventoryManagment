@@ -13,5 +13,8 @@ namespace Inventory.Application.Shared.Stocks
         Task DeleteStock(Guid stockId);
         Task<StockDto> GetStock(Guid stockId);
         Task<List<StockDto>> GetAllStocks();
+
+        Task AddPurchesStock(StockInputDto stockInputDto);
+        Task SubPurchesStock(StockInputDto stockInputDto);
     }
 }
