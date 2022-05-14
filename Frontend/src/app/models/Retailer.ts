@@ -1,8 +1,10 @@
 export interface Retailer {
     id: any,
-    firstName: string,
-    middleName: string,
-    lastName: string,
+    // firstName: string,
+    // middleName: string,
+    // lastName: string,
+    fullName: string,
+    companyName: string,
     mobileNo: string,
     emailID: string,
     address: string,

@@ -1,8 +1,9 @@
 export interface Labour {
     id: any,
-    firstName: string,
-    middleName: string,
-    lastName: string,
+    // firstName: string,
+    // middleName: string,
+    // lastName: string,
+    fullName: string,
     mobileNo: string,
     emailID: string,
     address: string,

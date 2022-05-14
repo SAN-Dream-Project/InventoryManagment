@@ -11,9 +11,7 @@ namespace Inventory.Application.Shared.EmployeeDetails.Dto
     public class EmployeeDetailDto
     {
         public Guid Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? MiddleName { get; set; }
-        public string? LastName { get; set; }
+        public string? FullName { get; set; }
         public Gender? Gender { get; set; }
         public string? MobileNo { get; set; }
         public string? EmailID { get; set; }

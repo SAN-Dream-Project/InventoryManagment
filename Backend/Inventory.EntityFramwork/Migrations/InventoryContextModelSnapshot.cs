@@ -78,6 +78,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<double?>("Discount")
                         .HasColumnType("float");
 
+                    b.Property<string>("DriverName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("LabourRateID")
                         .HasColumnType("uniqueidentifier");
 
@@ -107,6 +110,12 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<double?>("TotalLabourCosting")
                         .HasColumnType("float");
+
+                    b.Property<double?>("TransportCharges")
+                        .HasColumnType("float");
+
+                    b.Property<string>("VehicleNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -141,17 +150,11 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<int?>("EmplyeeType")
                         .HasColumnType("int");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
                         .HasColumnType("nvarchar(max)");
@@ -204,6 +207,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BankAccountNo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -213,16 +219,13 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("EmailID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
+                    b.Property<string>("IFSC")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
@@ -347,17 +350,11 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("EmailID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
                         .HasColumnType("nvarchar(max)");
@@ -454,7 +451,7 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Rate")
+                    b.Property<double?>("Rate")
                         .HasColumnType("float");
 
                     b.Property<string>("RateCriteria")
@@ -478,6 +475,9 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -487,17 +487,11 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<string>("EmailID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
                         .HasColumnType("nvarchar(max)");
@@ -576,10 +570,13 @@ namespace Inventory.EntityFramwork.Migrations
                     b.Property<double?>("Discount")
                         .HasColumnType("float");
 
+                    b.Property<string>("DriverName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("GoodID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("LabourRateID")
+                    b.Property<Guid?>("LabourRateID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ModifiedBy")
@@ -602,6 +599,12 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.Property<double?>("TotalLabourCosting")
                         .HasColumnType("float");
+
+                    b.Property<double?>("TransportCharges")
+                        .HasColumnType("float");
+
+                    b.Property<string>("VehicleNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -841,9 +844,7 @@ namespace Inventory.EntityFramwork.Migrations
 
                     b.HasOne("Inventory.Core.LabourRates.LabourRate", "LabourRate")
                         .WithMany()
-                        .HasForeignKey("LabourRateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LabourRateID");
 
                     b.HasOne("Inventory.Core.Retailers.Retailer", "GoodSupplier")
                         .WithMany()

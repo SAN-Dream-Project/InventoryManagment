@@ -16,7 +16,7 @@
 
           <mat-table [dataSource]="dataSource" matSort>
 
-            <ng-container matColumnDef="firstName">e
+            <!-- <ng-container matColumnDef="firstName">e
               <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
             </ng-container>
@@ -27,20 +27,31 @@
             <ng-container matColumnDef="lastName">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{ row.lastName }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="fullName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.fullName }} </mat-cell>
             </ng-container>
-
             <ng-container matColumnDef="mobileNo">
               <mat-header-cell *matHeaderCellDef> Mobile Number </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.mobileNo}} </mat-cell>
-
-            </ng-container><ng-container matColumnDef="emailId">
+            </ng-container>
+            <ng-container matColumnDef="emailId">
                 <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.emailID}} </mat-cell>
-
-              </ng-container><ng-container matColumnDef="address">
+            </ng-container>
+              <ng-container matColumnDef="address">
                 <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
               </ng-container>
+            <ng-container matColumnDef="bankAccountNo">
+              <mat-header-cell *matHeaderCellDef> Bank Account No </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.bankAccountNo}} </mat-cell>
+            </ng-container>
+           <ng-container matColumnDef="ifsc">
+              <mat-header-cell *matHeaderCellDef> IFSC Code </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.ifsc}} </mat-cell>
+            </ng-container>
 
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
@@ -82,7 +93,7 @@
           <h5 *ngIf="buttonStatus.updateButton">Update Good Supplier :</h5>
           <hr>
           <form [formGroup]="supplierForm">
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
             <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['firstName'].errors }" type="text" formControlName="firstName" name="firstName" [(ngModel)]="supplier.firstName" placeholder="First Name" required>
             <div *ngIf="formSubmitted && formControl['firstName'].errors" class="invalid-feedback">
@@ -101,6 +112,13 @@
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['lastName'].errors }" type="text" formControlName="lastName" name="lastName" [(ngModel)]="supplier.lastName" placeholder="Last Name" required>
             <div *ngIf="formSubmitted && formControl['lastName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['lastName'].errors?.['required']">Last name is required.</div>
+            </div>
+          </div> -->
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['fullName'].errors }" type="text" formControlName="fullName" name="fullName" [(ngModel)]="supplier.fullName" placeholder="Full Name" required>
+            <div *ngIf="formSubmitted && formControl['fullName'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['fullName'].errors?.['required']">Full name is required.</div>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -127,6 +145,19 @@
               <div *ngIf="formControl['address'].errors?.['maxlength']">Maximum 100 characters allowed for address.</div>
             </div>
           </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['bankAccountNo'].errors }" type="text" formControlName="bankAccountNo" name="bankAccountNo" [(ngModel)]="supplier.bankAccountNo" placeholder="Bank Account No" maxlength="100">
+            
+          </div>
+          
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['ifsc'].errors }" type="text" formControlName="ifsc" name="ifsc" [(ngModel)]="supplier.ifsc" placeholder="IFSC" maxlength="100">
+            
+          </div>
+
           <div class="input-group mb-3">
             <div class="input-group-text"><i class="c-fa fa fa-users"></i></div>
               <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="supplier.gender" required>

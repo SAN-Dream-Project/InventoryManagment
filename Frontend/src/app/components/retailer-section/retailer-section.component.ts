@@ -16,7 +16,7 @@ import { RetailerService } from 'src/app/services/retailer.service';
 export class RetailerSectionComponent implements OnInit {
   retailers:any = [];
   retailerForm: FormGroup;
-  displayedColumns = ['firstName', 'middleName', 'lastName','mobileNo', 'emailId', 'address', 'action'];
+  displayedColumns = ['fullName', 'companyName','mobileNo', 'emailId', 'address', 'action'];
   dataSource: MatTableDataSource<Retailer>;
   showModal: boolean = false;
   buttonStatus: any = {
@@ -26,9 +26,11 @@ export class RetailerSectionComponent implements OnInit {
   formSubmitted: boolean = false;
   retailer: Retailer = {
     id: '',
-    firstName: '',
-    middleName: '',
-    lastName: '',
+    // firstName: '',
+    // middleName: '',
+    // lastName: '',
+    fullName: '',
+    companyName: '',
     mobileNo: '',
     emailID: '',
     address: '',
@@ -64,9 +66,11 @@ export class RetailerSectionComponent implements OnInit {
       this.ngxSpinnerService.hide();
     }, 1000);
     this.retailerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      middleName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      // firstName: ['', [Validators.required]],
+      // middleName: ['', [Validators.required]],
+      // lastName: ['', [Validators.required]],
+      fullName: ['', [Validators.required]],
+      companyName: ['', [Validators.required]],
       mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       emailID: ['', [Validators.email]],
       address: ['', [Validators.maxLength(100)]],

@@ -14,7 +14,7 @@ import { StockService } from 'src/app/services/stock.service';
 })
 export class StockSectionComponent implements OnInit {
   stocks:any = [];
-  displayedColumns = ['goodName', 'quantity', 'createdBy'];
+  displayedColumns = ['goodName', 'quantity'];
   dataSource: MatTableDataSource<Stock>;
   showModal: boolean = false;
   buttonStatus: any = {
