@@ -19,6 +19,9 @@ import { BharadaRateSectionComponent } from './components/bharada-rate-section/b
 import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.component';
 import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
 import {LanguageTranslationComponent} from "./components/demos/language-translation/language-translation.component";
+import {
+  GoodPurchaseAverageRateComponent
+} from "./components/good-purchase-average-rate/good-purchase-average-rate.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -33,6 +36,7 @@ const routes: Routes = [
   { path: 'stock-section', component: StockSectionComponent },
   { path: 'labour-rate-section', component: LabourRateSectionComponent },
   { path: 'purchase-section', component: PurchaseSectionComponent },
+  { path: 'purchase-average-rate', component: GoodPurchaseAverageRateComponent },
   { path: 'sale-section', component: SaleSectionComponent },
   { path: 'bharada-rate-section', component: BharadaRateSectionComponent },
   { path: 'bharada-sale-section', component: BharadaSaleComponent },

@@ -26,6 +26,8 @@ export class DataTableComponent implements OnInit {
   displayedColumns = ['firstName', 'lastName', 'primaryMobNo', 'action'];
   dataSource: MatTableDataSource<User>;
   showModal: boolean = false;
+  showPrintModal: boolean = false;
+  printObj: any;
   buttonStatus: any = {
     saveButton: false,
     updateButton: false
@@ -154,6 +156,12 @@ export class DataTableComponent implements OnInit {
       this.buttonStatus.updateButton = false;
       this.user = {} as User;
       this.user.gender = '';
+    } else if (type === 'Print') {
+      this.printObj = userObj;
+      this.showPrintModal = true;
+      setTimeout(()=>{
+        window.print();
+      }, 500);
     } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
@@ -164,6 +172,9 @@ export class DataTableComponent implements OnInit {
 
   closeModal() {
     this.showModal = false;
+  }
+  closePrintModal() {
+    this.showPrintModal = false;
   }
 
   /*openUpdateModal(type:any, userObj:any) {

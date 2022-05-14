@@ -11,6 +11,7 @@
           </mat-form-field>
           <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i
               class="fa fa-money me-2"></i>Add New Purchase</button>
+          <a class="btn btn-success float-end mt-1 me-2" [routerLink]="['/purchase-average-rate']"><i class="fa fa-balance-scale me-2"></i>Get Good Purchase Average Rate</a>
         </div>
 
         <div class="example-container mat-elevation-z8">
@@ -197,7 +198,7 @@
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaTotal'].errors }" type="text"
                 formControlName="kadtaTotal" name="kadtaTotal" [(ngModel)]="purchase.kadtaTotal"
-                placeholder="Kadata Total"required>
+                placeholder="Kadata Total" required>
                 <!-- pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()"  -->
               <div *ngIf="formSubmitted && formControl['kadtaTotal'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['kadtaTotal'].errors?.['required']">Kadata Total is required.</div>
@@ -236,7 +237,7 @@
                 <div *ngIf="formControl['labourRateID'].errors?.['required']">Labour Rate is required.</div>
                 <div *ngIf="formControl['labourRateID'].errors?.['pattern']">Wrong numeric value.</div>
               </div> -->
-            
+
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
               <input class="form-control"
