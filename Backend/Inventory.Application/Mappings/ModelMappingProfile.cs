@@ -76,7 +76,7 @@ namespace Inventory.Application
 
             CreateMap<SaleDetail, SaleDetailInputDto>().ReverseMap();
             CreateMap<SaleDetail, SaleDetailDto>().ForMember(d => d.GoodName, o => o.MapFrom(s => s.Good.GoodName)).
-            ForMember(d => d.GoodSupplierName, o => o.MapFrom(s => s.GoodSupplier.FullName)).
+            ForMember(d => d.GoodRetailerName, o => o.MapFrom(s => s.GoodSupplier.CompanyName!=null? s.GoodSupplier.CompanyName: s.GoodSupplier.FullName)).
             ForMember(d => d.LabourRate, o => o.MapFrom(s => s.LabourRate.Rate));
 
             CreateMap<SaleDetailDto, SaleDetail>();

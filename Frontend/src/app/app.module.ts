@@ -32,6 +32,7 @@ import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.com
 import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
 import { LanguageTranslationComponent } from './components/demos/language-translation/language-translation.component';
 import {LanguageInterceptor} from "./interceptors/language.interceptor";
+import { GoodPurchaseAverageRateComponent } from './components/good-purchase-average-rate/good-purchase-average-rate.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {LanguageInterceptor} from "./interceptors/language.interceptor";
     BharadaRateSectionComponent,
     BharadaSaleComponent,
     BharadaCreditComponent,
-    LanguageTranslationComponent
+    LanguageTranslationComponent,
+    GoodPurchaseAverageRateComponent
   ],
   imports: [
     BrowserModule,

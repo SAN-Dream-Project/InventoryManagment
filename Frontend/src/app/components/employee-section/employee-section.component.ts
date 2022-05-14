@@ -16,7 +16,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EmployeeSectionComponent implements OnInit, AfterViewInit {
   employees:any = [];
   employeeForm: FormGroup;
-  displayedColumns = ['firstName', 'middleName', 'lastName','mobileNo', 'emailId', 'address', 'action'];
+  displayedColumns = ['fullName','mobileNo', 'emailId', 'address', 'action'];
   dataSource: MatTableDataSource<Employee>;
   showModal: boolean = false;
   buttonStatus: any = {
