@@ -51,7 +51,9 @@ namespace Inventory.EntityFramwork.Repositories
 
         public T GetSingle(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().FirstOrDefault(predicate);
+            var result = _context.Set<T>().FirstOrDefault(predicate);
+            Commit();
+            return result;
         }
 
         public T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
@@ -67,21 +69,27 @@ namespace Inventory.EntityFramwork.Repositories
 
         public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().Where(predicate);
+            var result = _context.Set<T>().AsNoTracking().Where(predicate);
+            Commit();
+            return result;
         }
 
-        public virtual async Task Add(T entity)
+        public virtual async Task<T> Add(T entity)
         {
+            entity.CreatedDate = DateTime.Now;
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             await _context.Set<T>().AddAsync(entity);
             Commit();
+            return entity;
         }
 
-        public virtual async Task Update(T entity)
+        public virtual async Task<T> Update(T entity)
         {
+            entity.ModifiedDate = DateTime.Now;
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Modified;
             Commit();
+            return entity;
         }
         public virtual async Task Delete(T entity)
         {

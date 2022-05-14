@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Initial_Tables : Migration
+    public partial class Added_Initial_Tables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -376,7 +376,7 @@ namespace Inventory.EntityFramwork.Migrations
                     SaleDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GoodID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Quntity = table.Column<double>(type: "float", nullable: true),
+                    Quantity = table.Column<double>(type: "float", nullable: true),
                     Rate = table.Column<double>(type: "float", nullable: true),
                     LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TotalLabourCosting = table.Column<double>(type: "float", nullable: true),

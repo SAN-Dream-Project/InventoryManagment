@@ -2,6 +2,8 @@
 using Inventory.Application.Shared.Dropdowns;
 using Inventory.Application.Shared.Goods;
 using Inventory.Application.Shared.Goods.Dto;
+using Inventory.Application.Shared.Stocks;
+using Inventory.Application.Shared.Stocks.Dto;
 using Inventory.Core.Goods;
 using Inventory.EntityFramwork.Abstract.Goods;
 using System;
@@ -16,9 +18,11 @@ namespace Inventory.Application.Goods
     {
         private readonly IGoodRepository _goodRepository;
 
-        public GoodAppService(IGoodRepository goodRepository)
+        private readonly IStockAppService _IStockAppService;
+        public GoodAppService(IGoodRepository goodRepository, IStockAppService IStockAppService)
         {
             _goodRepository = goodRepository;
+            _IStockAppService = IStockAppService;
         }
 
         public async Task CreateOrUpdateGood(GoodInputDto goodInputDto)
@@ -26,7 +30,9 @@ namespace Inventory.Application.Goods
             if (goodInputDto.Id == null || goodInputDto.Id == Guid.Empty)
             {
                 var result = Mapper.Map<GoodInputDto, Good>(goodInputDto);
-                await _goodRepository.Add(result);
+                result = await _goodRepository.Add(result);
+                await _IStockAppService.CreateOrUpdateStock(new StockInputDto() { GoodID = result.Id, Quantity = 0, });
+                
             }
             else
             {
