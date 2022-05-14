@@ -173,7 +173,7 @@ export class PurchaseSectionComponent implements OnInit {
      // kadataID: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
       kadtaTotal: ['', [Validators.required]],
       netGoodQuantity: ['', [Validators.required]],
-      labourRateID: ['', [Validators.required]],
+      //labourRateID: [''],
       totalLabourCosting: ['', [Validators.required]],
       totalAmount: ['', [Validators.required]]
     });

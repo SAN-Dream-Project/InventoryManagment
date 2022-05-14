@@ -21,11 +21,14 @@ namespace Inventory.Core.SaleDetails
         public Retailer GoodSupplier { get; set; }
         public double? Quantity { get; set; }
         public double? Rate { get; set; }
-        public virtual Guid LabourRateID { get; set; }
+        public virtual Guid? LabourRateID { get; set; }
         public LabourRate LabourRate { get; set; }
         public double? TotalLabourCosting { get; set; }
         public double? Discount { get; set; }
         public double? TotalAmount { get; set; }
+        public string? VehicleNumber { get; set; }
+        public string? DriverName { get; set; }
+        public double? TransportCharges { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

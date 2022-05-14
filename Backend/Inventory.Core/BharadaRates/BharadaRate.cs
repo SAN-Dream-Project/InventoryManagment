@@ -14,7 +14,7 @@ namespace Inventory.Core.RateTables
         public Guid Id { get; set; }
         public int? RateCriteriaID { get; set; }
         public string? RateCriteria { get; set; }
-        public double Rate { get; set; }
+        public double? Rate { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

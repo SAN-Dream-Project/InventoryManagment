@@ -26,9 +26,10 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
   formSubmitted: boolean = false;
   employee: Employee = {
     id: '',
-    firstName: '',
-    middleName: '',
-    lastName: '',
+    // firstName: '',
+    // middleName: '',
+    // lastName: '',
+    fullName:'',
     mobileNo: '',
     emailID: '',
     address: '',
@@ -64,9 +65,10 @@ export class EmployeeSectionComponent implements OnInit, AfterViewInit {
       this.ngxSpinnerService.hide();
     }, 1000);
     this.employeeForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      middleName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      // firstName: ['', [Validators.required]],
+      // middleName: ['', [Validators.required]],
+      // lastName: ['', [Validators.required]],
+      fullName: ['', [Validators.required]],
       mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       emailID: ['', [Validators.email]],
       address: ['', [Validators.maxLength(100)]],
