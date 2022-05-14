@@ -17,7 +17,7 @@ import { DropdownService } from 'src/app/services/dropdown.service';
   styleUrls: ['./bharada-sale.component.less']
 })
 export class BharadaSaleComponent implements OnInit {
-  displayedColumns = ['bharadaRate', 'quantity', 'retailerName', 'totalAmount', 'labourRate', 'totalLabourCosting', 'netAmount','paidAmount','remainingAmount', 'action'];
+  displayedColumns = ['bharadaRate', 'quantity', 'retailerName', 'totalAmount', 'totalLabourCosting', 'netAmount','paidAmount','remainingAmount','vehicleNumber','driverName','transportCharges','action'];
   dataSource: MatTableDataSource<BharadaSale>;
   showModal: boolean = false;
   bharadaSales: any = [];
@@ -44,20 +44,23 @@ export class BharadaSaleComponent implements OnInit {
   selectedBharadaRate = null;
   bharadaSale: BharadaSaleInput = {
     id: '',
-    bharadaRateID:'',
-    quantity:'',
-    retailerID:'',
-    totalAmount:'',
-    discount :'',
-    labourRateID:'',
-    totalLabourCosting:'',
-    netAmount:'',
-    paidAmount:'',
-    remainingAmount:'',
+    bharadaRateID: '',
+    quantity: '',
+    retailerID: '',
+    totalAmount: '',
+    discount: '',
+    labourRateID: '',
+    totalLabourCosting: '',
+    netAmount: '',
+    paidAmount: '',
+    remainingAmount: '',
     createdBy: '',
     createdDate: '',
     modifiedBy: '',
-    modifiedDate: ''
+    modifiedDate: '',
+    vehicleNumber: '',
+    driverName: '',
+    transportCharges: ''
   };
   bharadaSaleForm: FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
@@ -139,12 +142,15 @@ export class BharadaSaleComponent implements OnInit {
       bharadaRateID: ['', [Validators.required]],
       retailerID: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
-      labourRateID: ['', [Validators.required]],
+     // labourRateID: ['', [Validators.required]],
       totalLabourCosting: ['', [Validators.required]],
       totalAmount: ['', [Validators.required]],
       netAmount: ['', [Validators.required]],
       paidAmount: ['', [Validators.required]],
-      remainingAmount: ['', [Validators.required]]
+      remainingAmount: ['', [Validators.required]],
+      vehicleNumber: ['', []],
+      driverName:  ['', []],
+      transportCharges: ['', []],
     });
   }
   get formControl(): { [key: string]: AbstractControl } {

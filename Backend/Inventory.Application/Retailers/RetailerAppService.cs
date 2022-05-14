@@ -63,7 +63,7 @@ namespace Inventory.Application.Retailers
         public async Task<List<Dropdown>> GetRetailerList()
         {
             return _retailerRepository.GetAll().Result.
-                Select(x => new Dropdown() { Key = x.Id, Value = x.FirstName + " " + x.MiddleName + " " + x.LastName }).ToList();
+                Select(x => new Dropdown() { Key = x.Id, Value = x.CompanyName !=null ? x.CompanyName:x.FullName }).ToList();
 
         }
     }

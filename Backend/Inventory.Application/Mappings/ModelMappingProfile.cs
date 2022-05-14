@@ -67,26 +67,31 @@ namespace Inventory.Application
             CreateMap<BharadaRate, BharadaRateDto>().ReverseMap();
             CreateMap<Purchase, PurchaseInputDto>().ReverseMap();
             CreateMap<Purchase, PurchaseDto>().ForMember(d => d.GoodName, o => o.MapFrom(s => s.Good.GoodName)).
-            ForMember(d => d.GoodSupplierName, o => o.MapFrom(s => s.GoodSupplier.FirstName+" "+s.GoodSupplier.MiddleName+" "+s.GoodSupplier.LastName)).
+            ForMember(d => d.GoodSupplierName, o => o.MapFrom(s => s.GoodSupplier.FullName)).
             ForMember(d => d.KadataQuantity, o => o.MapFrom(s => s.Kadata.KadtaQuantity)).
             ForMember(d => d.LabourRate, o => o.MapFrom(s => s.LabourRate.Rate));
             CreateMap<PurchaseDto, Purchase>();
             CreateMap<LabourDetail, LabourDetailInputDto>().ReverseMap();
             CreateMap<LabourDetail, LabourDetailDto>().ReverseMap();
+
             CreateMap<SaleDetail, SaleDetailInputDto>().ReverseMap();
             CreateMap<SaleDetail, SaleDetailDto>().ForMember(d => d.GoodName, o => o.MapFrom(s => s.Good.GoodName)).
-            ForMember(d => d.GoodSupplierName, o => o.MapFrom(s => s.GoodSupplier.FirstName + " " + s.GoodSupplier.MiddleName + " " + s.GoodSupplier.LastName)).
+            ForMember(d => d.GoodRetailerName, o => o.MapFrom(s => s.GoodSupplier.CompanyName!=null? s.GoodSupplier.CompanyName: s.GoodSupplier.FullName)).
             ForMember(d => d.LabourRate, o => o.MapFrom(s => s.LabourRate.Rate));
+
             CreateMap<SaleDetailDto, SaleDetail>();
             CreateMap<BharadaSaleDetail, BharadaSaleDetailInputDto>().ReverseMap();
+
             CreateMap<BharadaSaleDetail, BharadaSaleDetailDto>().ForMember(d => d.BharadaRate, o => o.MapFrom(s => s.BharadaRate.Rate)).
-            ForMember(d => d.RetailerName, o => o.MapFrom(s => s.Retailer.FirstName + " " + s.Retailer.MiddleName + " " + s.Retailer.LastName)).
+            ForMember(d => d.RetailerName, o => o.MapFrom(s => s.Retailer.FullName)).
             ForMember(d => d.LabourRate, o => o.MapFrom(s => s.LabourRate.Rate));
             CreateMap<BharadaSaleDetailDto, BharadaSaleDetail>();
             CreateMap<BharadaCreditDetail, BharadaCreditDetailInputDto>().ReverseMap();
-            CreateMap<BharadaCreditDetail, BharadaCreditDetailDto>().ForMember(d => d.RemaningAmount, o => o.MapFrom(s => s.BharataSaleDetail.RemainingAmount)).
+
+            CreateMap<BharadaCreditDetail, BharadaCreditDetailDto>().
+            ForMember(d => d.RemaningAmount, o => o.MapFrom(s => s.BharataSaleDetail.RemainingAmount)).
             ForMember(d => d.TotalAmount, o => o.MapFrom(s => s.BharataSaleDetail.TotalAmount)).
-            ForMember(d => d.RetailerName, o => o.MapFrom(s => s.Retailer.FirstName + " " + s.Retailer.MiddleName + " " + s.Retailer.LastName));
+            ForMember(d => d.RetailerName, o => o.MapFrom(s => s.Retailer.FullName));
             CreateMap<BharadaCreditDetailDto, BharadaCreditDetail>();
         }
     }

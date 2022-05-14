@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory.EntityFramwork.Migrations
 {
-    public partial class Added_Initial_Tables : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace Inventory.EntityFramwork.Migrations
                     BharadaRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RateCriteriaID = table.Column<int>(type: "int", nullable: true),
                     RateCriteria = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rate = table.Column<double>(type: "float", nullable: false),
+                    Rate = table.Column<double>(type: "float", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -32,9 +32,7 @@ namespace Inventory.EntityFramwork.Migrations
                 columns: table => new
                 {
                     EmployeeDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailID = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -71,13 +69,13 @@ namespace Inventory.EntityFramwork.Migrations
                 columns: table => new
                 {
                     GoodSupplierID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BankAccountNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IFSC = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -109,9 +107,7 @@ namespace Inventory.EntityFramwork.Migrations
                 columns: table => new
                 {
                     LabourID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailID = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -147,9 +143,8 @@ namespace Inventory.EntityFramwork.Migrations
                 columns: table => new
                 {
                     RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailID = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -344,6 +339,9 @@ namespace Inventory.EntityFramwork.Migrations
                     NetAmount = table.Column<double>(type: "float", nullable: true),
                     PaidAmount = table.Column<double>(type: "float", nullable: true),
                     RemainingAmount = table.Column<double>(type: "float", nullable: true),
+                    VehicleNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DriverName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransportCharges = table.Column<double>(type: "float", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -378,10 +376,13 @@ namespace Inventory.EntityFramwork.Migrations
                     RetailerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<double>(type: "float", nullable: true),
                     Rate = table.Column<double>(type: "float", nullable: true),
-                    LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LabourRateID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TotalLabourCosting = table.Column<double>(type: "float", nullable: true),
                     Discount = table.Column<double>(type: "float", nullable: true),
                     TotalAmount = table.Column<double>(type: "float", nullable: true),
+                    VehicleNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DriverName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransportCharges = table.Column<double>(type: "float", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -400,8 +401,7 @@ namespace Inventory.EntityFramwork.Migrations
                         name: "FK_SaleDetail_LabourRate_LabourRateID",
                         column: x => x.LabourRateID,
                         principalTable: "LabourRate",
-                        principalColumn: "LabourRateID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LabourRateID");
                     table.ForeignKey(
                         name: "FK_SaleDetail_Retailer_RetailerID",
                         column: x => x.RetailerID,

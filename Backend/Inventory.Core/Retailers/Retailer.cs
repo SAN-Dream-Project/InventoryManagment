@@ -13,9 +13,8 @@ namespace Inventory.Core.Retailers
     {
         [Column("RetailerID")]
         public Guid Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? MiddleName { get; set; }
-        public string? LastName { get; set; }
+        public string? FullName { get; set; }
+        public string? CompanyName { get; set; }
         public Gender? Gender { get; set; }
         public string? MobileNo { get; set; }
         public string? EmailID { get; set; }

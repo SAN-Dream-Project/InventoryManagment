@@ -62,7 +62,7 @@ namespace Inventory.Application.EmployeeDetails
         public async Task<List<Dropdown>> GetEmployeeList()
         {
             return _employeeDetailRepository.GetAll().Result.
-                Select(x => new Dropdown() { Key = x.Id, Value = x.FirstName+" "+x.MiddleName+" "+x.LastName }).ToList();
+                Select(x => new Dropdown() { Key = x.Id, Value = x.FullName }).ToList();
 
         }
     }

@@ -74,5 +74,20 @@ namespace Inventory.Host.Controllers
                 return null;
             }
         }
+
+        [HttpGet("GetPurchaseAverageRates")]
+        public async Task<List<PurchaseAverageDto>> GetPurchaseAverageRates()
+        {
+            try
+            {
+                return await _purchaseAppService.GetPurchaseAverageRates();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return null;
+            }
+        }
     }
 }

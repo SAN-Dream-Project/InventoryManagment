@@ -16,7 +16,7 @@ import { SupplierService } from 'src/app/services/supplier.service';
 export class GoodsSupplierSectionComponent implements OnInit {
   suppliers:any = [];
   supplierForm: FormGroup;
-  displayedColumns = ['firstName', 'middleName', 'lastName','mobileNo', 'emailId', 'address', 'action'];
+  displayedColumns = ['fullName', 'mobileNo', 'emailId', 'address', 'bankAccountNo','ifsc', 'action'];
   dataSource: MatTableDataSource<Supplier>;
   showModal: boolean = false;
   buttonStatus: any = {
@@ -26,9 +26,10 @@ export class GoodsSupplierSectionComponent implements OnInit {
   formSubmitted: boolean = false;
   supplier: Supplier = {
     id: '',
-    firstName: '',
-    middleName: '',
-    lastName: '',
+    // firstName: '',
+    // middleName: '',
+    // lastName: '',
+    fullName: '',
     mobileNo: '',
     emailID: '',
     address: '',
@@ -37,6 +38,8 @@ export class GoodsSupplierSectionComponent implements OnInit {
     modifiedBy: '',
     modifiedDate: '',
     gender: '',
+    bankAccountNo: '',
+    ifsc: '',
   };
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
@@ -63,13 +66,16 @@ export class GoodsSupplierSectionComponent implements OnInit {
       this.ngxSpinnerService.hide();
     }, 1000);
     this.supplierForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      middleName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      // firstName: ['', [Validators.required]],
+      // middleName: ['', [Validators.required]],
+      // lastName: ['', [Validators.required]],
+      fullName: ['', [Validators.required]],
       mobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       emailID: ['', [Validators.email]],
       address: ['', [Validators.maxLength(100)]],
-      gender: ['', [Validators.required]]
+      gender: ['', [Validators.required]],
+      bankAccountNo: ['', []],
+      ifsc: ['', []]
     });
   }
   get formControl(): { [key: string]: AbstractControl } {

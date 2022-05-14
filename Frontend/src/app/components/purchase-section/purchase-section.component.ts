@@ -20,7 +20,7 @@ import { map, Observable, startWith } from 'rxjs';
 })
 export class PurchaseSectionComponent implements OnInit {
 
-  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'kadtaTotal', 'netGoodQuantity', 'labourRate', 'totalLabourCosting', 'totalAmount', 'action'];
+  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'kadtaTotal', 'netGoodQuantity', 'totalLabourCosting', 'totalAmount', 'action'];
   dataSource: MatTableDataSource<Purchase>;
   showModal: boolean = false;
   users: any = [];
@@ -149,6 +149,10 @@ export class PurchaseSectionComponent implements OnInit {
     this.purchase.kadataID = kadata.key;
     this.purchase.kadtaTotal = (this.purchase.grossGoodQuantity/100)*kadata.value;
     this.purchase.netGoodQuantity = this.purchase.grossGoodQuantity - this.purchase.kadtaTotal;
+    this.purchase.totalAmount = (this.purchase.netGoodQuantity * this.purchase.goodRate);
+    if(this.purchase.totalLabourCosting){
+      this.purchase.totalAmount = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
+    }
   }
   SelectedlabourCharge(labourRate: any) {
     this.purchase.labourRateID = labourRate.key;
@@ -173,7 +177,7 @@ export class PurchaseSectionComponent implements OnInit {
      // kadataID: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
       kadtaTotal: ['', [Validators.required]],
       netGoodQuantity: ['', [Validators.required]],
-      labourRateID: ['', [Validators.required]],
+      //labourRateID: [''],
       totalLabourCosting: ['', [Validators.required]],
       totalAmount: ['', [Validators.required]]
     });
@@ -236,6 +240,7 @@ export class PurchaseSectionComponent implements OnInit {
   }
 
   appendZeros() {
+    this.purchase.totalAmount = (this.purchase.netGoodQuantity * this.purchase.goodRate) - this.purchase.totalLabourCosting;
     /*let currentValue = this.user.primaryMobNo;
     let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
     currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';*/

@@ -17,7 +17,7 @@ import { SaleService } from 'src/app/services/sale.service';
   styleUrls: ['./sale-section.component.less']
 })
 export class SaleSectionComponent implements OnInit {
-  displayedColumns = ['goodName', 'goodSupplierName', 'quantity', 'rate', 'labourRate', 'totalLabourCosting', 'totalAmount', 'action'];
+  displayedColumns = ['goodName', 'goodRetailerName', 'quantity', 'rate',  'totalLabourCosting', 'totalAmount','vehicleNumber','driverName','transportCharges', 'action'];
   dataSource: MatTableDataSource<Sale>;
   showModal: boolean = false;
   sales: any = [];
@@ -50,12 +50,15 @@ export class SaleSectionComponent implements OnInit {
     rate: '',
     labourRateID: '',
     totalLabourCosting: '',
-    discount:'',
+    discount: '',
     totalAmount: '',
     createdBy: '',
     createdDate: '',
     modifiedBy: '',
-    modifiedDate: ''
+    modifiedDate: '',
+    vehicleNumber: '',
+    driverName: '',
+    transportCharges: ''
   };
   saleForm: FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
@@ -135,9 +138,12 @@ export class SaleSectionComponent implements OnInit {
       retailerID: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       rate: ['', [Validators.required]],
-      labourRateID: ['', [Validators.required]],
+      // labourRateID: ['', [Validators.required]],
       totalLabourCosting: ['', [Validators.required]],
       totalAmount: ['', [Validators.required]],
+      vehicleNumber: ['', []],
+      driverName:  ['', []],
+      transportCharges: ['', []],
     });
   }
   get formControl(): { [key: string]: AbstractControl } {
@@ -177,8 +183,8 @@ export class SaleSectionComponent implements OnInit {
       this.sale = purchaseObj;
       this.selectedGood = purchaseObj.goodName;
       this.sale.goodID = this.goods.find(x=>x.value === purchaseObj.goodName)?.key;
-      this.selectedRetailer = purchaseObj.goodSupplierName;
-      this.sale.retailerID = this.retailers.find(x=>x.value === purchaseObj.goodSupplierName)?.key;
+      this.selectedRetailer = purchaseObj.goodRetailerName;
+      this.sale.retailerID = this.retailers.find(x=>x.value === purchaseObj.goodRetailerName)?.key;
       this.seletedlabourCharge = purchaseObj.labourRate;
       this.sale.labourRateID = this.labourCharges.find(x=>x.value == purchaseObj.labourRate)?.key;
     }

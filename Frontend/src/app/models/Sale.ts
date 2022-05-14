@@ -8,6 +8,9 @@ export interface Sale{
     totalLabourCosting:any
     discount:any
     totalAmout:any
+    vehicleNumber:any,
+    driverName:any,
+    transportCharges :any,
     createdBy:any
     createdDate:any
     modifiedBy:any
@@ -24,6 +27,9 @@ export interface Sale{
     totalLabourCosting:any
     discount:any
     totalAmount:any
+    vehicleNumber:any,
+    driverName:any,
+    transportCharges :any,
     createdBy:any
     createdDate:any
     modifiedBy:any

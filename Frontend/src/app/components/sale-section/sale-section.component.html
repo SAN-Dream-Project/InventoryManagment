@@ -22,9 +22,9 @@
               <mat-cell *matCellDef="let row"> {{row.goodName}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="goodSupplierName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Good Supplier Name </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{ row.goodSupplierName }} </mat-cell>
+            <ng-container matColumnDef="goodRetailerName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Retailer Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.goodRetailerName }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="quantity">
@@ -50,6 +50,18 @@
             <ng-container matColumnDef="totalAmount">
               <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.totalAmount}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="vehicleNumber">
+              <mat-header-cell *matHeaderCellDef> Vehicle Number </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.vehicleNumber}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="driverName">
+              <mat-header-cell *matHeaderCellDef> Driver Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.driverName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="transportCharges">
+              <mat-header-cell *matHeaderCellDef> Transport Charges </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.transportCharges}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="action">
@@ -90,8 +102,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
-          <h5 *ngIf="buttonStatus.saveButton">Create New Purchase :</h5>
-          <h5 *ngIf="buttonStatus.updateButton">Update Purchase :</h5>
+          <h5 *ngIf="buttonStatus.saveButton">Create New Sale :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Sale :</h5>
           <hr>
           <form [formGroup]="saleForm">
             <div class="input-group mb-3">
@@ -110,7 +122,7 @@
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
               <mat-form-field class="form-control">
-                <input matInput placeholder="Search Supplier" [matAutocomplete]="autoRetailer" [(ngModel)]="selectedRetailer"
+                <input matInput placeholder="Search Retailer" [matAutocomplete]="autoRetailer" [(ngModel)]="selectedRetailer"
                   formControlName="retailerID" name="retailerID" [formControl]="retailerCtrl">
                 <mat-autocomplete #autoRetailer="matAutocomplete">
                   <mat-option *ngFor="let retailer of filteredRetailer | async" (click)="SelectedRetailer(retailer)"
@@ -142,7 +154,7 @@
                 <div *ngIf="formControl['rate'].errors?.['pattern']">Wrong numeric value.</div>
               </div>
             </div>
-            <div class="input-group mb-3">
+            <!-- <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
               <mat-form-field class="form-control">
                 <input matInput placeholder="Search Labour Rate" [matAutocomplete]="autoLabourRate" [(ngModel)]="seletedlabourCharge"
@@ -154,7 +166,7 @@
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
-            </div>
+            </div> -->
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
               <input class="form-control"
@@ -167,12 +179,37 @@
                 <div *ngIf="formControl['totalLabourCosting'].errors?.['pattern']">Wrong numeric value.</div>
               </div>
             </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['vehicleNumber'].errors }" type="text"
+                formControlName="vehicleNumber" name="vehicleNumber" [(ngModel)]="sale.vehicleNumber"
+                placeholder="Vehicle Number" >
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['driverName'].errors }" type="text"
+                formControlName="driverName" name="driverName" [(ngModel)]="sale.driverName"
+                placeholder="Driver Name" >
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['transportCharges'].errors }" type="text"
+                formControlName="transportCharges" name="transportCharges" [(ngModel)]="sale.transportCharges"
+                placeholder="Transport Charges" >
+            </div>
+
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }" type="text"
                 formControlName="totalAmount" name="totalAmount" [(ngModel)]="sale.totalAmount"
-                placeholder="Total Amout" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Total Amount" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
               <div *ngIf="formSubmitted && formControl['totalAmount'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['totalAmount'].errors?.['required']">Total Amount is required.</div>
                 <div *ngIf="formControl['totalAmount'].errors?.['pattern']">Wrong numeric value.</div>
