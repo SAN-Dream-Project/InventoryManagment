@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
 
   logout():void {
     sessionStorage.removeItem('bearerToken');
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('errorMessage');
     this.router.navigate(['/login']);
   }
 

@@ -201,10 +201,10 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-  appendZeros() {
-    let currentValue = this.user.primaryMobNo;
+  appendZeros(event: any) {
+    let currentValue = (event.target as HTMLInputElement).value;
     let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
-    currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';
+    currentValue != undefined ? currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? (event.target as HTMLInputElement).value = currentValue : (event.target as HTMLInputElement).value = currentValue + '.00' : (event.target as HTMLInputElement).value = '0.00';
   }
 
   createRecord(userObj: User) {

@@ -107,7 +107,7 @@
           <hr>
           <form [formGroup]="saleForm">
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i> Good </div>
               <mat-form-field class="form-control">
                 <input matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
                   formControlName="goodID" name="goodID" [formControl]="goodCtrl">
@@ -120,7 +120,7 @@
               </mat-form-field>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-user"></i> Retailer </div>
               <mat-form-field class="form-control">
                 <input matInput placeholder="Search Retailer" [matAutocomplete]="autoRetailer" [(ngModel)]="selectedRetailer"
                   formControlName="retailerID" name="retailerID" [formControl]="retailerCtrl">
@@ -133,7 +133,7 @@
               </mat-form-field>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Good Qty. </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['quantity'].errors }" type="text"
                 formControlName="quantity" name="quantity" [(ngModel)]="sale.quantity"
@@ -145,7 +145,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Good Rate </div>
               <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rate'].errors }"
                 type="text" formControlName="rate" name="rate" [(ngModel)]="sale.rate"
                 placeholder="Good Rate" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
@@ -168,7 +168,7 @@
               </mat-form-field>
             </div> -->
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Labour Cost </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalLabourCosting'].errors }" type="text"
                 formControlName="totalLabourCosting" name="totalLabourCosting" [(ngModel)]="sale.totalLabourCosting"
@@ -181,7 +181,7 @@
             </div>
 
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-cab"></i> Vehicle No. </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['vehicleNumber'].errors }" type="text"
                 formControlName="vehicleNumber" name="vehicleNumber" [(ngModel)]="sale.vehicleNumber"
@@ -189,7 +189,7 @@
             </div>
 
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-user"></i> Driver Name </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['driverName'].errors }" type="text"
                 formControlName="driverName" name="driverName" [(ngModel)]="sale.driverName"
@@ -197,7 +197,7 @@
             </div>
 
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Transport Charge </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['transportCharges'].errors }" type="text"
                 formControlName="transportCharges" name="transportCharges" [(ngModel)]="sale.transportCharges"
@@ -205,7 +205,7 @@
             </div>
 
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Total Amount </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }" type="text"
                 formControlName="totalAmount" name="totalAmount" [(ngModel)]="sale.totalAmount"

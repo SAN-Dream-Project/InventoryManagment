@@ -13,6 +13,9 @@
             <input class="form-control form-control-lg" id="txtPassword" name="txtPassword" type="password" placeholder="Password" #txtPassword>
           </div>
           <button class="form-control btn-secondary btn mt-3 position-absolute start-50 w-75 translate-middle-x pt-5 pb-3 c-m-zindex fw-bold shadow" (click)="loginChecker(txtUsername.value, txtPassword.value)">Login</button>
+          <div class="pt-3 pb-0 alert-danger position-absolute start-50 top-0 translate-middle fw-bold w-75" *ngIf="hasError">
+            <h5><i class="fa fa-warning me-2"></i> {{ errorMessage }}</h5>
+          </div>
         </div>
       </div>
     </div>

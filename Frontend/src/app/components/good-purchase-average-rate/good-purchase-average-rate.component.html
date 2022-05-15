@@ -13,9 +13,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let good of goods">
-            <td class="align-middle">{{ good.goodName }}</td>
-            <td class="align-middle">{{ good.averageRate }}</td>
+          <ng-container *ngIf="goods.length > 0">
+            <tr *ngFor="let good of goods">
+              <td class="align-middle">{{ good.goodName }}</td>
+              <td class="align-middle">{{ good.averageRate }}</td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="goods.length == 0">
+            <td class="align-middle text-center text-danger fw-bold" colspan="3"><i class="fa fa-warning me-2"></i>Good entry is not there for today..!</td>
           </tr>
           </tbody>
         </table>

@@ -119,7 +119,7 @@
               </div>
             </div> -->
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i> Good </div>
               <mat-form-field class="form-control">
                 <input matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
                   formControlName="goodID" name="goodID" [formControl]="goodCtrl">
@@ -132,7 +132,7 @@
               </mat-form-field>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-user"></i> Supplier </div>
               <mat-form-field class="form-control">
                 <input matInput placeholder="Search Supplier" [matAutocomplete]="autoSuppiler" [(ngModel)]="selectedSupplier"
                   formControlName="goodSupplierID" name="goodSupplierID" [formControl]="supplierCtrl">
@@ -152,7 +152,7 @@
               </div> -->
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Gross Good Qty. </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['grossGoodQuantity'].errors }" type="text"
                 formControlName="grossGoodQuantity" name="grossGoodQuantity" [(ngModel)]="purchase.grossGoodQuantity"
@@ -164,7 +164,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Good Rate </div>
               <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodRate'].errors }"
                 type="text" formControlName="goodRate" name="goodRate" [(ngModel)]="purchase.goodRate"
                 placeholder="Good Rate" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
@@ -174,7 +174,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Kadata </div>
               <mat-form-field class="form-control">
                 <input matInput placeholder="Search Kadata" [matAutocomplete]="autoKadata" [(ngModel)]="selectedKadata"
                   formControlName="kadataID" name="kadataID" [formControl]="kadataCtrl">
@@ -194,7 +194,7 @@
               </div> -->
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Kadata Total </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaTotal'].errors }" type="text"
                 formControlName="kadtaTotal" name="kadtaTotal" [(ngModel)]="purchase.kadtaTotal"
@@ -206,7 +206,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Net Good Qty. </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['netGoodQuantity'].errors }" type="text"
                 formControlName="netGoodQuantity" name="netGoodQuantity" [(ngModel)]="purchase.netGoodQuantity"
@@ -239,7 +239,7 @@
               </div> -->
 
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Labour Cost </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalLabourCosting'].errors }" type="text"
                 formControlName="totalLabourCosting" name="totalLabourCosting" [(ngModel)]="purchase.totalLabourCosting"
@@ -251,7 +251,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Total Amount </div>
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }" type="text"
                 formControlName="totalAmount" name="totalAmount" [(ngModel)]="purchase.totalAmount"

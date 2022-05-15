@@ -8,6 +8,9 @@ import { LoginService } from "../../services/login.service";
 })
 export class LoginComponent implements OnInit {
 
+  hasError: boolean = false;
+  errorMessage: any = '';
+
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
@@ -15,6 +18,15 @@ export class LoginComponent implements OnInit {
 
   loginChecker(txtUsername: string, txtPassword: string): void {
     this.loginService.loginChecker(txtUsername, txtPassword);
+    setTimeout(()=> {
+      sessionStorage.getItem('errorMessage') ? this.hasError = true : this.hasError = false;
+      this.errorMessage = sessionStorage.getItem('errorMessage');
+    }, 500);
+    /*if(this.hasError) {
+      setTimeout(()=>{
+        this.hasError = false;
+      }, 5000);
+    }*/
   }
 
 }

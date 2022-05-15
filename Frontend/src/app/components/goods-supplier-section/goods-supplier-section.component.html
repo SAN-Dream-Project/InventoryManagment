@@ -115,14 +115,14 @@
             </div>
           </div> -->
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i> Full Name </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['fullName'].errors }" type="text" formControlName="fullName" name="fullName" [(ngModel)]="supplier.fullName" placeholder="Full Name" required>
             <div *ngIf="formSubmitted && formControl['fullName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['fullName'].errors?.['required']">Full name is required.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-phone"></i> Mobile No. </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['mobileNo'].errors }" type="text" formControlName="mobileNo" name="mobileNo" [(ngModel)]="supplier.mobileNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" pattern="^[0-9]*$" required>
             <div *ngIf="formSubmitted && formControl['mobileNo'].errors" class="invalid-feedback">
               <div *ngIf="formControl['mobileNo'].errors?.['required']">Primary mobile number is required.</div>
@@ -132,34 +132,29 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-envelope"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-envelope"></i> Email ID </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['emailID'].errors }" type="email" formControlName="emailID" name="emailID" [(ngModel)]="supplier.emailID" placeholder="EmailID" >
             <div *ngIf="formSubmitted && formControl['emailID'].errors" class="invalid-feedback">
               <div *ngIf="formControl['emailID'].errors?.['email']">EmailID is not in correct format.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i> Address </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['address'].errors }" type="text" formControlName="address" name="address" [(ngModel)]="supplier.address" placeholder="Address" maxlength="100">
             <div *ngIf="formSubmitted && formControl['address'].errors" class="invalid-feedback">
               <div *ngIf="formControl['address'].errors?.['maxlength']">Maximum 100 characters allowed for address.</div>
             </div>
           </div>
-
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-credit-card"></i> Bank Account No. </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['bankAccountNo'].errors }" type="text" formControlName="bankAccountNo" name="bankAccountNo" [(ngModel)]="supplier.bankAccountNo" placeholder="Bank Account No" maxlength="100">
-            
           </div>
-          
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i> IFSC Code </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['ifsc'].errors }" type="text" formControlName="ifsc" name="ifsc" [(ngModel)]="supplier.ifsc" placeholder="IFSC" maxlength="100">
-            
           </div>
-
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-users"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-users"></i> Gender </div>
               <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="supplier.gender" required>
                 <option value="">-Select Gender-</option>
                 <option value="0">Male</option>
