@@ -32,6 +32,7 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{ row.fullName }} </mat-cell>
             </ng-container>
+
             <ng-container matColumnDef="mobileNo">
               <mat-header-cell *matHeaderCellDef> Mobile Number </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.mobileNo}} </mat-cell>
@@ -107,14 +108,14 @@
             </div>
           </div> -->
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i> Full Name </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['fullName'].errors }" type="text" formControlName="fullName" name="fullName" [(ngModel)]="employee.fullName" placeholder="Full Name" required>
             <div *ngIf="formSubmitted && formControl['fullName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['fullName'].errors?.['required']">Full name is required.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-phone"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-phone"></i> Mobile No. </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['mobileNo'].errors }" type="text" formControlName="mobileNo" name="mobileNo" [(ngModel)]="employee.mobileNo" placeholder="Primary Mobile Number" minlength="10" maxlength="10" pattern="^[0-9]*$" required>
             <div *ngIf="formSubmitted && formControl['mobileNo'].errors" class="invalid-feedback">
               <div *ngIf="formControl['mobileNo'].errors?.['required']">Primary mobile number is required.</div>
@@ -124,21 +125,21 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-envelope"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-envelope"></i> Email ID </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['emailID'].errors }" type="email" formControlName="emailID" name="emailID" [(ngModel)]="employee.emailID" placeholder="EmailID" >
             <div *ngIf="formSubmitted && formControl['emailID'].errors" class="invalid-feedback">
               <div *ngIf="formControl['emailID'].errors?.['email']">EmailID is not in correct format.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-address-book"></i> Address </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['address'].errors }" type="text" formControlName="address" name="address" [(ngModel)]="employee.address" placeholder="Address" maxlength="100">
             <div *ngIf="formSubmitted && formControl['address'].errors" class="invalid-feedback">
               <div *ngIf="formControl['address'].errors?.['maxlength']">Maximum 100 characters allowed for address.</div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-users"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-users"></i> Gender </div>
               <select class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['gender'].errors }" formControlName="gender" name="gender" [(ngModel)]="employee.gender" required>
                 <option value="">-Select Gender-</option>
                 <option value="0">Male</option>

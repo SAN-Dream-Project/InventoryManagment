@@ -19,32 +19,38 @@ import { BharadaRateSectionComponent } from './components/bharada-rate-section/b
 import { BharadaSaleComponent } from './components/bharada-sale/bharada-sale.component';
 import { BharadaCreditComponent } from './components/bharada-credit/bharada-credit.component';
 import {LanguageTranslationComponent} from "./components/demos/language-translation/language-translation.component";
+import {
+  GoodPurchaseAverageRateComponent
+} from "./components/good-purchase-average-rate/good-purchase-average-rate.component";
+import {AuthGuard} from "./services/auth.guard";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: MainComponent },
-  { path: 'user-section', component: UserSectionComponent },
-  { path: 'goods-section', component: GoodsSectionComponent },
-  { path: 'employee-section', component: EmployeeSectionComponent },
-  { path: 'goods-supplier-section', component: GoodsSupplierSectionComponent },
-  { path: 'kadata-section', component: KadataSectionComponent },
-  { path: 'labour-section', component: LabourSectionComponent },
-  { path: 'retailer-section', component: RetailerSectionComponent },
-  { path: 'stock-section', component: StockSectionComponent },
-  { path: 'labour-rate-section', component: LabourRateSectionComponent },
-  { path: 'purchase-section', component: PurchaseSectionComponent },
-  { path: 'sale-section', component: SaleSectionComponent },
-  { path: 'bharada-rate-section', component: BharadaRateSectionComponent },
-  { path: 'bharada-sale-section', component: BharadaSaleComponent },
-  { path: 'bharada-credit-section', component: BharadaCreditComponent },
-  { path: 'demos/table-data', component: DataTableComponent },
-  { path: 'demos/language-translation', component: LanguageTranslationComponent },
+  { path: 'home', component: MainComponent, canActivate: [AuthGuard] },
+  { path: 'user-section', component: UserSectionComponent, canActivate: [AuthGuard] },
+  { path: 'goods-section', component: GoodsSectionComponent, canActivate: [AuthGuard] },
+  { path: 'employee-section', component: EmployeeSectionComponent, canActivate: [AuthGuard] },
+  { path: 'goods-supplier-section', component: GoodsSupplierSectionComponent, canActivate: [AuthGuard] },
+  { path: 'kadata-section', component: KadataSectionComponent, canActivate: [AuthGuard] },
+  { path: 'labour-section', component: LabourSectionComponent, canActivate: [AuthGuard] },
+  { path: 'retailer-section', component: RetailerSectionComponent, canActivate: [AuthGuard] },
+  { path: 'stock-section', component: StockSectionComponent, canActivate: [AuthGuard] },
+  { path: 'labour-rate-section', component: LabourRateSectionComponent, canActivate: [AuthGuard] },
+  { path: 'purchase-section', component: PurchaseSectionComponent, canActivate: [AuthGuard] },
+  { path: 'purchase-average-rate', component: GoodPurchaseAverageRateComponent, canActivate: [AuthGuard] },
+  { path: 'sale-section', component: SaleSectionComponent, canActivate: [AuthGuard] },
+  { path: 'bharada-rate-section', component: BharadaRateSectionComponent, canActivate: [AuthGuard] },
+  { path: 'bharada-sale-section', component: BharadaSaleComponent, canActivate: [AuthGuard] },
+  { path: 'bharada-credit-section', component: BharadaCreditComponent, canActivate: [AuthGuard] },
+  { path: 'demos/table-data', component: DataTableComponent, canActivate: [AuthGuard] },
+  { path: 'demos/language-translation', component: LanguageTranslationComponent, canActivate: [AuthGuard] },
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `main-component`
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

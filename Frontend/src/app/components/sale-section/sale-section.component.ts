@@ -17,16 +17,18 @@ import { SaleService } from 'src/app/services/sale.service';
   styleUrls: ['./sale-section.component.less']
 })
 export class SaleSectionComponent implements OnInit {
-  displayedColumns = ['goodName', 'goodRetailerName', 'quantity', 'rate',  'totalLabourCosting', 'totalAmount','vehicleNumber','driverName','transportCharges', 'action'];
+  displayedColumns = ['goodName', 'goodRetailerName', 'quantity', 'rate',  'totalLabourCosting', 'totalAmount', 'action'];
   dataSource: MatTableDataSource<Sale>;
   showModal: boolean = false;
+  showPrintModal: boolean = false;
+  printObj: any;
   sales: any = [];
   formSubmitted: boolean = false;
   buttonStatus: any = {
     saveButton: false,
     updateButton: false
-  }; 
-  
+  };
+
   retailers: DropDown[] = [];
   filteredRetailer: Observable<DropDown[]> | undefined;
   retailerCtrl = new FormControl();
@@ -37,7 +39,7 @@ export class SaleSectionComponent implements OnInit {
 
   labourCharges: DropDown[] = [];
   filteredlabourCharge: Observable<DropDown[]> | undefined;
-  labourChargeCtrl = new FormControl(); 
+  labourChargeCtrl = new FormControl();
 
   seletedlabourCharge:any;
   selectedRetailer: any;
@@ -76,7 +78,7 @@ export class SaleSectionComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
-    }, 1000); 
+    }, 1000);
     this.dropdownService.getRetailerList().subscribe((retailers) => {
       this.retailers = retailers;
     });
@@ -120,11 +122,6 @@ export class SaleSectionComponent implements OnInit {
   SelectedRetailer(retailer: any) {
     this.sale.retailerID = retailer.key;
   }
-  SelectedlabourCharge(labourRate: any) {
-    this.sale.labourRateID = labourRate.key;
-    this.sale.totalLabourCosting = (this.sale.quantity/100)*labourRate.value;
-    this.sale.totalAmount = (this.sale.quantity * this.sale.rate)-((this.sale.quantity/100)*labourRate.value);
-  }
   ngOnInit(): void {
     this.validateForm();
     this.ngxSpinnerService.show();
@@ -136,11 +133,11 @@ export class SaleSectionComponent implements OnInit {
     this.saleForm = this.formBuilder.group({
       goodID:['', [Validators.required]],
       retailerID: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
-      rate: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
+      rate: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
       // labourRateID: ['', [Validators.required]],
-      totalLabourCosting: ['', [Validators.required]],
-      totalAmount: ['', [Validators.required]],
+      totalLabourCosting: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
+      totalAmount: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
       vehicleNumber: ['', []],
       driverName:  ['', []],
       transportCharges: ['', []],
@@ -155,6 +152,10 @@ export class SaleSectionComponent implements OnInit {
     currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';*/
   }
 
+  calculateTotalAmount() {
+    this.sale.totalAmount = (this.sale.quantity * this.sale.rate) - this.sale.totalLabourCosting; //- this.sale.transportCharges;
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -165,7 +166,7 @@ export class SaleSectionComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
-  } 
+  }
   openModal(type: any, purchaseObj: any) {
     this.formSubmitted = false;
     if (type === 'Create') {
@@ -173,10 +174,20 @@ export class SaleSectionComponent implements OnInit {
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
       this.sale = {} as SaleInput;
-       this.selectedGood = null;
-       this.selectedRetailer = null;
-       this.seletedlabourCharge = null;
-    } else {
+      this.sale.quantity = 0.00;
+      this.sale.rate = 0.00;
+      this.sale.totalLabourCosting = 0.00;
+      this.sale.totalAmount = 0.00;
+      this.selectedGood = null;
+      this.selectedRetailer = null;
+      this.seletedlabourCharge = null;
+    } /*else if (type === 'Print') {
+      this.printObj = userObj;
+      this.showPrintModal = true;
+      setTimeout(()=>{
+        window.print();
+      }, 500);
+    }*/ else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
@@ -192,6 +203,10 @@ export class SaleSectionComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
+  /*closePrintModal() {
+    this.showPrintModal = false;
+  }*/
+
   submitForm(action: string, saleObj: SaleInput): void {
     this.formSubmitted = true;
     if (this.saleForm.invalid) {
@@ -207,6 +222,10 @@ export class SaleSectionComponent implements OnInit {
   createRecord(saleObj: SaleInput) {
     this.formSubmitted = true;
     if (this.saleForm.valid) {
+      this.sale.quantity = parseFloat(this.sale.quantity);
+      this.sale.rate = parseFloat(this.sale.rate);
+      this.sale.totalLabourCosting = parseFloat(this.sale.totalLabourCosting);
+      this.sale.totalAmount = parseFloat(this.sale.totalAmount);
       this.saleService.createSaleDetail(saleObj).subscribe(() => {
         this.toastrService.success("Record Created...!");
         setTimeout(() => {

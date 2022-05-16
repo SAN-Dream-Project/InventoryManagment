@@ -7,7 +7,11 @@
           <h5 class="mb-3">Services :</h5>
           <hr>
           <mat-tab-group>
-            <mat-tab label="Master Details Section">
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Master Details Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-user me-2"></i>
+                <span>Master Details Section</span>
+              </ng-template>
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
@@ -69,7 +73,11 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Purchase Section">
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Purchase Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-money me-2"></i>
+                <span>Purchase Section</span>
+              </ng-template>
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
@@ -79,10 +87,21 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/purchase-average-rate']"><i class="fa fa-money me-3"></i>Good Purchase Average Rate Section</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Sales Section">
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Sale Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-money me-2"></i>
+                <span>Sale Section</span>
+              </ng-template>
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
@@ -95,7 +114,11 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Stock Section">
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Stock Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-shopping-cart me-2"></i>
+                <span>Stock Section</span>
+              </ng-template>
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
@@ -108,7 +131,11 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Bharada Section">
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Bharada Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-money me-2"></i>
+                <span>Bharada Section</span>
+              </ng-template>
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
@@ -135,10 +162,31 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Reports Section">
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Reports Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-book me-2"></i>
+                <span>Reports Section</span>
+              </ng-template>
               <div class="container-fluid">
                 <div class="row">
                   Reports Section
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Demos Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-book me-2"></i>
+                <span>Demos Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-3 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/demos/table-data']"><i class="fa fa-desktop me-3"></i>Demos Section</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </mat-tab>

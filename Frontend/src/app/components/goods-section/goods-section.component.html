@@ -68,7 +68,7 @@
           <hr>
           <form [formGroup]="goodForm">
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i> Good Name </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodName'].errors }" type="text" formControlName="goodName" name="goodName" [(ngModel)]="good.goodName" placeholder="Good Name" required maxlength="20" (blur)="checkIfProductDuplicate(good.goodName)">
             <div *ngIf="formSubmitted && formControl['goodName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['goodName'].errors?.['required']">Good Name is required.</div>

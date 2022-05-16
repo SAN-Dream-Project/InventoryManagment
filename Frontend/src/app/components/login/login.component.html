@@ -18,3 +18,7 @@
     </div>
   </div>
 </section>
+
+<div class="pt-5 pb-0 alert-danger position-fixed start-50 top-0 translate-middle fw-bold w-50 text-center" *ngIf="hasError">
+  <h5><i class="fa fa-warning me-2"></i> {{ errorMessage }}</h5>
+</div>

@@ -116,7 +116,7 @@
                     <hr>
                     <form [formGroup]="bharadaSaleForm">
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i> Bharada Criteria </div>
                             <mat-form-field class="form-control">
                                 <input matInput placeholder="Search Bharada Creteria" [matAutocomplete]="autoCreteria"
                                     [(ngModel)]="selectedBharadaRate" formControlName="bharadaRateID"
@@ -130,7 +130,7 @@
                             </mat-form-field>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Bharada Quantity </div>
                             <input class="form-control"
                                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['quantity'].errors }" type="text"
                                 formControlName="quantity" name="quantity" [(ngModel)]="bharadaSale.quantity"
@@ -143,9 +143,9 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-user"></i> Retailer </div>
                             <mat-form-field class="form-control">
-                                <input matInput placeholder="Search Supplier" [matAutocomplete]="autoRetailer"
+                                <input matInput placeholder="Search Retailer" [matAutocomplete]="autoRetailer"
                                     [(ngModel)]="selectedRetailer" formControlName="retailerID" name="retailerID"
                                     [formControl]="retailerCtrl">
                                 <mat-autocomplete #autoRetailer="matAutocomplete">
@@ -158,7 +158,7 @@
                         </div>
 
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Total Amount </div>
                             <input class="form-control"
                                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }"
                                 type="text" formControlName="totalAmount" name="totalAmount"
@@ -187,7 +187,7 @@
                         </div> -->
 
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Labour Cost </div>
                             <input class="form-control"
                                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalLabourCosting'].errors }"
                                 type="text" formControlName="totalLabourCosting" name="totalLabourCosting"
@@ -203,7 +203,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Net Amount </div>
                             <input class="form-control"
                                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['netAmount'].errors }"
                                 type="text" formControlName="netAmount" name="netAmount"
@@ -216,11 +216,11 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Paid Amount </div>
                             <input class="form-control"
                                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['paidAmount'].errors }"
                                 type="text" formControlName="paidAmount" name="paidAmount"
-                                [(ngModel)]="bharadaSale.paidAmount" placeholder="Net Amount"
+                                [(ngModel)]="bharadaSale.paidAmount" placeholder="Paid Amount"
                                 pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
                             <div *ngIf="formSubmitted && formControl['paidAmount'].errors" class="invalid-feedback">
                                 <div *ngIf="formControl['paidAmount'].errors?.['required']">Total Amount is required.
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Remaining Amount </div>
                             <input class="form-control"
                                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['remainingAmount'].errors }"
                                 type="text" formControlName="remainingAmount" name="remainingAmount"
@@ -242,23 +242,23 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-cab"></i> Vehicle Number </div>
                             <input class="form-control"
                               [ngClass]="{ 'is-invalid': formSubmitted && formControl['vehicleNumber'].errors }" type="text"
                               formControlName="vehicleNumber" name="vehicleNumber" [(ngModel)]="bharadaSale.vehicleNumber"
                               placeholder="Vehicle Number" >
                           </div>
-              
+
                           <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-user"></i> Driver Name </div>
                             <input class="form-control"
                               [ngClass]="{ 'is-invalid': formSubmitted && formControl['driverName'].errors }" type="text"
                               formControlName="driverName" name="driverName" [(ngModel)]="bharadaSale.driverName"
                               placeholder="Driver Name" >
                           </div>
-              
+
                           <div class="input-group mb-3">
-                            <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Transport Charge </div>
                             <input class="form-control"
                               [ngClass]="{ 'is-invalid': formSubmitted && formControl['transportCharges'].errors }" type="text"
                               formControlName="transportCharges" name="transportCharges" [(ngModel)]="bharadaSale.transportCharges"

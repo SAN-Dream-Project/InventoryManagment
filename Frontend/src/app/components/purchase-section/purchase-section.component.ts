@@ -3,11 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Purchase, PurchaseInput } from "../../models/Purchase";
-import { UserService } from "../../services/user.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { CustomValidator } from "../demos/data-table/custom-validator";
 import { PurchaseService } from "../../services/purchase.service";
 import { DropdownService } from 'src/app/services/dropdown.service';
 import { DropDown } from 'src/app/models/User';
@@ -20,9 +18,11 @@ import { map, Observable, startWith } from 'rxjs';
 })
 export class PurchaseSectionComponent implements OnInit {
 
-  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'kadtaTotal', 'netGoodQuantity', 'totalLabourCosting', 'totalAmount', 'action'];
+  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'totalLabourCosting', 'totalAmount', 'action'];
   dataSource: MatTableDataSource<Purchase>;
   showModal: boolean = false;
+  showPrintModal: boolean = false;
+  printObj: any;
   users: any = [];
   purchases: any = [];
 
@@ -57,14 +57,14 @@ export class PurchaseSectionComponent implements OnInit {
     id: '',
     goodID: '',
     goodSupplierID: '',
-    grossGoodQuantity: '',
-    goodRate: '',
+    grossGoodQuantity: 0.00,
+    goodRate: 0.00,
     kadataID: '',
-    kadtaTotal: '',
-    netGoodQuantity: '',
+    kadtaTotal: 0.00,
+    netGoodQuantity: 0.00,
     labourRateID: '',
-    totalLabourCosting: '',
-    totalAmount: '',
+    totalLabourCosting: 0.00,
+    totalAmount: 0.00,
     createdBy: '',
     createdDate: '',
     modifiedBy: '',
@@ -104,8 +104,8 @@ export class PurchaseSectionComponent implements OnInit {
       .pipe(
         startWith(''),
         map(good => good ? this._filterGoods(good) : this.goods.slice())
-      ); 
-      
+      );
+
     this.filteredSuppiler = this.supplierCtrl.valueChanges
         .pipe(
           startWith(''),
@@ -154,7 +154,7 @@ export class PurchaseSectionComponent implements OnInit {
       this.purchase.totalAmount = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
     }
   }
-  SelectedlabourCharge(labourRate: any) {
+  SelectedLabourCharge(labourRate: any) {
     this.purchase.labourRateID = labourRate.key;
     this.purchase.totalLabourCosting = (this.purchase.grossGoodQuantity/100)*labourRate.value;
     this.purchase.totalAmount = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
@@ -171,15 +171,15 @@ export class PurchaseSectionComponent implements OnInit {
     this.purchaseForm = this.formBuilder.group({
       goodID: ['', [Validators.required]],
       goodSupplierID: ['', [Validators.required]],
-      grossGoodQuantity: ['', [Validators.required]],
-      goodRate: ['', [Validators.required]],
+      grossGoodQuantity: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
+      goodRate: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
       kadataID: ['', [Validators.required]],
      // kadataID: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]+\\.[0-9]{1,2}$")]],
-      kadtaTotal: ['', [Validators.required]],
-      netGoodQuantity: ['', [Validators.required]],
+      kadtaTotal: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
+      netGoodQuantity: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
       //labourRateID: [''],
-      totalLabourCosting: ['', [Validators.required]],
-      totalAmount: ['', [Validators.required]]
+      totalLabourCosting: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]],
+      totalAmount: ['', [Validators.required, Validators.pattern("^[0-9]*\.?[0-9]*$")]]
     });
   }
 
@@ -206,11 +206,23 @@ export class PurchaseSectionComponent implements OnInit {
       this.buttonStatus.saveButton = true;
       this.buttonStatus.updateButton = false;
       this.purchase = {} as PurchaseInput;
+      this.purchase.grossGoodQuantity = 0.00;
+      this.purchase.goodRate = 0.00;
+      this.purchase.kadtaTotal = 0.00;
+      this.purchase.netGoodQuantity = 0.00;
+      this.purchase.totalLabourCosting = 0.00;
+      this.purchase.totalAmount = 0.00;
       this.selectedGood = null;
       this.selectedSupplier = null;
       this.selectedKadata = null;
       this.seletedlabourCharge = null;
-    } else {
+    } /*else if (type === 'Print') {
+      this.printObj = userObj;
+      this.showPrintModal = true;
+      setTimeout(()=>{
+        window.print();
+      }, 500);
+    }*/ else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
@@ -225,30 +237,45 @@ export class PurchaseSectionComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
+  /*closePrintModal() {
+    this.showPrintModal = false;
+  }*/
 
-  submitForm(action: string, userObj: PurchaseInput): void {
+  submitForm(action: string, purchaseObj: PurchaseInput): void {
+    console.log(purchaseObj);
     this.formSubmitted = true;
     if (this.purchaseForm.invalid) {
       return;
     }
     if (action === 'Create') {
-      this.createRecord(userObj);
+      this.createRecord(purchaseObj);
     }
     if (action === 'Update') {
-      this.updateRecord(userObj);
+      this.updateRecord(purchaseObj);
     }
   }
 
-  appendZeros() {
-    this.purchase.totalAmount = (this.purchase.netGoodQuantity * this.purchase.goodRate) - this.purchase.totalLabourCosting;
-    /*let currentValue = this.user.primaryMobNo;
+  appendZeros(event: any) {
+    let currentValue = (event.target as HTMLInputElement).value;
+    let currentItem = event.target.id;
     let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
-    currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? this.user.primaryMobNo = currentValue : this.user.primaryMobNo = currentValue + '.00';*/
+    currentValue != undefined && currentValue != null && currentValue != "" ? currentValue.indexOf('.') !== -1 && regEx.test(currentValue) ? currentItem = currentValue : currentItem = parseFloat(currentValue + '.00') : currentItem = parseFloat('0.00');
+    this.calculateTotalAmount();
+  }
+
+  calculateTotalAmount() {
+    this.purchase.totalAmount = (this.purchase.netGoodQuantity * this.purchase.goodRate) - this.purchase.totalLabourCosting;
   }
 
   createRecord(purchaseObj: PurchaseInput) {
     this.formSubmitted = true;
     if (this.purchaseForm.valid) {
+      purchaseObj.grossGoodQuantity = parseFloat(purchaseObj.grossGoodQuantity);
+      purchaseObj.goodRate = parseFloat(purchaseObj.goodRate);
+      purchaseObj.kadtaTotal = parseInt(purchaseObj.kadtaTotal);
+      purchaseObj.netGoodQuantity = parseFloat(purchaseObj.netGoodQuantity);
+      purchaseObj.totalLabourCosting = parseFloat(purchaseObj.totalLabourCosting);
+      purchaseObj.totalAmount = parseFloat(purchaseObj.totalAmount);
       this.purchaseService.createPurchase(purchaseObj).subscribe(() => {
         this.toastrService.success("Record Created...!");
         setTimeout(() => {

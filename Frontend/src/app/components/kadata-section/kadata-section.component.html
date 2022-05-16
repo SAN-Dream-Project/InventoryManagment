@@ -68,7 +68,7 @@
           <hr>
           <form [formGroup]="kadataForm">
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Kadata Quantity </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaQuantity'].errors }" type="text" formControlName="kadtaQuantity" name="kadtaQuantity" [(ngModel)]="kadata.kadtaQuantity" placeholder="kadata Quantity" pattern="^[0-9]*$" maxlength="2" required>
             <div *ngIf="formSubmitted && formControl['kadtaQuantity'].errors" class="invalid-feedback">
               <div *ngIf="formControl['kadtaQuantity'].errors?.['required']">kadta Quantity is required.</div>

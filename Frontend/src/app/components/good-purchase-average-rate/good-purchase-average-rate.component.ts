@@ -12,7 +12,7 @@ import { PurchaseService } from 'src/app/services/purchase.service';
 })
 export class GoodPurchaseAverageRateComponent implements OnInit {
 
-  users: any = [];
+  goods: any = [];
   error: any;
 
   constructor(private purchaseService: PurchaseService, private toastrService: ToastrService, private ngxSpinnerService: NgxSpinnerService) { }
@@ -26,8 +26,8 @@ export class GoodPurchaseAverageRateComponent implements OnInit {
 
   getAllUsers() {
     this.ngxSpinnerService.show();
-    this.purchaseService.getAllPurchases().subscribe((usersDetails) => {
-      this.users = usersDetails;
+    this.purchaseService.getPurchaseAverageRate().subscribe((goods) => {
+      this.goods = goods;
     }, (error) => {
       this.error = this.handleError(error);
     });

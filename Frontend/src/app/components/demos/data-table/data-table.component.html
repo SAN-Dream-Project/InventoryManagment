@@ -34,7 +34,8 @@
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Update', element)"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-primary btn-sm text-decoration-none me-3" (click)="openModal('Print', element)"><i class="fa fa-print"></i></button> |
+                <button class="btn btn-info btn-sm text-decoration-none ms-3 me-3" (click)="openModal('Update', element)"><i class="fa fa-edit"></i></button> |
                 <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i class="fa fa-remove"></i></button>
               </mat-cell>
             </ng-container>
@@ -89,7 +90,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-id-card"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-id-card me-2"></i> First Name : </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['firstName'].errors }" type="text" formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name" required>
             <div *ngIf="formSubmitted && formControl['firstName'].errors" class="invalid-feedback">
               <div *ngIf="formControl['firstName'].errors?.['required']">First name is required.</div>
@@ -105,7 +106,7 @@
           </div>
           <div class="input-group mb-3">
             <div class="input-group-text"><i class="c-fa fa fa-mobile"></i></div>
-            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['primaryMobNo'].errors }" type="text" formControlName="primaryMobNo" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" minlength="10" maxlength="10" required>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['primaryMobNo'].errors }" type="text" formControlName="primaryMobNo" name="primaryMobNo" [(ngModel)]="user.primaryMobNo" placeholder="Primary Mobile Number" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros($event)" minlength="10" maxlength="10" required>
             <div *ngIf="formSubmitted && formControl['primaryMobNo'].errors" class="invalid-feedback">
               <div *ngIf="formControl['primaryMobNo'].errors?.['required']">Primary mobile number is required.</div>
               <div *ngIf="formControl['primaryMobNo'].errors?.['minlength']">Primary mobile number of exact 10 digits.</div>
@@ -272,3 +273,18 @@
   </mat-autocomplete>
 
 </mat-form-field>
+
+<ng-container *ngIf="showPrintModal">
+  <div class="print-modal c-modal position-fixed h-100 w-100 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closePrintModal()"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h1 class="display-1">{{ printObj.firstName }} {{ printObj.lastName }}</h1>
+          <p class="card-subtitle">{{ printObj.mobileNo }}</p>
+          <h5>{{ printObj.gender ? 'Male' : 'Female' }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

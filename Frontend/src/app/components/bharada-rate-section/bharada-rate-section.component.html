@@ -77,21 +77,21 @@
           <hr>
           <form [formGroup]="bharadaRateForm">
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-credit-card"></i> Rate Criteria ID </div>
               <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rateCriteriaID'].errors }" type="text" formControlName="rateCriteriaID" name="rateCriteriaID" [(ngModel)]="bharadaRate.rateCriteriaID" placeholder="Rate Criteria ID"  required>
               <div *ngIf="formSubmitted && formControl['rateCriteriaID'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['rateCriteriaID'].errors?.['required']">Labour Rate is required.</div>
               </div>
             </div>
             <div class="input-group mb-3">
-              <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Rate Criteria </div>
               <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rateCriteria'].errors }" type="text" formControlName="rateCriteria" name="rateCriteria" [(ngModel)]="bharadaRate.rateCriteria" placeholder="Rate Criteria" required>
               <div *ngIf="formSubmitted && formControl['rateCriteria'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['rateCriteria'].errors?.['required']">Labour Rate is required.</div>
               </div>
             </div>
           <div class="input-group mb-3">
-            <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Rate </div>
             <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rate'].errors }" type="text" formControlName="rate" name="rate" [(ngModel)]="bharadaRate.rate" placeholder="Rate" pattern="^[0-9]*$" required>
             <div *ngIf="formSubmitted && formControl['rate'].errors" class="invalid-feedback">
               <div *ngIf="formControl['rate'].errors?.['required']">Labour Rate is required.</div>
@@ -106,3 +106,5 @@
     </div>
   </div>
 </ng-container>
+
+
