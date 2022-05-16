@@ -18,9 +18,11 @@ import { map, Observable, startWith } from 'rxjs';
 })
 export class PurchaseSectionComponent implements OnInit {
 
-  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'kadtaTotal', 'netGoodQuantity', 'totalLabourCosting', 'totalAmount', 'action'];
+  displayedColumns = ['goodName', 'goodSupplierName', 'grossGoodQuantity', 'goodRate', 'kadataQuantity', 'totalLabourCosting', 'totalAmount', 'action'];
   dataSource: MatTableDataSource<Purchase>;
   showModal: boolean = false;
+  showPrintModal: boolean = false;
+  printObj: any;
   users: any = [];
   purchases: any = [];
 
@@ -214,7 +216,13 @@ export class PurchaseSectionComponent implements OnInit {
       this.selectedSupplier = null;
       this.selectedKadata = null;
       this.seletedlabourCharge = null;
-    } else {
+    } /*else if (type === 'Print') {
+      this.printObj = userObj;
+      this.showPrintModal = true;
+      setTimeout(()=>{
+        window.print();
+      }, 500);
+    }*/ else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
@@ -229,6 +237,9 @@ export class PurchaseSectionComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
+  /*closePrintModal() {
+    this.showPrintModal = false;
+  }*/
 
   submitForm(action: string, purchaseObj: PurchaseInput): void {
     console.log(purchaseObj);

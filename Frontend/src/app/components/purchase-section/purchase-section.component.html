@@ -43,7 +43,7 @@
               <mat-cell *matCellDef="let row"> {{row.kadataQuantity}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="kadtaTotal">e
+            <!--<ng-container matColumnDef="kadtaTotal">e
               <mat-header-cell *matHeaderCellDef mat-sort-header> Kadata Total </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.kadtaTotal}} </mat-cell>
             </ng-container>
@@ -53,7 +53,7 @@
               <mat-cell *matCellDef="let row"> {{ row.netGoodQuantity }} </mat-cell>
             </ng-container>
 
-            <!-- <ng-container matColumnDef="labourRate">
+             <ng-container matColumnDef="labourRate">
               <mat-header-cell *matHeaderCellDef> Labour Rate </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.labourRate}} </mat-cell>
             </ng-container> -->
@@ -71,10 +71,9 @@
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Update', element)"><i
-                    class="fa fa-edit"></i></button> |
-                <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i
-                    class="fa fa-remove"></i></button>
+                <button class="btn btn-primary btn-sm text-decoration-none me-2" (click)="openModal('Print', element)" title="Print"><i class="fa fa-print"></i></button> |
+                <button class="btn btn-info btn-sm text-decoration-none ms-2 me-2" (click)="openModal('Update', element)" title="Edit"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-2" (click)="deleteRecord(element.id)" title="Delete"><i class="fa fa-remove"></i></button>
               </mat-cell>
             </ng-container>
 
@@ -278,3 +277,18 @@
     </div>
   </div>
 </ng-container>
+
+<!--<ng-container *ngIf="showPrintModal">
+  <div class="print-modal c-modal position-fixed h-100 w-100 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closePrintModal()"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h1 class="display-1">{{ printObj.firstName }} {{ printObj.lastName }}</h1>
+          <p class="card-subtitle">{{ printObj.mobileNo }}</p>
+          <h5>{{ printObj.gender ? 'Male' : 'Female' }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>-->

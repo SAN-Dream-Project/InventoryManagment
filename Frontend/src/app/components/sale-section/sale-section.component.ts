@@ -17,9 +17,11 @@ import { SaleService } from 'src/app/services/sale.service';
   styleUrls: ['./sale-section.component.less']
 })
 export class SaleSectionComponent implements OnInit {
-  displayedColumns = ['goodName', 'goodRetailerName', 'quantity', 'rate',  'totalLabourCosting', 'totalAmount','vehicleNumber','driverName','transportCharges', 'action'];
+  displayedColumns = ['goodName', 'goodRetailerName', 'quantity', 'rate',  'totalLabourCosting', 'totalAmount', 'action'];
   dataSource: MatTableDataSource<Sale>;
   showModal: boolean = false;
+  showPrintModal: boolean = false;
+  printObj: any;
   sales: any = [];
   formSubmitted: boolean = false;
   buttonStatus: any = {
@@ -179,7 +181,13 @@ export class SaleSectionComponent implements OnInit {
       this.selectedGood = null;
       this.selectedRetailer = null;
       this.seletedlabourCharge = null;
-    } else {
+    } /*else if (type === 'Print') {
+      this.printObj = userObj;
+      this.showPrintModal = true;
+      setTimeout(()=>{
+        window.print();
+      }, 500);
+    }*/ else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
@@ -195,6 +203,10 @@ export class SaleSectionComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
+  /*closePrintModal() {
+    this.showPrintModal = false;
+  }*/
+
   submitForm(action: string, saleObj: SaleInput): void {
     this.formSubmitted = true;
     if (this.saleForm.invalid) {
