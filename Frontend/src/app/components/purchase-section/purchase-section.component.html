@@ -121,27 +121,33 @@
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i> Good </div>
               <mat-form-field class="form-control">
-                <input matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
-                  formControlName="goodID" name="goodID" [formControl]="goodCtrl">
+                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodID'].errors }" matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
+                  formControlName="goodID" name="goodID" [formControl]="goodCtrl" required>
                 <mat-autocomplete #autoGood="matAutocomplete">
                   <mat-option *ngFor="let good of filteredGood | async" (click)="SelectedGood(good)"
                     [value]="good.value">
                     <small> {{good.value}}</small>
                   </mat-option>
                 </mat-autocomplete>
+                <div *ngIf="formSubmitted && formControl['goodID'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['goodID'].errors?.['required']">Please select good name.</div>
+                </div>
               </mat-form-field>
             </div>
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-user"></i> Supplier </div>
               <mat-form-field class="form-control">
-                <input matInput placeholder="Search Supplier" [matAutocomplete]="autoSuppiler" [(ngModel)]="selectedSupplier"
-                  formControlName="goodSupplierID" name="goodSupplierID" [formControl]="supplierCtrl">
+                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodSupplierID'].errors }" matInput placeholder="Search Supplier" [matAutocomplete]="autoSuppiler" [(ngModel)]="selectedSupplier"
+                  formControlName="goodSupplierID" name="goodSupplierID" [formControl]="supplierCtrl" required>
                 <mat-autocomplete #autoSuppiler="matAutocomplete">
                   <mat-option *ngFor="let supplier of filteredSuppiler | async" (click)="SelectedSupplier(supplier)"
                     [value]="supplier.value">
                     <small> {{supplier.value}}</small>
                   </mat-option>
                 </mat-autocomplete>
+                <div *ngIf="formSubmitted && formControl['goodSupplierID'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['goodSupplierID'].errors?.['required']">Please select good supplier name.</div>
+                </div>
               </mat-form-field>
               <!-- <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodSupplierID'].errors }" type="text"
@@ -175,14 +181,17 @@
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Kadata </div>
               <mat-form-field class="form-control">
-                <input matInput placeholder="Search Kadata" [matAutocomplete]="autoKadata" [(ngModel)]="selectedKadata"
-                  formControlName="kadataID" name="kadataID" [formControl]="kadataCtrl">
+                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadataID'].errors }" matInput placeholder="Search Kadata" [matAutocomplete]="autoKadata" [(ngModel)]="selectedKadata"
+                  formControlName="kadataID" name="kadataID" [formControl]="kadataCtrl" required>
                 <mat-autocomplete #autoKadata="matAutocomplete">
                   <mat-option *ngFor="let kadata of filteredKadata | async" (onSelectionChange)="SelectedKadata(kadata)"
                     [value]="kadata.value">
                     <small> {{kadata.value}}</small>
                   </mat-option>
                 </mat-autocomplete>
+                <div *ngIf="formSubmitted && formControl['kadataID'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['kadataID'].errors?.['required']">Please select good name.</div>
+                </div>
               </mat-form-field>
               <!-- <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadataID'].errors }"
                 type="text" formControlName="kadataID" name="kadataID" [(ngModel)]="purchase.kadataID"
