@@ -153,21 +153,20 @@
             </div>
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Gross Good Qty. </div>
-              <input class="form-control"
+              <input id="this.purchase.grossGoodQuantity" class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['grossGoodQuantity'].errors }" type="text"
                 formControlName="grossGoodQuantity" name="grossGoodQuantity" [(ngModel)]="purchase.grossGoodQuantity"
-                placeholder="Gross Good Quantity" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Gross Good Quantity" pattern="^[0-9]*\.?[0-9]*$" (blur)="calculateTotalAmount()" required>
               <div *ngIf="formSubmitted && formControl['grossGoodQuantity'].errors" class="invalid-feedback">
-                <div *ngIf="formControl['grossGoodQuantity'].errors?.['required']">Gross Good Quantity is required.
-                </div>
+                <div *ngIf="formControl['grossGoodQuantity'].errors?.['required']">Gross Good Quantity is required.</div>
                 <div *ngIf="formControl['grossGoodQuantity'].errors?.['pattern']">Wrong numeric value.</div>
               </div>
             </div>
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i> Good Rate </div>
-              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodRate'].errors }"
+              <input id="this.purchase.goodRate" class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodRate'].errors }"
                 type="text" formControlName="goodRate" name="goodRate" [(ngModel)]="purchase.goodRate"
-                placeholder="Good Rate" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Good Rate" pattern="^[0-9]*\.?[0-9]*$" (blur)="calculateTotalAmount()" required>
               <div *ngIf="formSubmitted && formControl['goodRate'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['goodRate'].errors?.['required']">Good Rate is required.</div>
                 <div *ngIf="formControl['goodRate'].errors?.['pattern']">Wrong numeric value.</div>
@@ -179,7 +178,7 @@
                 <input matInput placeholder="Search Kadata" [matAutocomplete]="autoKadata" [(ngModel)]="selectedKadata"
                   formControlName="kadataID" name="kadataID" [formControl]="kadataCtrl">
                 <mat-autocomplete #autoKadata="matAutocomplete">
-                  <mat-option *ngFor="let kadata of filteredKadata | async" (click)="SelectedKadata(kadata)"
+                  <mat-option *ngFor="let kadata of filteredKadata | async" (onSelectionChange)="SelectedKadata(kadata)"
                     [value]="kadata.value">
                     <small> {{kadata.value}}</small>
                   </mat-option>
@@ -187,7 +186,7 @@
               </mat-form-field>
               <!-- <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadataID'].errors }"
                 type="text" formControlName="kadataID" name="kadataID" [(ngModel)]="purchase.kadataID"
-                placeholder="Kadata Quantity" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Kadata Quantity" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="calculateTotalAmount()" required>
               <div *ngIf="formSubmitted && formControl['kadataID'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['kadataID'].errors?.['required']">Kadata Quantity is required.</div>
                 <div *ngIf="formControl['kadataID'].errors?.['pattern']">Wrong numeric value.</div>
@@ -198,11 +197,10 @@
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaTotal'].errors }" type="text"
                 formControlName="kadtaTotal" name="kadtaTotal" [(ngModel)]="purchase.kadtaTotal"
-                placeholder="Kadata Total" required>
-                <!-- pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()"  -->
+                placeholder="Kadata Total" pattern="^[0-9]*\.?[0-9]*$" required readonly>
               <div *ngIf="formSubmitted && formControl['kadtaTotal'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['kadtaTotal'].errors?.['required']">Kadata Total is required.</div>
-                <!-- <div *ngIf="formControl['kadtaTotal'].errors?.['pattern']">Wrong numeric value.</div> -->
+                <div *ngIf="formControl['kadtaTotal'].errors?.['pattern']">Wrong numeric value.</div>
               </div>
             </div>
             <div class="input-group mb-3">
@@ -210,7 +208,7 @@
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['netGoodQuantity'].errors }" type="text"
                 formControlName="netGoodQuantity" name="netGoodQuantity" [(ngModel)]="purchase.netGoodQuantity"
-                placeholder="Net Good Quantity" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Net Good Quantity" pattern="^[0-9]*\.?[0-9]*$" required readonly>
               <div *ngIf="formSubmitted && formControl['netGoodQuantity'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['netGoodQuantity'].errors?.['required']">Net Good Quantity is required.</div>
                 <div *ngIf="formControl['netGoodQuantity'].errors?.['pattern']">Wrong numeric value.</div>
@@ -222,7 +220,7 @@
                 <input matInput placeholder="Search Labour Rate" [matAutocomplete]="autoLabourRate" [(ngModel)]="seletedlabourCharge"
                   formControlName="labourRateID" name="labourRateID" [formControl]="labourChargeCtrl">
                 <mat-autocomplete #autoLabourRate="matAutocomplete">
-                  <mat-option *ngFor="let labourCharge of filteredlabourCharge | async" (click)="SelectedlabourCharge(labourCharge)"
+                  <mat-option *ngFor="let labourCharge of filteredlabourCharge | async" (click)="SelectedLabourCharge(labourCharge)"
                     [value]="labourCharge.value">
                     <small> {{labourCharge.value}}</small>
                   </mat-option>
@@ -232,7 +230,7 @@
               <!-- <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['labourRateID'].errors }" type="text"
                 formControlName="labourRateID" name="labourRateID" [(ngModel)]="purchase.labourRateID"
-                placeholder="Labour Rate" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Labour Rate" pattern="^[0-9]+\.[0-9]$" (blur)="calculateTotalAmount()" required>
               <div *ngIf="formSubmitted && formControl['labourRateID'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['labourRateID'].errors?.['required']">Labour Rate is required.</div>
                 <div *ngIf="formControl['labourRateID'].errors?.['pattern']">Wrong numeric value.</div>
@@ -240,10 +238,10 @@
 
             <div class="input-group mb-3">
               <div class="input-group-text"><i class="c-fa fa fa-money"></i> Labour Cost </div>
-              <input class="form-control"
+              <input id="this.purchase.totalLabourCosting" class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalLabourCosting'].errors }" type="text"
                 formControlName="totalLabourCosting" name="totalLabourCosting" [(ngModel)]="purchase.totalLabourCosting"
-                placeholder="Total Labour Costing" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                placeholder="Total Labour Costing" pattern="^[0-9]*\.?[0-9]*$" (blur)="calculateTotalAmount()" required>
               <div *ngIf="formSubmitted && formControl['totalLabourCosting'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['totalLabourCosting'].errors?.['required']">Total Labour Costing is required.
                 </div>
@@ -255,11 +253,10 @@
               <input class="form-control"
                 [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }" type="text"
                 formControlName="totalAmount" name="totalAmount" [(ngModel)]="purchase.totalAmount"
-                placeholder="Total Amout"  (blur)="appendZeros()" required>
+                placeholder="Total Amout" required readonly>
               <div *ngIf="formSubmitted && formControl['totalAmount'].errors" class="invalid-feedback">
                 <div *ngIf="formControl['totalAmount'].errors?.['required']">Total Amount is required.</div>
-                <!-- <div *ngIf="formControl['totalAmount'].errors?.['pattern']">Wrong numeric value.</div>
-                pattern="^[0-9]+\.[0-9]{1,2}$" -->
+                <div *ngIf="formControl['totalAmount'].errors?.['pattern']">Wrong numeric value.</div>
               </div>
             </div>
             <button class="form-control btn btn-success" (click)="submitForm('Create', purchase)"
