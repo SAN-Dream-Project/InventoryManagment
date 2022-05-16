@@ -82,31 +82,16 @@ namespace Inventory.Application.Purchases
 
         public async Task<List<PurchaseAverageDto>> GetPurchaseAverageRates()
         {
-            var result = _purchaseRepository.AllIncluding(g => g.Good).ToList();
-            var filterByDate = result.Where(x =>Convert.ToDateTime(x.CreatedDate).Date == DateTime.Now.Date).Select(x=> new PurchaseAverageDto { GoodName = x.Good.GoodName,AverageRate = x.GoodRate});
-            var finalResult = new List<PurchaseAverageDto>();
-            foreach (var item in filterByDate)
-            {
-               int cnt = 0;
-                double goodRateAvg = 0;
-                foreach (var itemRate in filterByDate)
-                {
-                    if(item.GoodName == itemRate.GoodName)
-                    {
-                        cnt++;
-                        goodRateAvg += (double)itemRate.AverageRate;
-                    }
-                }
-                goodRateAvg = goodRateAvg / cnt;
-                var avg = new PurchaseAverageDto();
-                avg.GoodName=item.GoodName;
-                avg.AverageRate=goodRateAvg;
-                var res = finalResult.FirstOrDefault(x => x.GoodName == item.GoodName);
-                if (res == null)
-                {
-                    finalResult.Add(avg);
-                }
-            }
+            var finalResult =
+                        (from goodRate in _purchaseRepository.AllIncluding(g => g.Good)
+                         .Where(x => Convert.ToDateTime(x.CreatedDate).Date == DateTime.Now.Date).ToList()
+                        group goodRate by goodRate.Good.GoodName into goodRates
+                         select new PurchaseAverageDto()
+                        {
+                            GoodName = goodRates.Key,
+                            AverageRate = goodRates.Average(x => x.GoodRate),
+                            
+                        }).ToList();
             return finalResult.ToList();
         }
     }
