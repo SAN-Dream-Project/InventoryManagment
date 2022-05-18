@@ -79,6 +79,7 @@ export class PurchaseSectionComponent implements OnInit {
     this.sort = this.users;
     this.dataSource = new MatTableDataSource(this.users);
     this.purchaseForm = new FormGroup({});
+
     setTimeout(() => {
       this.purchaseService.getAllPurchases().subscribe((purchases) => {
         this.purchases = purchases;
@@ -91,60 +92,72 @@ export class PurchaseSectionComponent implements OnInit {
     this.dropdownService.getGoodList().subscribe((goods) => {
       this.goods = goods;
     });
+
     this.dropdownService.getSupplierList().subscribe((suppilers) => {
       this.suppilers = suppilers;
     });
+
     this.dropdownService.getKadataList().subscribe((kadatas) => {
       this.kadatas = kadatas;
     });
+
     this.dropdownService.getLabourRateList().subscribe((labourCharges) => {
       this.labourCharges = labourCharges;
     });
+
     this.filteredGood = this.goodCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(good => good ? this._filterGoods(good) : this.goods.slice())
-      );
+    .pipe(
+      startWith(''),
+      map(good => good ? this._filterGoods(good) : this.goods.slice())
+    );
 
     this.filteredSuppiler = this.supplierCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(suppiler => suppiler ? this._filterSuppliers(suppiler) : this.suppilers.slice())
-        );
+    .pipe(
+      startWith(''),
+      map(suppiler => suppiler ? this._filterSuppliers(suppiler) : this.suppilers.slice())
+    );
 
     this.filteredKadata = this.kadataCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(kadata => kadata ? this._filterKadatas(kadata) : this.kadatas.slice())
-        );
+    .pipe(
+      startWith(''),
+      map(kadata => kadata ? this._filterKadatas(kadata) : this.kadatas.slice())
+    );
+
     this.filteredlabourCharge = this.labourChargeCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(labourCharge => labourCharge ? this._filterlabourCharges(labourCharge) : this.labourCharges.slice())
-        );
+    .pipe(
+      startWith(''),
+      map(labourCharge => labourCharge ? this._filterlabourCharges(labourCharge) : this.labourCharges.slice())
+    );
   }
+
   private _filterGoods(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.goods.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   private _filterSuppliers(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.suppilers.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   private _filterKadatas(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.kadatas.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   private _filterlabourCharges(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.labourCharges.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   SelectedGood(good: any) {
     this.purchase.goodID = good.key;
   }
+
   SelectedSupplier(suppiler: any) {
     this.purchase.goodSupplierID = suppiler.key;
   }
+
   SelectedKadata(kadata: any) {
     this.purchase.kadataID = kadata.key;
     this.purchase.kadtaTotal = (this.purchase.grossGoodQuantity/100)*kadata.value;
@@ -154,11 +167,13 @@ export class PurchaseSectionComponent implements OnInit {
       this.purchase.totalAmount = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
     }
   }
+
   SelectedLabourCharge(labourRate: any) {
     this.purchase.labourRateID = labourRate.key;
     this.purchase.totalLabourCosting = (this.purchase.grossGoodQuantity/100)*labourRate.value;
     this.purchase.totalAmount = (this.purchase.netGoodQuantity*this.purchase.goodRate)-this.purchase.totalLabourCosting;
   }
+
   ngOnInit(): void {
     this.validateForm();
     this.ngxSpinnerService.show();
@@ -216,13 +231,13 @@ export class PurchaseSectionComponent implements OnInit {
       this.selectedSupplier = null;
       this.selectedKadata = null;
       this.seletedlabourCharge = null;
-    } /*else if (type === 'Print') {
-      this.printObj = userObj;
+    } else if (type === 'Print') {
+      this.printObj = purchaseObj;
       this.showPrintModal = true;
       setTimeout(()=>{
         window.print();
       }, 500);
-    }*/ else {
+    } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
@@ -237,9 +252,10 @@ export class PurchaseSectionComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
-  /*closePrintModal() {
+
+  closePrintModal() {
     this.showPrintModal = false;
-  }*/
+  }
 
   submitForm(action: string, purchaseObj: PurchaseInput): void {
     console.log(purchaseObj);
