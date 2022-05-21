@@ -18,7 +18,7 @@ export class PurchaseReportComponent implements OnInit {
   filteredGoods: Observable<DropDown[]> | undefined;
   goodCtrl = new FormControl();
   purchaseReportForm: FormGroup;
-
+  purchaseReportDetail:any;
   purchaseReportInput: PurchaseReportInput = {
     goodID: '',
     fromDate: new Date(),
@@ -57,7 +57,10 @@ export class PurchaseReportComponent implements OnInit {
 
   getPurchaseReportDetails() {
     console.table(this.purchaseReportInput);
-    this.purchaseService.getPurchaseReport(this.purchaseReportInput).subscribe();
+    this.purchaseService.getPurchaseReport(this.purchaseReportInput).subscribe(x=>{
+      console.log(x);
+      this.purchaseReportDetail=x;
+    });
   }
 
 }
