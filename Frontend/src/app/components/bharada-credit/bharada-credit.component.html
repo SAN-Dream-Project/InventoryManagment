@@ -1,0 +1,129 @@
+<app-header></app-header>
+<section class="mt-3 table-responsive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5>Bharada Credit  Details :</h5>
+        <hr>
+        <div class="example-header">
+          <mat-form-field class="w-25">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+          </mat-form-field>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i
+              class="fa fa-money me-2"></i>Add Bharada Credit </button>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="retailerName">e
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Retailer Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.retailerName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalAmount">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.totalAmount }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="remaningAmount">
+              <mat-header-cell *matHeaderCellDef> Remaining Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.remaningAmount}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="createdBy">
+              <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.createdBy}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Update', element)"><i
+                    class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i
+                    class="fa fa-remove"></i></button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+              <mat-cell> <i class="fa fa-edit"></i> </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell> <i class="fa fa-delete"></i> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-container *ngIf="showModal">
+    <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
+      <i class="c-close fa fa-remove" (click)="closeModal()"></i>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+            <h5 *ngIf="buttonStatus.saveButton">Create New Bharada Credit :</h5>
+            <h5 *ngIf="buttonStatus.updateButton">Update Bharada Credit :</h5>
+            <hr>
+            <form [formGroup]="bharadaCreditForm">
+              <div class="input-group mb-3">
+                <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+                <mat-form-field class="form-control">
+                  <input matInput placeholder="Search Supplier" [matAutocomplete]="autoRetailer" [(ngModel)]="selectedRetailer"
+                    formControlName="retailerID" name="retailerID" [formControl]="retailerCtrl">
+                  <mat-autocomplete #autoRetailer="matAutocomplete">
+                    <mat-option *ngFor="let retailer of filteredRetailer | async" (click)="SelectedRetailer(retailer)"
+                      [value]="retailer.value">
+                      <small> {{retailer.value}}</small>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-text"><i class="c-fa fa fa-user"></i></div>
+                <mat-form-field class="form-control">
+                  <input matInput placeholder="Search Bharada Sale Details" [matAutocomplete]="autoBharadaSaleDetail" [(ngModel)]="selectedBharadaSaleDetail"
+                    formControlName="bharadaSaleDetailID" name="bharadaSaleDetailID" [formControl]="bharadaSaleDetailCtrl">
+                  <mat-autocomplete #autoBharadaSaleDetail="matAutocomplete">
+                    <mat-option *ngFor="let BharadaSaleDetail of filteredBharadaSaleDetail | async" (click)="SelectedBharadaSaleDetail(BharadaSaleDetail)"
+                      [value]="BharadaSaleDetail.value">
+                      <small> {{BharadaSaleDetail.value}}</small>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+             
+              <div class="input-group mb-3">
+                <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+                <input class="form-control"
+                  [ngClass]="{ 'is-invalid': formSubmitted && formControl['paidAmount'].errors }" type="text"
+                  formControlName="paidAmount" name="paidAmount" [(ngModel)]="bharadaCreditSale.paidAmount"
+                  placeholder="Paid Amount" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="appendZeros()" required>
+                <div *ngIf="formSubmitted && formControl['paidAmount'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['paidAmount'].errors?.['required']">Total Amount is required.</div>
+                  <div *ngIf="formControl['paidAmount'].errors?.['pattern']">Wrong numeric value.</div>
+                </div>
+              </div>
+              <button class="form-control btn btn-success" (click)="submitForm('Create', bharadaCreditSale)"
+                *ngIf="buttonStatus.saveButton">Save</button>
+              <button class="form-control btn btn-info" (click)="submitForm('Update', bharadaCreditSale)"
+                *ngIf="buttonStatus.updateButton">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>

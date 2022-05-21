@@ -1,0 +1,218 @@
+<app-header></app-header>
+<main class="mt-3">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <h5 class="mb-3">Services :</h5>
+          <hr>
+          <mat-tab-group>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Master Details Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-user me-2"></i>
+                <span>Master Details Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/user-section']"><i class="fa fa-users me-3"></i>User Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/goods-section']"><i class="fa fa-product-hunt me-3"></i>Good Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/employee-section']"><i class="fa fa-users me-3"></i>Employee Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/goods-supplier-section']"><i class="fa fa-users me-3"></i>Good Supplier Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/kadata-section']"><i class="fa fa-balance-scale me-3"></i>Kadata Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/labour-section']"><i class="fa fa-users me-3"></i>Labour Section</a>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/retailer-section']"><i class="fa fa-users me-3"></i>Retailer Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/labour-rate-section']"><i class="fa fa-money me-3"></i>Labour Rate Section</a>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Purchase Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-money me-2"></i>
+                <span>Purchase Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/purchase-section']"><i class="fa fa-money me-3"></i>Purchase Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/purchase-average-rate']"><i class="fa fa-money me-3"></i>Good Purchase Average Rate Section</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Sale Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-money me-2"></i>
+                <span>Sale Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/sale-section']"><i class="fa fa-money me-3"></i>Sale Section</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Stock Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-shopping-cart me-2"></i>
+                <span>Stock Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/stock-section']"><i class="fa fa-shopping-cart me-3"></i>Stock Section</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Bharada Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-money me-2"></i>
+                <span>Bharada Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/bharada-rate-section']"><i class="fa fa-money me-3"></i>Bharada Rate Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/bharada-sale-section']"><i class="fa fa-money me-3"></i>Bharada Sale Section</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-5 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/bharada-credit-section']"><i class="fa fa-money me-3"></i>Bharada Credit Section</a>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Reports Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-book me-2"></i>
+                <span>Reports Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  Reports Section
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab labelClass="text-black fw-bold opacity-100" label="Demos Section">
+              <ng-template mat-tab-label>
+                <i class="fa fa-book me-2"></i>
+                <span>Demos Section</span>
+              </ng-template>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-3 mb-3">
+                    <div class="card bg-white text-black shadow-sm c-card">
+                      <div class="card-body p-5">
+                        <a class="text-black text-decoration-none c-ah" [routerLink]="['/demos/table-data']"><i class="fa fa-desktop me-3"></i>Demos Section</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <!--<div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-3 mb-3">
+        <div class="card bg-white text-black shadow-sm c-card">
+          <div class="card-body p-5">
+            <a class="text-black text-decoration-none c-ah" [routerLink]="['/demos/table-data']"><i class="fa fa-desktop me-3"></i>Demos Section</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-3 mb-3">
+        <div class="card bg-white text-black shadow-sm c-card">
+          <div class="card-body p-5">
+            <a class="text-black text-decoration-none c-ah" [routerLink]="['/demos/language-translation']"><i class="fa fa-desktop me-3"></i>Language Translation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+</main>
+<app-footer></app-footer>

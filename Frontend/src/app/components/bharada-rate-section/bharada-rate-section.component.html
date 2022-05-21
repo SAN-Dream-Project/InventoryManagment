@@ -1,0 +1,110 @@
+<app-header></app-header>
+<section class="mt-3 table-responsive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5>Bharada Rate Details :</h5>
+        <hr>
+        <div class="example-header">
+          <mat-form-field class="w-25">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
+          </mat-form-field>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-money me-2"></i>Add Bharada Rate</button>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="rateCriteriaID">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> RateCriteriaID </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.rateCriteriaID}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="rateCriteria">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Rate Criteria </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.rateCriteria}} </mat-cell>
+              </ng-container>
+
+            <ng-container matColumnDef="rate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="createdBy">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Created Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.createdBy}} </mat-cell>
+              </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Edit', element)"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i class="fa fa-remove"></i></button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef > Edit </mat-header-cell>
+              <mat-cell> <i class="fa fa-edit"></i> </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef > Delete </mat-header-cell>
+              <mat-cell> <i class="fa fa-delete"></i> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-container *ngIf="showModal">
+  <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closeModal()"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h5 *ngIf="buttonStatus.saveButton">Create New Bharada Rate :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Bharada Rate :</h5>
+          <hr>
+          <form [formGroup]="bharadaRateForm">
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-credit-card"></i> Rate Criteria ID </div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rateCriteriaID'].errors }" type="text" formControlName="rateCriteriaID" name="rateCriteriaID" [(ngModel)]="bharadaRate.rateCriteriaID" placeholder="Rate Criteria ID"  required>
+              <div *ngIf="formSubmitted && formControl['rateCriteriaID'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['rateCriteriaID'].errors?.['required']">Labour Rate is required.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Rate Criteria </div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rateCriteria'].errors }" type="text" formControlName="rateCriteria" name="rateCriteria" [(ngModel)]="bharadaRate.rateCriteria" placeholder="Rate Criteria" required>
+              <div *ngIf="formSubmitted && formControl['rateCriteria'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['rateCriteria'].errors?.['required']">Labour Rate is required.</div>
+              </div>
+            </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text"><i class="c-fa fa fa-money"></i> Rate </div>
+            <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['rate'].errors }" type="text" formControlName="rate" name="rate" [(ngModel)]="bharadaRate.rate" placeholder="Rate" pattern="^[0-9]*$" required>
+            <div *ngIf="formSubmitted && formControl['rate'].errors" class="invalid-feedback">
+              <div *ngIf="formControl['rate'].errors?.['required']">Labour Rate is required.</div>
+              <div *ngIf="formControl['rate'].errors?.['pattern']">Enter only numbers.</div>
+            </div>
+          </div>
+          <button class="form-control btn btn-success" (click)="submitForm('Create', bharadaRate)" *ngIf="buttonStatus.saveButton">Save</button>
+          <button class="form-control btn btn-info" (click)="submitForm('Update', bharadaRate)" *ngIf="buttonStatus.updateButton">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+

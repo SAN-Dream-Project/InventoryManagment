@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Publish</_PublishTargetUrl>
+    <History>False|2022-03-09T14:24:02.2893358Z;False|2022-03-09T19:52:47.3652229+05:30;False|2022-03-09T19:52:25.7119147+05:30;False|2022-03-09T19:52:09.3261641+05:30;True|2022-03-09T19:43:16.5682733+05:30;True|2022-03-09T19:42:53.8541099+05:30;True|2022-03-09T19:29:55.8214732+05:30;True|2022-03-09T19:22:05.2312131+05:30;True|2022-03-09T19:21:30.6144967+05:30;False|2022-03-09T19:20:52.7040891+05:30;True|2022-03-09T18:52:20.9725670+05:30;True|2022-03-09T18:31:56.7221058+05:30;True|2022-03-09T18:31:20.2782024+05:30;True|2022-03-09T16:15:55.8809899+05:30;</History>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="Ecommerce.EntityFramwork.EcommerceContext">
+      <Value>Server=DESKTOP-E4ID33H\SQLEXPRESS%3bDatabase=EcommerceDb%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

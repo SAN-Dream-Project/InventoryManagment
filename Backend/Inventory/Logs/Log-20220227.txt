@@ -1,0 +1,55 @@
+2022-02-27T00:11:47.7353147+05:30 8000011b-0002-fd00-b63f-84710c7967bb [INF] Entity Framework Core "6.0.0" initialized '"EcommerceContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-02-27T00:11:48.7655327+05:30 8000011b-0002-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("89"ms) [Parameters=["@p4='?' (DbType = Guid), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Tests] SET [Email] = @p0, [FirstName] = @p1, [LatName] = @p2, [RollNo] = @p3
+WHERE [Id] = @p4;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2022-02-27T00:11:55.8587928+05:30 8000011b-0002-fd00-b63f-84710c7967bb [INF] The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions. (113ebb27)
+2022-02-27T00:11:56.6061930+05:30 8000011b-0002-fd00-b63f-84710c7967bb [INF]    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyException(Int32 commandIndex, Int32 expectedRowsAffected, Int32 rowsAffected)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithoutPropagation(Int32 commandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Ecommerce.EntityFramwork.Repositories.EntityBaseRepository`1.Commit() in C:\DreamProject\Ecommerce\Ecommerce.EntityFramwork\Repositories\EntityBaseRepository.cs:line 105
+   at Ecommerce.EntityFramwork.Repositories.EntityBaseRepository`1.Update(T entity) in C:\DreamProject\Ecommerce\Ecommerce.EntityFramwork\Repositories\EntityBaseRepository.cs:line 84
+   at Ecommerce.Application.Tests.TestAppService.CreateOrUpdate(TestInputDto testInputDto) in C:\DreamProject\Ecommerce\Ecommerce.Application\Tests\TestAppService.cs:line 33 (d8182d1d)
+2022-02-27T00:16:54.1288738+05:30 80000199-0005-fc00-b63f-84710c7967bb [INF] Entity Framework Core "6.0.0" initialized '"EcommerceContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-02-27T00:16:55.5441887+05:30 80000199-0005-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("51"ms) [Parameters=["@p4='?' (DbType = Guid), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Tests] SET [Email] = @p0, [FirstName] = @p1, [LatName] = @p2, [RollNo] = @p3
+WHERE [Id] = @p4;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2022-02-27T00:16:56.1715517+05:30 80000199-0005-fc00-b63f-84710c7967bb [INF] The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions. (113ebb27)
+2022-02-27T00:16:56.2499659+05:30 80000199-0005-fc00-b63f-84710c7967bb [INF]    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyException(Int32 commandIndex, Int32 expectedRowsAffected, Int32 rowsAffected)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithoutPropagation(Int32 commandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Ecommerce.EntityFramwork.Repositories.EntityBaseRepository`1.Commit() in C:\DreamProject\Ecommerce\Ecommerce.EntityFramwork\Repositories\EntityBaseRepository.cs:line 105
+   at Ecommerce.EntityFramwork.Repositories.EntityBaseRepository`1.Update(T entity) in C:\DreamProject\Ecommerce\Ecommerce.EntityFramwork\Repositories\EntityBaseRepository.cs:line 84
+   at Ecommerce.Application.Tests.TestAppService.CreateOrUpdate(TestInputDto testInputDto) in C:\DreamProject\Ecommerce\Ecommerce.Application\Tests\TestAppService.cs:line 28
+   at Ecommerce.Host.Controllers.TestController.AddTest(TestInputDto input) in C:\DreamProject\Ecommerce\Ecommerce\Controllers\TestController.cs:line 25 (852a94de)
+2022-02-27T01:30:42.8050409+05:30 800000df-0006-fa00-b63f-84710c7967bb [INF] Entity Framework Core "6.0.0" initialized '"EcommerceContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-02-27T01:30:44.1130913+05:30 800000df-0006-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("45"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Email], [t].[FirstName], [t].[LatName], [t].[RollNo]
+FROM [Tests] AS [t]" (0723d8ff)
+2022-02-27T10:20:22.6005100+05:30 80000288-0001-fd00-b63f-84710c7967bb [INF] Entity Framework Core "6.0.0" initialized '"EcommerceContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer":"6.0.0"' with options: "None" (d2805559)
+2022-02-27T10:20:24.5067502+05:30 80000288-0001-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("79"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Email], [t].[FirstName], [t].[LatName], [t].[RollNo]
+FROM [Tests] AS [t]" (0723d8ff)

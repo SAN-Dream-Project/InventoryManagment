@@ -1,0 +1,429 @@
+<app-header></app-header>
+<section class="mt-3 table-responsive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5>Purchase Details :</h5>
+        <hr>
+        <div class="example-header">
+          <mat-form-field class="w-25">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+          </mat-form-field>
+          <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i
+              class="fa fa-money me-2"></i>Add New Purchase</button>
+          <a class="btn btn-success float-end mt-1 me-2" [routerLink]="['/purchase-average-rate']"><i class="fa fa-balance-scale me-2"></i>Get Good Purchase Average Rate</a>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="goodName">e
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Good Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.goodName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="goodSupplierName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Good Supplier Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.goodSupplierName }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="grossGoodQuantity">
+              <mat-header-cell *matHeaderCellDef> Gross Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.grossGoodQuantity}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="goodRate">
+              <mat-header-cell *matHeaderCellDef> Good Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.goodRate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="kadataQuantity">
+              <mat-header-cell *matHeaderCellDef> Kadata Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.kadataQuantity}} </mat-cell>
+            </ng-container>
+
+            <!--<ng-container matColumnDef="kadtaTotal">e
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Kadata Total </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.kadtaTotal}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="netGoodQuantity">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Net Good Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row.netGoodQuantity }} </mat-cell>
+            </ng-container>
+
+             <ng-container matColumnDef="labourRate">
+              <mat-header-cell *matHeaderCellDef> Labour Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.labourRate}} </mat-cell>
+            </ng-container> -->
+
+            <ng-container matColumnDef="totalLabourCosting">
+              <mat-header-cell *matHeaderCellDef> Total Labour Costing </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.totalLabourCosting}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalAmount">
+              <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.totalAmount}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button class="btn btn-primary btn-sm text-decoration-none me-2" (click)="openModal('Print', element)" title="Print"><i class="fa fa-print"></i></button> |
+                <button class="btn btn-info btn-sm text-decoration-none ms-2 me-2" (click)="openModal('Update', element)" title="Edit"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-2" (click)="deleteRecord(element.id)" title="Delete"><i class="fa fa-remove"></i></button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+              <mat-cell> <i class="fa fa-edit"></i> </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell> <i class="fa fa-delete"></i> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-container *ngIf="showModal">
+  <div class="c-modal position-fixed h-100 w-50 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closeModal()"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h5 *ngIf="buttonStatus.saveButton">Create New Purchase :</h5>
+          <h5 *ngIf="buttonStatus.updateButton">Update Purchase :</h5>
+          <hr>
+          <form [formGroup]="purchaseForm">
+            <!-- <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i></div>
+              <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodID'].errors }" type="text" formControlName="goodID" name="goodID" [(ngModel)]="purchase.goodID" placeholder="Good Name" required>
+              <div *ngIf="formSubmitted && formControl['goodID'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['goodID'].errors?.['required']">Good Name is required.</div>
+              </div>
+            </div> -->
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-product-hunt"></i> Good </div>
+              <mat-form-field class="form-control">
+                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodID'].errors }" matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
+                  formControlName="goodID" name="goodID" [formControl]="goodCtrl" required>
+                <mat-autocomplete #autoGood="matAutocomplete">
+                  <mat-option *ngFor="let good of filteredGood | async" (click)="SelectedGood(good)"
+                    [value]="good.value">
+                    <small> {{good.value}}</small>
+                  </mat-option>
+                </mat-autocomplete>
+                <div *ngIf="formSubmitted && formControl['goodID'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['goodID'].errors?.['required']">Please select good name.</div>
+                </div>
+              </mat-form-field>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-user"></i> Supplier </div>
+              <mat-form-field class="form-control">
+                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodSupplierID'].errors }" matInput placeholder="Search Supplier" [matAutocomplete]="autoSuppiler" [(ngModel)]="selectedSupplier"
+                  formControlName="goodSupplierID" name="goodSupplierID" [formControl]="supplierCtrl" required>
+                <mat-autocomplete #autoSuppiler="matAutocomplete">
+                  <mat-option *ngFor="let supplier of filteredSuppiler | async" (click)="SelectedSupplier(supplier)"
+                    [value]="supplier.value">
+                    <small> {{supplier.value}}</small>
+                  </mat-option>
+                </mat-autocomplete>
+                <div *ngIf="formSubmitted && formControl['goodSupplierID'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['goodSupplierID'].errors?.['required']">Please select good supplier name.</div>
+                </div>
+              </mat-form-field>
+              <!-- <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodSupplierID'].errors }" type="text"
+                formControlName="goodSupplierID" name="goodSupplierName" [(ngModel)]="purchase.goodSupplierID"
+                placeholder="Good Supplier Name" required>
+              <div *ngIf="formSubmitted && formControl['goodSupplierID'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['goodSupplierID'].errors?.['required']">Good Supplier Name is required.</div>
+              </div> -->
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Gross Good Qty. </div>
+              <input id="this.purchase.grossGoodQuantity" class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['grossGoodQuantity'].errors }" type="text"
+                formControlName="grossGoodQuantity" name="grossGoodQuantity" [(ngModel)]="purchase.grossGoodQuantity"
+                placeholder="Gross Good Quantity" pattern="^[0-9]*\.?[0-9]*$" (blur)="calculateTotalAmount()" required>
+              <div *ngIf="formSubmitted && formControl['grossGoodQuantity'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['grossGoodQuantity'].errors?.['required']">Gross Good Quantity is required.</div>
+                <div *ngIf="formControl['grossGoodQuantity'].errors?.['pattern']">Wrong numeric value.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Good Rate </div>
+              <input id="this.purchase.goodRate" class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['goodRate'].errors }"
+                type="text" formControlName="goodRate" name="goodRate" [(ngModel)]="purchase.goodRate"
+                placeholder="Good Rate" pattern="^[0-9]*\.?[0-9]*$" (blur)="calculateTotalAmount()" required>
+              <div *ngIf="formSubmitted && formControl['goodRate'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['goodRate'].errors?.['required']">Good Rate is required.</div>
+                <div *ngIf="formControl['goodRate'].errors?.['pattern']">Wrong numeric value.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Kadata </div>
+              <mat-form-field class="form-control">
+                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadataID'].errors }" matInput placeholder="Search Kadata" [matAutocomplete]="autoKadata" [(ngModel)]="selectedKadata"
+                  formControlName="kadataID" name="kadataID" [formControl]="kadataCtrl" required>
+                <mat-autocomplete #autoKadata="matAutocomplete">
+                  <mat-option *ngFor="let kadata of filteredKadata | async" (onSelectionChange)="SelectedKadata(kadata)"
+                    [value]="kadata.value">
+                    <small> {{kadata.value}}</small>
+                  </mat-option>
+                </mat-autocomplete>
+                <div *ngIf="formSubmitted && formControl['kadataID'].errors" class="invalid-feedback">
+                  <div *ngIf="formControl['kadataID'].errors?.['required']">Please select good name.</div>
+                </div>
+              </mat-form-field>
+              <!-- <input class="form-control" [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadataID'].errors }"
+                type="text" formControlName="kadataID" name="kadataID" [(ngModel)]="purchase.kadataID"
+                placeholder="Kadata Quantity" pattern="^[0-9]+\.[0-9]{1,2}$" (blur)="calculateTotalAmount()" required>
+              <div *ngIf="formSubmitted && formControl['kadataID'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['kadataID'].errors?.['required']">Kadata Quantity is required.</div>
+                <div *ngIf="formControl['kadataID'].errors?.['pattern']">Wrong numeric value.</div>
+              </div> -->
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Kadata Total </div>
+              <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadtaTotal'].errors }" type="text"
+                formControlName="kadtaTotal" name="kadtaTotal" [(ngModel)]="purchase.kadtaTotal"
+                placeholder="Kadata Total" pattern="^[0-9]*\.?[0-9]*$" required readonly>
+              <div *ngIf="formSubmitted && formControl['kadtaTotal'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['kadtaTotal'].errors?.['required']">Kadata Total is required.</div>
+                <div *ngIf="formControl['kadtaTotal'].errors?.['pattern']">Wrong numeric value.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Net Good Qty. </div>
+              <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['netGoodQuantity'].errors }" type="text"
+                formControlName="netGoodQuantity" name="netGoodQuantity" [(ngModel)]="purchase.netGoodQuantity"
+                placeholder="Net Good Quantity" pattern="^[0-9]*\.?[0-9]*$" required readonly>
+              <div *ngIf="formSubmitted && formControl['netGoodQuantity'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['netGoodQuantity'].errors?.['required']">Net Good Quantity is required.</div>
+                <div *ngIf="formControl['netGoodQuantity'].errors?.['pattern']">Wrong numeric value.</div>
+              </div>
+            </div>
+            <!-- <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i></div>
+              <mat-form-field class="form-control">
+                <input matInput placeholder="Search Labour Rate" [matAutocomplete]="autoLabourRate" [(ngModel)]="seletedlabourCharge"
+                  formControlName="labourRateID" name="labourRateID" [formControl]="labourChargeCtrl">
+                <mat-autocomplete #autoLabourRate="matAutocomplete">
+                  <mat-option *ngFor="let labourCharge of filteredlabourCharge | async" (click)="SelectedLabourCharge(labourCharge)"
+                    [value]="labourCharge.value">
+                    <small> {{labourCharge.value}}</small>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div> -->
+              <!-- <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['labourRateID'].errors }" type="text"
+                formControlName="labourRateID" name="labourRateID" [(ngModel)]="purchase.labourRateID"
+                placeholder="Labour Rate" pattern="^[0-9]+\.[0-9]$" (blur)="calculateTotalAmount()" required>
+              <div *ngIf="formSubmitted && formControl['labourRateID'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['labourRateID'].errors?.['required']">Labour Rate is required.</div>
+                <div *ngIf="formControl['labourRateID'].errors?.['pattern']">Wrong numeric value.</div>
+              </div> -->
+
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Labour Cost </div>
+              <input id="this.purchase.totalLabourCosting" class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalLabourCosting'].errors }" type="text"
+                formControlName="totalLabourCosting" name="totalLabourCosting" [(ngModel)]="purchase.totalLabourCosting"
+                placeholder="Total Labour Costing" pattern="^[0-9]*\.?[0-9]*$" (blur)="calculateTotalAmount()" required>
+              <div *ngIf="formSubmitted && formControl['totalLabourCosting'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['totalLabourCosting'].errors?.['required']">Total Labour Costing is required.
+                </div>
+                <div *ngIf="formControl['totalLabourCosting'].errors?.['pattern']">Wrong numeric value.</div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-text"><i class="c-fa fa fa-money"></i> Total Amount </div>
+              <input class="form-control"
+                [ngClass]="{ 'is-invalid': formSubmitted && formControl['totalAmount'].errors }" type="text"
+                formControlName="totalAmount" name="totalAmount" [(ngModel)]="purchase.totalAmount"
+                placeholder="Total Amout" required readonly>
+              <div *ngIf="formSubmitted && formControl['totalAmount'].errors" class="invalid-feedback">
+                <div *ngIf="formControl['totalAmount'].errors?.['required']">Total Amount is required.</div>
+                <div *ngIf="formControl['totalAmount'].errors?.['pattern']">Wrong numeric value.</div>
+              </div>
+            </div>
+            <button class="form-control btn btn-success" (click)="submitForm('Create', purchase)"
+              *ngIf="buttonStatus.saveButton">Save</button>
+            <button class="form-control btn btn-info" (click)="submitForm('Update', purchase)"
+              *ngIf="buttonStatus.updateButton">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="showPrintModal">
+  <div class="print-modal c-modal position-fixed h-100 w-100 bg-light top-0 end-0 shadow-lg overflow-scroll">
+    <i class="c-close fa fa-remove" (click)="closePrintModal()"></i>
+    <!--<div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-5 pt-4">
+          <h1 class="display-1">{{ printObj.firstName }} {{ printObj.lastName }}</h1>
+          <p class="card-subtitle">{{ printObj.mobileNo }}</p>
+          <h5>{{ printObj.gender ? 'Male' : 'Female' }}</h5>
+        </div>
+      </div>
+    </div>-->
+    <div class="container-fluid">
+      <div class="col-md-12">
+        <div class="invoice">
+          <!-- begin invoice-company -->
+          <div class="invoice-company text-inverse f-w-600">
+            <span class="pull-right hidden-print me-5">
+            <!--<a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a>-->
+            <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
+            </span>
+            Company Name, Inc
+          </div>
+          <!-- end invoice-company -->
+          <!-- begin invoice-header -->
+          <div class="invoice-header">
+            <div class="invoice-from">
+              <small>from</small>
+              <address class="m-t-5 m-b-5">
+                <strong class="text-inverse">Twitter, Inc.</strong><br>
+                Street Address<br>
+                City, Zip Code<br>
+                Phone: (123) 456-7890<br>
+                Fax: (123) 456-7890
+              </address>
+            </div>
+            <div class="invoice-to">
+              <small>to</small>
+              <address class="m-t-5 m-b-5">
+                <strong class="text-inverse">Company Name</strong><br>
+                Street Address<br>
+                City, Zip Code<br>
+                Phone: (123) 456-7890<br>
+                Fax: (123) 456-7890
+              </address>
+            </div>
+            <div class="invoice-date">
+              <small>Invoice / July period</small>
+              <div class="date text-inverse m-t-5">August 3,2012</div>
+              <div class="invoice-detail">
+                #0000123DSS<br>
+                Services Product
+              </div>
+            </div>
+          </div>
+          <!-- end invoice-header -->
+          <!-- begin invoice-content -->
+          <div class="invoice-content">
+            <!-- begin table-responsive -->
+            <div class="table-responsive">
+              <table class="table table-invoice">
+                <thead>
+                <tr>
+                  <th>TASK DESCRIPTION</th>
+                  <th class="text-center" width="10%">RATE</th>
+                  <th class="text-center" width="10%">HOURS</th>
+                  <th class="text-right" width="20%">LINE TOTAL</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <span class="text-inverse">Website design &amp; development</span><br>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
+                  </td>
+                  <td class="text-center">$50.00</td>
+                  <td class="text-center">50</td>
+                  <td class="text-right">$2,500.00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="text-inverse">Branding</span><br>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
+                  </td>
+                  <td class="text-center">$50.00</td>
+                  <td class="text-center">40</td>
+                  <td class="text-right">$2,000.00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="text-inverse">Redesign Service</span><br>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
+                  </td>
+                  <td class="text-center">$50.00</td>
+                  <td class="text-center">50</td>
+                  <td class="text-right">$2,500.00</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- end table-responsive -->
+            <!-- begin invoice-price -->
+            <div class="invoice-price">
+              <div class="invoice-price-left">
+                <div class="invoice-price-row">
+                  <div class="sub-price">
+                    <small>SUBTOTAL</small>
+                    <span class="text-inverse">$4,500.00</span>
+                  </div>
+                  <div class="sub-price">
+                    <i class="fa fa-plus text-muted"></i>
+                  </div>
+                  <div class="sub-price">
+                    <small>PAYPAL FEE (5.4%)</small>
+                    <span class="text-inverse">$108.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="invoice-price-right">
+                <small>TOTAL</small> <span class="f-w-600">$4508.00</span>
+              </div>
+            </div>
+            <!-- end invoice-price -->
+          </div>
+          <!-- end invoice-content -->
+          <!-- begin invoice-note -->
+          <div class="invoice-note">
+            * Make all cheques payable to [Your Company Name]<br>
+            * Payment is due within 30 days<br>
+            * If you have any questions concerning this invoice, contact  [Name, Phone Number, Email]
+          </div>
+          <!-- end invoice-note -->
+          <!-- begin invoice-footer -->
+          <div class="invoice-footer">
+            <p class="text-center m-b-5 f-w-600">
+              THANK YOU FOR YOUR BUSINESS
+            </p>
+            <p class="text-center">
+              <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> matiasgallipoli.com</span>
+              <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:016-18192302</span>
+              <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> rtiemps@gmail.com</span>
+            </p>
+          </div>
+          <!-- end invoice-footer -->
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

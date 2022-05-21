@@ -1,0 +1,64 @@
+<app-header></app-header>
+<section class="mt-3 table-responsive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5>Stock Details :</h5>
+        <hr>
+        <div class="example-header">
+          <mat-form-field class="w-25">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
+          </mat-form-field>
+          <!-- <button class="btn btn-success float-end mt-1" (click)="openModal('Create', '')"><i class="fa fa-user me-2"></i>Add Good</button> -->
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="goodName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Good Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.goodName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Good Quantity </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.quantity}} </mat-cell>
+              </ng-container>
+<!-- 
+            <ng-container matColumnDef="createdBy">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Created Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.createdBy}} </mat-cell>
+              </ng-container> -->
+
+            <!-- <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button class="btn btn-info btn-sm text-decoration-none me-3" (click)="openModal('Edit', element)"><i class="fa fa-edit"></i></button> |
+                <button class="btn btn-danger btn-sm text-decoration-none ms-3" (click)="deleteRecord(element.id)"><i class="fa fa-remove"></i></button>
+              </mat-cell>
+            </ng-container> -->
+
+            <!-- <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef > Edit </mat-header-cell>
+              <mat-cell> <i class="fa fa-edit"></i> </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef > Delete </mat-header-cell>
+              <mat-cell> <i class="fa fa-delete"></i> </mat-cell>
+            </ng-container> -->
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

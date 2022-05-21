@@ -1,0 +1,141 @@
+API Endpoints :
+
+Inventory Management :
+
+Labour
+
+Post:
+
+https://localhost:5001/api/v1/Labour/AddLabour
+
+Input
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "firstName": "sachin",
+  "middleName": "B",
+  "lastName": "Waghmare",
+  "mobileNo": "1234567891",
+  "emailID": "sachin@gmail.com",
+  "address": "Test Address",
+  "createdBy": "sachin",
+  "createdDate": "2022-03-19T04:14:41.376Z",
+  "modifiedBy": "sachin",
+  "modifiedDate": "2022-03-19T04:14:41.376Z"
+}
+
+
+Get:
+    GetAllLabour
+
+    https://localhost:5001/api/v1/Labour/GetAllLabour
+
+    GetById
+
+    https://localhost:5001/api/v1/Labour/GetById?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+Delete:
+
+    https://localhost:5001/api/v1/Labour/DeleteLabour?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+------------------------------------------------------------------------------------------------------
+
+LabourRate
+
+Post:
+
+https://localhost:5001/api/v1/LabourRate/AddLabourRate
+
+Input
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "rate": 0,
+  "createdBy": "sachin",
+  "createdDate": "2022-03-19T04:20:42.582Z",
+  "modifiedBy": "sachin",
+  "modifiedDate": "2022-03-19T04:20:42.582Z"
+}
+
+
+Get:
+    GetAllLabourRate
+
+    https://localhost:5001/api/v1/LabourRate/GetAllLabourRate
+
+    GetById
+
+    https://localhost:5001/api/v1/LabourRate/GetById?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+Delete:
+
+    https://localhost:5001/api/v1/LabourRate/DeleteLabourRate?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+---------------------------------------------------------------------------------------------------------
+
+EmployeeDetail
+
+Post:
+
+https://localhost:5001/api/v1/EmployeeDetail/AddEmployeeDetail
+
+Input
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "firstName": "Sachin",
+  "middleName": "B",
+  "lastName": "Waghmare",
+  "mobileNo": "1234567891",
+  "emailID": "sachin@gmail.com",
+  "address": "Test Address",
+  "createdBy": "sachin",
+  "createdDate": "2022-03-19T04:22:31.296Z",
+  "modifiedBy": "sachin",
+  "modifiedDate": "2022-03-19T04:22:31.296Z"
+}
+
+
+Get:
+    GetAllEmployeeDetail
+
+    https://localhost:5001/api/v1/EmployeeDetail/GetAllEmployeeDetail
+
+    GetById
+
+    https://localhost:5001/api/v1/EmployeeDetail/GetById?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+Delete:
+
+    https://localhost:5001/api/v1/EmployeeDetail/DeleteEmployeeDetail?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+----------------------------------------------------------------------------------------------------------------
+SalaryDetail
+
+Post:
+
+https://localhost:5001/api/v1/SalaryDetail/AddSalaryDetail
+
+Input
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "monthlySalary": 0,
+  "emplyeeType": 0,
+  "month": 0,
+  "year": 0,
+  "workingDays": 0,
+  "paidAmount": 0,
+  "createdBy": "sachin",
+  "createdDate": "2022-03-19T04:34:09.299Z",
+  "modifiedBy": "sachin",
+  "modifiedDate": "2022-03-19T04:34:09.299Z"
+}
+
+
+Get:
+    GetAllSalaryDetail
+
+    https://localhost:5001/api/v1/SalaryDetail/GetAllSalaryDetail
+
+    GetById
+
+    https://localhost:5001/api/v1/SalaryDetail/GetById?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+Delete:
+
+    https://localhost:5001/api/v1/SalaryDetail/DeleteSalaryDetail?id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
