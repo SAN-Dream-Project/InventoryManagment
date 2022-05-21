@@ -22,8 +22,8 @@ export class PurchaseReportComponent implements OnInit {
   hasReportData: boolean = false;
   purchaseReportInput: PurchaseReportInput = {
     goodID: '',
-    fromDate: new Date(),
-    toDate: new Date()
+    fromDate: '',
+    toDate: ''
   }
 
   constructor( private dropdownService: DropdownService, private purchaseService: PurchaseService,  private formBuilder: FormBuilder) {
