@@ -77,5 +77,20 @@ namespace Inventory.Host.Controllers
                 return null;
             }
         }
+
+        [HttpGet("GetSaleReportData")]
+        public async Task<List<SaleDetailDto>> GetSaleReportData(SaleReportInputDto reportInputDto)
+        {
+            try
+            {
+                return await _saleDetailAppService.GetSaleReportData(reportInputDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<SaleDetailDto>();
+            }
+        }
     }
 }
