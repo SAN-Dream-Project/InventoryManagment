@@ -9,35 +9,32 @@
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="input-group mt-2 mb-2">
               <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Good ID : </div>
-              <!--<mat-form-field class="form-control">
-                <input [ngClass]="{ 'is-invalid': formSubmitted && formControl['kadataID'].errors }" matInput placeholder="Search Kadata" [matAutocomplete]="autoKadata" [(ngModel)]="selectedKadata"
-                       formControlName="kadataID" name="kadataID" [formControl]="kadataCtrl" required>
-                <mat-autocomplete #autoKadata="matAutocomplete">
-                  <mat-option *ngFor="let kadata of filteredKadata | async" (onSelectionChange)="SelectedKadata(kadata)"
-                              [value]="kadata.value">
-                    <small> {{kadata.value}}</small>
+              <mat-form-field class="form-control" [formGroup]="purchaseReportForm">
+                <input  matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
+                       formControlName="goodID" name="goodID" required>
+                <mat-autocomplete #autoGood="matAutocomplete">
+                  <mat-option *ngFor="let good of filteredGoods | async" (onSelectionChange)="SelectedGood(good)"
+                              [value]="good.value">
+                    <small> {{good.value}}</small>
                   </mat-option>
                 </mat-autocomplete>
-                <div *ngIf="formSubmitted && formControl['kadataID'].errors" class="invalid-feedback">
-                  <div *ngIf="formControl['kadataID'].errors?.['required']">Please select good name.</div>
-                </div>
-              </mat-form-field>-->
+              </mat-form-field>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="input-group mt-2 mb-2">
               <div class="input-group-text"><i class="c-fa fa fa-calendar"></i> From : </div>
-              <input class="form-control" type="date"/>
+              <input class="form-control" type="date" [(ngModel)]="purchaseReportInput.fromDate"/>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="input-group mt-2 mb-2">
               <div class="input-group-text"><i class="c-fa fa fa-calendar"></i> To : </div>
-              <input class="form-control" type="date"/>
+              <input class="form-control" type="date" [(ngModel)]="purchaseReportInput.toDate"/>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 d-flex">
-            <button class="form-control btn btn-info mt-2 mb-2 me-2">Get Details</button>
+            <button class="form-control btn btn-info mt-2 mb-2 me-2" (click)="getPurchaseReportDetails()">Get Details</button>
             <button class="form-control btn btn-info mt-2 mb-2" title="Print"><i class="fa fa-print"></i></button>
           </div>
         </div>

@@ -33,3 +33,9 @@ export interface PurchaseInput{
   modifiedBy:any
   modifiedDate:any
 }
+
+export interface PurchaseReportInput{
+  goodID:any
+  fromDate: any
+  toDate: any
+}
