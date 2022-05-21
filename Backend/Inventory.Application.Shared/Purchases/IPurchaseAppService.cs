@@ -14,6 +14,7 @@ namespace Inventory.Application.Shared.Purchases
         Task<PurchaseDto> GetPurchase(Guid purchaseId);
         Task<List<PurchaseDto>> GetAllPurchases();
         Task<List<PurchaseAverageDto>> GetPurchaseAverageRates();
+        Task<List<PurchaseDto>> GetPurchaseReportData(PurchaseReportInputDto reportInputDto);
 
     }
 }

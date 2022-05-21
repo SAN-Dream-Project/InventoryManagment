@@ -94,5 +94,30 @@ namespace Inventory.Application.Purchases
                         }).ToList();
             return finalResult.ToList();
         }
+
+        public async Task<List<PurchaseDto>> GetPurchaseReportData(PurchaseReportInputDto reportInputDto)
+        {
+            var result = new List<Purchase>();
+            if (reportInputDto.GoodID == null || reportInputDto.GoodID == Guid.Empty)
+            {
+                result = _purchaseRepository.AllIncluding(g => g.Good, gs => gs.GoodSupplier, k => k.Kadata, lr => lr.LabourRate)
+                        .Where(x => Convert.ToDateTime(x.CreatedDate) >= reportInputDto.FromDate &&
+                         Convert.ToDateTime(x.CreatedDate) <= reportInputDto.ToDate).ToList();
+            }
+            else
+            {
+                result = _purchaseRepository.AllIncluding(g => g.Good, gs => gs.GoodSupplier, k => k.Kadata, lr => lr.LabourRate)
+                       .Where(x => Convert.ToDateTime(x.CreatedDate) >= reportInputDto.FromDate &&
+                        Convert.ToDateTime(x.CreatedDate) <= reportInputDto.ToDate &&
+                        x.GoodID == reportInputDto.GoodID).ToList();
+            }
+            var purchesResult = result.ToList();
+            var purchesList = new List<PurchaseDto>();
+            foreach (var test in purchesResult)
+            {
+                purchesList.Add(Mapper.Map<Purchase, PurchaseDto>(test));
+            }
+            return purchesList;
+        }
     }
 }

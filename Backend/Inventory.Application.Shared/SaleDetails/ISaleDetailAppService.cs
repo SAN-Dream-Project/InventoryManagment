@@ -13,5 +13,6 @@ namespace Inventory.Application.Shared.SaleDetails
         Task DeleteSaleDetail(Guid SaleDetailId);
         Task<SaleDetailDto> GetSaleDetail(Guid SaleDetailId);
         Task<List<SaleDetailDto>> GetAllSaleDetails();
+        Task<List<SaleDetailDto>> GetSaleReportData(SaleReportInputDto reportInputDto);
     }
 }
