@@ -17,8 +17,9 @@ export class PurchaseReportComponent implements OnInit {
   goods: DropDown[] = [];
   filteredGoods: Observable<DropDown[]> | undefined;
   goodCtrl = new FormControl();
-  purchaseReportForm: FormGroup;
-  purchaseReportDetail:any;
+  goodIDGroup: FormGroup;
+  purchaseReportDetails:any;
+  hasReportData: boolean = false;
   purchaseReportInput: PurchaseReportInput = {
     goodID: '',
     fromDate: new Date(),
@@ -26,7 +27,7 @@ export class PurchaseReportComponent implements OnInit {
   }
 
   constructor( private dropdownService: DropdownService, private purchaseService: PurchaseService,  private formBuilder: FormBuilder) {
-    this.purchaseReportForm = new FormGroup({});
+    this.goodIDGroup = new FormGroup({});
     this.dropdownService.getGoodList().subscribe((goods) => {
       this.goods = goods;
     });
@@ -37,30 +38,28 @@ export class PurchaseReportComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
-
-  validateForm() {
-    this.purchaseReportForm = this.formBuilder.group({
-      goodID: ['', [Validators.required]]
-    });
-  }
+  ngOnInit(): void {}
 
   private _filterGoods(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.goods.filter(x => x.value.toLowerCase().includes(filterValue));
   }
 
-  SelectedGood(good: any) {
+  goodSelected(good: any) {
     this.purchaseReportInput.goodID = good.key;
   }
 
   getPurchaseReportDetails() {
-    console.table(this.purchaseReportInput);
-    this.purchaseService.getPurchaseReport(this.purchaseReportInput).subscribe(x=>{
-      console.log(x);
-      this.purchaseReportDetail=x;
+    this.purchaseReportInput.goodID == '' ? this.purchaseReportInput.goodID = null : this.purchaseReportInput.goodID;
+    console.log(this.purchaseReportInput);
+    this.purchaseService.getPurchaseReport(this.purchaseReportInput).subscribe(purchseReportDetails=>{
+      this.purchaseReportDetails = purchseReportDetails;
+      this.purchaseReportDetails.length > 0 ? this.hasReportData = true : this.hasReportData = false;
     });
+  }
+
+  printReport() {
+    window.print();
   }
 
 }
