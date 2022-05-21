@@ -76,5 +76,29 @@ namespace Inventory.Application.SaleDetails
             var returnResult = Mapper.Map<SaleDetail, SaleDetailDto>(result);
             return returnResult;
         }
+        public async Task<List<SaleDetailDto>> GetSaleReportData(SaleReportInputDto reportInputDto)
+        {
+            var result = new List<SaleDetail>();
+            if (reportInputDto.GoodID == null || reportInputDto.GoodID == Guid.Empty)
+            {
+                result = _saleDetailRepository.AllIncluding(g => g.Good, gs => gs.GoodSupplier, lr => lr.LabourRate)
+                        .Where(x => Convert.ToDateTime(x.CreatedDate) >= reportInputDto.FromDate &&
+                         Convert.ToDateTime(x.CreatedDate) <= reportInputDto.ToDate).ToList();
+            }
+            else
+            {
+                result = _saleDetailRepository.AllIncluding(g => g.Good, gs => gs.GoodSupplier, lr => lr.LabourRate)
+                       .Where(x => Convert.ToDateTime(x.CreatedDate) >= reportInputDto.FromDate &&
+                        Convert.ToDateTime(x.CreatedDate) <= reportInputDto.ToDate &&
+                        x.GoodID == reportInputDto.GoodID).ToList();
+            }
+            var saleResult = result.ToList();
+            var saleList = new List<SaleDetailDto>();
+            foreach (var test in saleResult)
+            {
+                saleList.Add(Mapper.Map<SaleDetail, SaleDetailDto>(test));
+            }
+            return saleList;
+        }
     }
 }

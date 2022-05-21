@@ -89,5 +89,20 @@ namespace Inventory.Host.Controllers
                 return null;
             }
         }
+
+        [HttpGet("GetPurchaseReportData")]
+        public async Task<List<PurchaseDto>> GetPurchaseReportData(PurchaseReportInputDto reportInputDto)
+        {
+            try
+            {
+                return await _purchaseAppService.GetPurchaseReportData(reportInputDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                _logger.LogInformation(ex.StackTrace);
+                return new List<PurchaseDto>();
+            }
+        }
     }
 }
