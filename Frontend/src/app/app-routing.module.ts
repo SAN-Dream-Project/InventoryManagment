@@ -23,6 +23,8 @@ import {
   GoodPurchaseAverageRateComponent
 } from "./components/good-purchase-average-rate/good-purchase-average-rate.component";
 import {AuthGuard} from "./services/auth.guard";
+import {PurchaseReportComponent} from "./components/reports/purchase-report/purchase-report.component";
+import {SalesReportComponent} from "./components/reports/sales-report/sales-report.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -42,6 +44,8 @@ const routes: Routes = [
   { path: 'bharada-rate-section', component: BharadaRateSectionComponent, canActivate: [AuthGuard] },
   { path: 'bharada-sale-section', component: BharadaSaleComponent, canActivate: [AuthGuard] },
   { path: 'bharada-credit-section', component: BharadaCreditComponent, canActivate: [AuthGuard] },
+  { path: 'purchase-report', component: PurchaseReportComponent, canActivate: [AuthGuard] },
+  { path: 'sales-report', component: SalesReportComponent, canActivate: [AuthGuard] },
   { path: 'demos/table-data', component: DataTableComponent, canActivate: [AuthGuard] },
   { path: 'demos/language-translation', component: LanguageTranslationComponent, canActivate: [AuthGuard] },
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `main-component`

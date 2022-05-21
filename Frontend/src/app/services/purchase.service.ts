@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { PurchaseInput } from '../models/Purchase';
+import {PurchaseInput, PurchaseReportInput} from '../models/Purchase';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class PurchaseService {
   URL_TO_GET_ADD_PURCHASE: string = "https://localhost:5001/api/Purchase/AddPurchase";
   URL_TO_GET_DELETE_PURCHASE: string = "https://localhost:5001/api/Purchase/DeletePurchase";
   URL_TO_GET_PURCHASE_AVERAGE_RATE: string = "https://localhost:5001/api/Purchase/GetPurchaseAverageRates";
+  URL_TO_GET_PURCHASE_REPORT = "https://localhost:5001/api/Purchase/GetPurchaseReportData";
   bearerToken:any = '';
 
   constructor(private httpClient: HttpClient) {
@@ -31,6 +32,11 @@ export class PurchaseService {
   }
   deletePurchase(id: string): Observable<any> {
     return this.httpClient.delete<any>(this.URL_TO_GET_DELETE_PURCHASE+"?id="+id, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
+  }
+
+  //Reports
+  getPurchaseReport(purchaseReportObj: PurchaseReportInput): Observable<any> {
+    return this.httpClient.post<any>(this.URL_TO_GET_PURCHASE_REPORT, purchaseReportObj, {headers: (new HttpHeaders({'Authorization': this.bearerToken}))});
   }
 
 }

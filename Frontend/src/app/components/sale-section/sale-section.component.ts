@@ -83,45 +83,51 @@ export class SaleSectionComponent implements OnInit {
       this.retailers = retailers;
     });
     this.filteredRetailer = this.retailerCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(retailer => retailer ? this._filterRetailers(retailer) : this.retailers.slice())
-        );
+    .pipe(
+      startWith(''),
+      map(retailer => retailer ? this._filterRetailers(retailer) : this.retailers.slice())
+    );
     this.dropdownService.getGoodList().subscribe((goods) => {
-        this.goods = goods;
-        });
+      this.goods = goods;
+    });
     this.filteredGood = this.goodCtrl.valueChanges
-        .pipe(
-            startWith(''),
-          map(good => good ? this._filterGoods(good) : this.goods.slice())
-          );
+    .pipe(
+        startWith(''),
+      map(good => good ? this._filterGoods(good) : this.goods.slice())
+    );
     this.dropdownService.getLabourRateList().subscribe((labourCharges) => {
-        this.labourCharges = labourCharges;
-        });
+      this.labourCharges = labourCharges;
+    });
     this.filteredlabourCharge = this.labourChargeCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(labourCharge => labourCharge ? this._filterlabourCharges(labourCharge) : this.labourCharges.slice())
-        );
+    .pipe(
+      startWith(''),
+      map(labourCharge => labourCharge ? this._filterlabourCharges(labourCharge) : this.labourCharges.slice())
+    );
   }
+
   private _filterRetailers(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.retailers.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   private _filterGoods(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.goods.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   private _filterlabourCharges(value: string): DropDown[] {
     const filterValue = value.toLowerCase();
     return this.labourCharges.filter(x => x.value.toLowerCase().includes(filterValue));
   }
+
   SelectedGood(good: any) {
     this.sale.goodID = good.key;
   }
+
   SelectedRetailer(retailer: any) {
     this.sale.retailerID = retailer.key;
   }
+
   ngOnInit(): void {
     this.validateForm();
     this.ngxSpinnerService.show();
@@ -129,6 +135,7 @@ export class SaleSectionComponent implements OnInit {
       this.ngxSpinnerService.hide();
     }, 1000);
   }
+
   validateForm() {
     this.saleForm = this.formBuilder.group({
       goodID:['', [Validators.required]],
@@ -143,9 +150,11 @@ export class SaleSectionComponent implements OnInit {
       transportCharges: ['', []],
     });
   }
+
   get formControl(): { [key: string]: AbstractControl } {
     return this.saleForm.controls
   }
+
   appendZeros() {
     /*let currentValue = this.user.primaryMobNo;
     let regEx: any = "^[0-9]+\\.[0-9]{1,2}$";
@@ -167,6 +176,7 @@ export class SaleSectionComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource !== undefined ? this.dataSource.filter = filterValue : undefined;
   }
+
   openModal(type: any, purchaseObj: any) {
     this.formSubmitted = false;
     if (type === 'Create') {
@@ -181,13 +191,13 @@ export class SaleSectionComponent implements OnInit {
       this.selectedGood = null;
       this.selectedRetailer = null;
       this.seletedlabourCharge = null;
-    } /*else if (type === 'Print') {
-      this.printObj = userObj;
+    } else if (type === 'Print') {
+      this.printObj = purchaseObj;
       this.showPrintModal = true;
       setTimeout(()=>{
         window.print();
       }, 500);
-    }*/ else {
+    } else {
       this.showModal = true;
       this.buttonStatus.updateButton = true;
       this.buttonStatus.saveButton = false;
@@ -203,9 +213,10 @@ export class SaleSectionComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
-  /*closePrintModal() {
+
+  closePrintModal() {
     this.showPrintModal = false;
-  }*/
+  }
 
   submitForm(action: string, saleObj: SaleInput): void {
     this.formSubmitted = true;
