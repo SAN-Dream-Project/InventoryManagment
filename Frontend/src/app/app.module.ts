@@ -16,7 +16,7 @@ import { UserSectionComponent } from './components/user-section/user-section.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { DataTableComponent } from './components/demos/data-table/data-table.component';
-import {MaterialModule} from "./material/material.module";
+import { MaterialModule } from "./material/material.module";
 import { GoodsSectionComponent } from './components/goods-section/goods-section.component';
 import { KadataSectionComponent } from './components/kadata-section/kadata-section.component';
 import { LabourSectionComponent } from './components/labour-section/labour-section.component';
@@ -33,6 +33,8 @@ import { BharadaCreditComponent } from './components/bharada-credit/bharada-cred
 import { LanguageTranslationComponent } from './components/demos/language-translation/language-translation.component';
 import {LanguageInterceptor} from "./interceptors/language.interceptor";
 import { GoodPurchaseAverageRateComponent } from './components/good-purchase-average-rate/good-purchase-average-rate.component';
+import { SalesReportComponent } from './components/reports/sales-report/sales-report.component';
+import { PurchaseReportComponent } from './components/reports/purchase-report/purchase-report.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { GoodPurchaseAverageRateComponent } from './components/good-purchase-ave
     BharadaSaleComponent,
     BharadaCreditComponent,
     LanguageTranslationComponent,
-    GoodPurchaseAverageRateComponent
+    GoodPurchaseAverageRateComponent,
+    SalesReportComponent,
+    PurchaseReportComponent
   ],
   imports: [
     BrowserModule,
