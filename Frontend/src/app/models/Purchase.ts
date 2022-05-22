@@ -35,7 +35,7 @@ export interface PurchaseInput{
 }
 
 export interface PurchaseReportInput{
-  goodID:any
+  goodID ?:any
   fromDate: any
   toDate: any
 }

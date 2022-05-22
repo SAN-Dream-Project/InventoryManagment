@@ -90,7 +90,7 @@ namespace Inventory.Host.Controllers
             }
         }
 
-        [HttpGet("GetPurchaseReportData")]
+        [HttpPost("GetPurchaseReportData")]
         public async Task<List<PurchaseDto>> GetPurchaseReportData(PurchaseReportInputDto reportInputDto)
         {
             try

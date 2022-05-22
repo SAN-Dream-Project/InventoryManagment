@@ -50,8 +50,7 @@ export class PurchaseReportComponent implements OnInit {
   }
 
   getPurchaseReportDetails() {
-    this.purchaseReportInput.goodID == '' ? this.purchaseReportInput.goodID = null : this.purchaseReportInput.goodID;
-    console.log(this.purchaseReportInput);
+    this.purchaseReportInput.goodID = this.purchaseReportInput.goodID !=''?this.purchaseReportInput.goodID:null;
     this.purchaseService.getPurchaseReport(this.purchaseReportInput).subscribe(purchseReportDetails=>{
       this.purchaseReportDetails = purchseReportDetails;
       this.purchaseReportDetails.length > 0 ? this.hasReportData = true : this.hasReportData = false;
