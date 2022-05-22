@@ -8,7 +8,7 @@ namespace Inventory.Application.Shared.Purchases.Dto
 {
     public class PurchaseReportInputDto
     {
-        public Guid GoodID { get; set; }
+        public Guid? GoodID { get; set; }
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }
     }
