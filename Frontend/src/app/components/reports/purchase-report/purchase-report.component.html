@@ -5,69 +5,69 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h5>Purchase Report :</h5>
         <hr>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <div class="input-group mt-2 mb-2">
-              <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Good ID : </div>
-              <mat-form-field class="form-control" [formGroup]="purchaseReportForm">
-                <input  matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood"
-                       formControlName="goodID" name="goodID" required>
-                <mat-autocomplete #autoGood="matAutocomplete">
-                  <mat-option *ngFor="let good of filteredGoods | async" (onSelectionChange)="SelectedGood(good)"
-                              [value]="good.value">
-                    <small> {{good.value}}</small>
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
+        <div class="filter-section row">
+          <form class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <div class="input-group mt-2 mb-2">
+                <div class="input-group-text"><i class="c-fa fa fa-balance-scale"></i> Good ID : </div>
+                <mat-form-field class="form-control" [formGroup]="goodIDGroup">
+                  <input matInput placeholder="Search Good" [matAutocomplete]="autoGood" [(ngModel)]="selectedGood" formControlName="goodID" name="goodID">
+                  <mat-autocomplete #autoGood="matAutocomplete">
+                    <mat-option *ngFor="let good of filteredGoods | async" (click)="goodSelected(good)" [value]="good.value">
+                      <small> {{good.value}}</small>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <div class="input-group mt-2 mb-2">
-              <div class="input-group-text"><i class="c-fa fa fa-calendar"></i> From : </div>
-              <input class="form-control" type="date" [(ngModel)]="purchaseReportInput.fromDate"/>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <div class="input-group mt-4 mb-2">
+                <div class="input-group-text"><i class="c-fa fa fa-calendar"></i> From : </div>
+                <input class="form-control" type="date" [(ngModel)]="purchaseReportInput.fromDate" name="fromDate"/>
+              </div>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <div class="input-group mt-2 mb-2">
-              <div class="input-group-text"><i class="c-fa fa fa-calendar"></i> To : </div>
-              <input class="form-control" type="date" [(ngModel)]="purchaseReportInput.toDate"/>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <div class="input-group mt-4 mb-2">
+                <div class="input-group-text"><i class="c-fa fa fa-calendar"></i> To : </div>
+                <input class="form-control" type="date" [(ngModel)]="purchaseReportInput.toDate" name="toDate"/>
+              </div>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 d-flex">
-            <button class="form-control btn btn-info mt-2 mb-2 me-2" (click)="getPurchaseReportDetails()">Get Details</button>
-            <button class="form-control btn btn-info mt-2 mb-2" title="Print"><i class="fa fa-print"></i></button>
-          </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 d-flex">
+              <button class="form-control btn btn-info mt-2 mb-2 me-2" (click)="getPurchaseReportDetails()" [disabled]="purchaseReportInput.fromDate=='' || purchaseReportInput.toDate==''">Get Details</button>
+              <button class="form-control btn btn-info mt-2 mb-2" title="Print" (click)="printReport()" [disabled]="!hasReportData"><i class="fa fa-print"></i></button>
+            </div>
+          </form>
         </div>
         <hr>
-        <div class="row mt-4">
+        <div class="row mt-4" *ngIf="hasReportData">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="report-container table-responsive">
-              <table class="table table-striped table-hover table-bordered">
-                <thead>
-                <tr>
-                  <th>Good Name</th>
-                  <th>Good Supplier Name</th>
-                  <th>Gross Quantity</th>
-                  <th>Good Rate</th>
-                  <th>Kadata Quantity</th>
-                  <th>Kadata Total</th>
-                  <th>Net Good Quantity</th>
-                  <th>Total Labour Costing</th>
-                  <th>Total Amount</th>
-                </tr>
+              <table class="table table-bordered">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Good Name</th>
+                    <th>Good Supplier Name</th>
+                    <th>Gross Quantity</th>
+                    <th>Good Rate</th>
+                    <th>Kadata Quantity</th>
+                    <th>Kadata Total</th>
+                    <th>Net Good Quantity</th>
+                    <th>Total Labour Costing</th>
+                    <th>Total Amount</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                  <tr *ngFor="let purchaseReportDetail of purchaseReportDetails">
+                    <td>{{ purchaseReportDetail.goodName }}</td>
+                    <td>{{ purchaseReportDetail.goodSupplierName }}</td>
+                    <td>{{ purchaseReportDetail.grossGoodQuantity }}</td>
+                    <td>{{ purchaseReportDetail.goodRate }}</td>
+                    <td>{{ purchaseReportDetail.kadataQuantity }}</td>
+                    <td>{{ purchaseReportDetail.kadtaTotal }}</td>
+                    <td>{{ purchaseReportDetail.netGoodQuantity }}</td>
+                    <td>{{ purchaseReportDetail.totalLabourCosting }}</td>
+                    <td>{{ purchaseReportDetail.totalAmount }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
